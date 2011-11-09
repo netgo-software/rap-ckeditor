@@ -12,7 +12,6 @@
 package org.eclipse.rap.widget.ckedit;
 
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.rap.widget.ckedit.internals.CkEditorServiceHandler;
 import org.eclipse.rwt.RWT;
 import org.eclipse.rwt.service.IServiceHandler;
 import org.eclipse.swt.SWT;
@@ -31,12 +30,10 @@ public class CkEditor extends Composite {
   private final static String SAVE_FUNCTION = "download";
   private boolean loaded;
   private Browser browser;
-  private CkEditorServiceHandler serviceHandler;
 
   public CkEditor( Composite parent, int style ) {
     super( parent, style );
     super.setLayout( new FillLayout() );
-    registerServiceHandler();
     browser = new Browser( this, SWT.NONE );
     browser.setUrl( URL );
     browser.addProgressListener( new ProgressListener() {
@@ -50,12 +47,6 @@ public class CkEditor extends Composite {
         // not needed
       }
     } );
-  }
-
-  @Override
-  public void dispose() {
-    deregisterServiceHandler();
-    super.dispose();
   }
 
   @Override
@@ -82,44 +73,9 @@ public class CkEditor extends Composite {
       @Override
       public Object function( Object[] arguments ) {
         String editorContent = ( String )arguments[ 0 ];
-        serviceHandler.setDownloadContent( editorContent );
-        String downloadUrl = createDownloadUrl();
-        provideDownload( downloadUrl );
         return null;
-      }
-
-      /**
-       * An invisible browser widget is used to provide the download.
-       * 
-       * @param downloadUrl
-       */
-      private void provideDownload( String downloadUrl ) {
-        Browser downloadBrowser = new Browser( CkEditor.this, SWT.NONE );
-        downloadBrowser.setBounds( 0, 0, 0, 0 );
-        downloadBrowser.setUrl( downloadUrl );
       }
     };
   }
 
-  private String createDownloadUrl() {
-    StringBuilder url = new StringBuilder();
-    url.append( RWT.getRequest().getContextPath() );
-    url.append( RWT.getRequest().getServletPath() );
-    url.append( "?" );
-    url.append( IServiceHandler.REQUEST_PARAM );
-    url.append( "=" + serviceHandler.getId() );
-    String encodedURL = RWT.getResponse().encodeURL( url.toString() );
-    return encodedURL;
-  }
-
-  private void registerServiceHandler() {
-    serviceHandler = new CkEditorServiceHandler();
-    RWT.getServiceManager().registerServiceHandler( serviceHandler.getId(),
-                                                    serviceHandler );
-  }
-
-  private void deregisterServiceHandler() {
-    RWT.getServiceManager().unregisterServiceHandler( serviceHandler.getId() );
-    serviceHandler = null;
-  }
 }
