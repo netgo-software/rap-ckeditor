@@ -12,7 +12,6 @@
 package com.eclipsesource.widgets.ckeditor.demo;
 
 import org.eclipse.jface.layout.GridDataFactory;
-import org.eclipse.rap.widget.ckedit.CkEditor;
 import org.eclipse.rwt.lifecycle.IEntryPoint;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -22,6 +21,8 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
+
+import com.eclipsesource.widgets.ckeditor.CKEditor;
 
 
 public class CkEditorDemo implements IEntryPoint {
@@ -33,7 +34,7 @@ public class CkEditorDemo implements IEntryPoint {
     shell.setText( "CkEditor Demo" );
     shell.setLayout( new GridLayout() );
     // CkEditor
-    final CkEditor ckEditor = new CkEditor( shell, SWT.NONE );
+    final CKEditor ckEditor = new CKEditor( shell, SWT.NONE );
     GridDataFactory.fillDefaults().grab( true, true ).applyTo( ckEditor );
     // Save button
     Button downloadBtn = new Button( shell, SWT.NONE );

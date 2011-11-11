@@ -9,7 +9,7 @@
  *    Innoopract Informationssysteme GmbH - initial API and implementation
  *    EclipseSource - ongoing development
  ******************************************************************************/
-package org.eclipse.rap.widget.ckedit;
+package com.eclipsesource.widgets.ckeditor;
 
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.rwt.RWT;
@@ -24,14 +24,14 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Layout;
 
 
-public class CkEditor extends Composite {
+public class CKEditor extends Composite {
 
   private static final String URL = "/resources/ckeditor.html";
   private final static String SAVE_FUNCTION = "download";
   private boolean loaded;
   private Browser browser;
 
-  public CkEditor( Composite parent, int style ) {
+  public CKEditor( Composite parent, int style ) {
     super( parent, style );
     super.setLayout( new FillLayout() );
     browser = new Browser( this, SWT.NONE );
