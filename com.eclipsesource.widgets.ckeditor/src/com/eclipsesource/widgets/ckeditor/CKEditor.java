@@ -40,11 +40,11 @@ public class CKEditor extends Composite {
     super.setLayout( new FillLayout() );
     browser = testBrowser != null ? testBrowser : new Browser( this, SWT.NONE );
     browser.setUrl( URL );
+    createBrowserFunctions();
     browser.addProgressListener( new ProgressListener() {
 
       public void completed( ProgressEvent event ) {
         loaded = true;
-        createBrowserFunctions();
       }
 
       public void changed( ProgressEvent event ) {
