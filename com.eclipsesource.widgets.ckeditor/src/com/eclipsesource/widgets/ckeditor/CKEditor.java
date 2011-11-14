@@ -32,9 +32,13 @@ public class CKEditor extends Composite {
   private Browser browser;
 
   public CKEditor( Composite parent, int style ) {
+    this( parent, style, null );
+  }
+
+  CKEditor( Composite parent, int style, Browser testBrowser ) {
     super( parent, style );
     super.setLayout( new FillLayout() );
-    browser = new Browser( this, SWT.NONE );
+    browser = testBrowser != null ? testBrowser : new Browser( this, SWT.NONE );
     browser.setUrl( URL );
     browser.addProgressListener( new ProgressListener() {
 
