@@ -49,6 +49,10 @@ public class CKEditor extends Composite {
   
   //////
   // API
+
+  public void setText( String text ) {
+    browser.evaluate( "rap.editor.setData( \"" + text + "\" );" );    
+  }
   
   ///////////////
   // internal API

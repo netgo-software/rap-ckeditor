@@ -38,6 +38,15 @@ public class CKEditor_Test extends TestCase {
     assertEquals( 0, editor.getChildren().length );
   }
 
+  public void testSetLayout() {
+    try {
+      editor.setLayout( new FillLayout() );
+      fail();
+    } catch( UnsupportedOperationException ex ) {
+      // expected
+    }
+  }
+
   public void testURL() {
     assertEquals( "/resources/ckeditor.html", editor.browser.getUrl() );
   }
@@ -52,14 +61,15 @@ public class CKEditor_Test extends TestCase {
     editor.onReady();
     assertTrue( editor.isLoaded() );
   }
-
-  public void testSetLayout() {
-    try {
-      editor.setLayout( new FillLayout() );
-      fail();
-    } catch( UnsupportedOperationException ex ) {
-      // expected
-    }
+  
+  public void testSetText() {
+    CKEditor editor = new CKEditor( shell, SWT.NONE );
+    mockBrowser( editor );
+    String text = "foo<span>bar</span>";
+    
+    editor.setText( text );
+    
+    verify( editor.browser ).evaluate( "rap.editor.setData( \"" + text + "\" );" );
   }
 
   /////////
@@ -69,6 +79,7 @@ public class CKEditor_Test extends TestCase {
     Browser orgBrowser = editor.browser;
     editor.browser = mock( Browser.class );
     editor.browser.setUrl( orgBrowser.getUrl() );
+    editor.onReady();
   }
 
 }

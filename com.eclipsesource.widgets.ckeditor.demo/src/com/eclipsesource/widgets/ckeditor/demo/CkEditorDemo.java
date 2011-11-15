@@ -35,7 +35,8 @@ public class CkEditorDemo implements IEntryPoint {
     shell.setLayout( new GridLayout() );
     // CkEditor
     final CKEditor ckEditor = new CKEditor( shell, SWT.BORDER );
-    ckEditor.setBackground( display.getSystemColor( SWT.COLOR_BLUE ) );
+    //ckEditor.setText( "balalalala" );
+    //ckEditor.setBackground( display.getSystemColor( SWT.COLOR_BLUE ) );
     GridDataFactory.fillDefaults().grab( true, true ).applyTo( ckEditor );
     // Save button
     Button downloadBtn = new Button( shell, SWT.NONE );
