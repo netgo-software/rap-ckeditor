@@ -15,7 +15,6 @@ public class CKEditor_Test extends TestCase {
 
   private Display display;
   private Shell shell;
-  private Browser browser;
   private CKEditor editor;
 
   @Override
@@ -23,8 +22,7 @@ public class CKEditor_Test extends TestCase {
     Fixture.setUp();
     display = new Display();
     shell = new Shell( display );
-    browser = createMockBrowser();
-    editor = new CKEditor( shell, SWT.NONE, browser );
+    editor = new CKEditor( shell, SWT.NONE );
   }
 
   @Override
@@ -36,8 +34,12 @@ public class CKEditor_Test extends TestCase {
     assertTrue( editor.getLayout() instanceof FillLayout );
   }
   
+  public void testGetChildren() {
+    assertEquals( 0, editor.getChildren().length );
+  }
+
   public void testURL() {
-    verify( browser ).setUrl( "/resources/ckeditor.html" );
+    assertEquals( "/resources/ckeditor.html", editor.browser.getUrl() );
   }
 
   public void testIsInitiallyNotLoaded() {
@@ -47,7 +49,7 @@ public class CKEditor_Test extends TestCase {
   
   public void testIsLoadedOnReady() {
     CKEditor editor = new CKEditor( shell, SWT.NONE );
-    editor.onReady( null );
+    editor.onReady();
     assertTrue( editor.isLoaded() );
   }
 
@@ -63,9 +65,10 @@ public class CKEditor_Test extends TestCase {
   /////////
   // Helper
 
-  private Browser createMockBrowser() {
-    Browser browser = mock( Browser.class );
-    return browser;
+  private void mockBrowser( CKEditor editor ) {
+    Browser orgBrowser = editor.browser;
+    editor.browser = mock( Browser.class );
+    editor.browser.setUrl( orgBrowser.getUrl() );
   }
 
 }

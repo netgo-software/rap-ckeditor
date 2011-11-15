@@ -11,11 +11,11 @@
  ******************************************************************************/
 package com.eclipsesource.widgets.ckeditor;
 
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.browser.Browser;
 import org.eclipse.swt.browser.BrowserFunction;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Layout;
 
 
@@ -23,25 +23,35 @@ public class CKEditor extends Composite {
 
   private static final String URL = "/resources/ckeditor.html";
   private final static String READY_FUNCTION = "rap_ready";
-  private Browser browser;
+  Browser browser;
   private boolean loaded = false;
 
   public CKEditor( Composite parent, int style ) {
-    this( parent, style, null );
-  }
-
-  CKEditor( Composite parent, int style, Browser testBrowser ) {
     super( parent, style );
     super.setLayout( new FillLayout() );
-    browser = testBrowser != null ? testBrowser : new Browser( this, SWT.NONE );
+    browser = new Browser( this, style );
     browser.setUrl( URL );
     createBrowserFunctions();
   }
+  
+  //////////////////////////////
+  // overwrite composite methods
 
   @Override
   public void setLayout( Layout layout ) {
     throw new UnsupportedOperationException( "Cannot change internal layout of CkEditor" );
   }
+  
+  @Override
+  public Control[] getChildren() {
+    return new Control[ 0 ];
+  }
+  
+  //////
+  // API
+  
+  ///////////////
+  // internal API
   
   boolean isLoaded() {
     return loaded;
@@ -50,7 +60,7 @@ public class CKEditor extends Composite {
   ///////////////////////////
   // browser function handler
   
-  void onReady( Object[] arguments ) {
+  void onReady() {
     loaded = true;
   }
   
