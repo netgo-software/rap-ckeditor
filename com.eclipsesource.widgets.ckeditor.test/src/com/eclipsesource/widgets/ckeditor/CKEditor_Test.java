@@ -15,6 +15,7 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
+
 public class CKEditor_Test extends TestCase {
 
   private Display display;
@@ -141,7 +142,6 @@ public class CKEditor_Test extends TestCase {
   }
   
   public void testGetTextBeforeFirstReady() {
-    CKEditor editor = new CKEditor( shell, SWT.NONE );
     mockBrowser( editor );
     String text = "foo<span>bar</span>";
     
@@ -153,7 +153,6 @@ public class CKEditor_Test extends TestCase {
   }
 
   public void testGetTextBeforeReady() {
-    CKEditor editor = new CKEditor( shell, SWT.NONE );
     mockBrowser( editor );
     editor.onReady();
     String text = "foo<span>bar</span>";
@@ -166,7 +165,6 @@ public class CKEditor_Test extends TestCase {
   }
   
   public void testGetTextAfterReady() {
-    CKEditor editor = new CKEditor( shell, SWT.NONE );
     mockBrowser( editor );
     editor.onReady();
     String text = "foo<span>bar</span>";
@@ -177,6 +175,19 @@ public class CKEditor_Test extends TestCase {
     
     verify( editor.browser, times( 1 ) ).evaluate( script );
     assertEquals( text, result );
+  }
+  
+  public void testApplyStyle() {
+    mockBrowser( editor );
+    editor.onReady();
+    Style style = new Style( "b" );
+    
+    editor.applyStyle( style );
+    
+    verify( editor.browser, times( 1 ) ).evaluate( anyString() );
+    verify( editor.browser ).evaluate( contains( "var style = new CKEDITOR.style( {" ) );
+    verify( editor.browser ).evaluate( contains( "\"element\":\"b\"" ) );
+    verify( editor.browser ).evaluate( contains( "style.apply( rap.editor.document );" ) );
   }
 
   /////////

@@ -19,6 +19,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Layout;
 
 
+
 public class CKEditor extends Composite {
 
   private static final String URL = "/resources/ckeditor.html";
@@ -29,6 +30,7 @@ public class CKEditor extends Composite {
   Browser browser;
   boolean loaded = false;
   
+  public static final Style BOLD = new Style( "b" );
 
   public CKEditor( Composite parent, int style ) {
     super( parent, style );
@@ -74,7 +76,15 @@ public class CKEditor extends Composite {
     }
     return result;
   }
-  
+
+  public void applyStyle( Style style ) {
+    StringBuilder code = new StringBuilder();
+    code.append( "var style = new CKEDITOR.style( " );
+    code.append( style.toString() );
+    code.append( " );style.apply( rap.editor.document );" );
+    browser.evaluate( code.toString() );
+  }
+
   ///////////////////////////
   // browser function handler
   

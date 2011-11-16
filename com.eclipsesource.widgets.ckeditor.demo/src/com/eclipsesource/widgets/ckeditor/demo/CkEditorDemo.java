@@ -21,6 +21,8 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.ToolBar;
+import org.eclipse.swt.widgets.ToolItem;
 
 import com.eclipsesource.widgets.ckeditor.CKEditor;
 
@@ -32,20 +34,28 @@ public class CkEditorDemo implements IEntryPoint {
     Shell shell = new Shell( display );
     shell.setBounds( 10, 10, 800, 550 );
     shell.setText( "CkEditor Demo" );
-    shell.setLayout( new GridLayout() );
+    shell.setLayout( new GridLayout( 1, false ) );
     // CkEditor
     final CKEditor ckEditor = new CKEditor( shell, SWT.BORDER );
     ckEditor.setText( "bala<i>\"la\\la\"</i>la\r\nfoooo" );
+    ckEditor.setLayoutData( new GridData() );
     System.out.println( ckEditor.getText() );
     //ckEditor.setBackground( display.getSystemColor( SWT.COLOR_BLUE ) );
     GridDataFactory.fillDefaults().grab( true, true ).applyTo( ckEditor );
+    ToolBar toolbar = new ToolBar( shell, SWT.FLAT );
     // Save button
-    Button saveBtn = new Button( shell, SWT.NONE );
-    saveBtn.setText( "Save" );
-    saveBtn.setLayoutData( new GridData( SWT.RIGHT, GridData.CENTER, false, false ) );
-    saveBtn.addSelectionListener( new SelectionAdapter() {
+    ToolItem printBtn = new ToolItem( toolbar, SWT.PUSH );
+    printBtn.setText( "Print" );
+    printBtn.addSelectionListener( new SelectionAdapter() {
       public void widgetSelected( SelectionEvent e ) {
         System.out.println( ckEditor.getText() );
+      }
+    } );
+    ToolItem boldBtn = new ToolItem( toolbar, SWT.NONE );
+    boldBtn.setText( "Bold" );
+    boldBtn.addSelectionListener( new SelectionAdapter() {
+      public void widgetSelected( SelectionEvent e ) {
+        ckEditor.applyStyle( CKEditor.BOLD );
       }
     } );
     shell.open();
