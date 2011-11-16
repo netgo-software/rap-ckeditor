@@ -85,6 +85,10 @@ public class CKEditor extends Composite {
     browser.evaluate( code.toString() );
   }
 
+  public void removeFormat() {
+    browser.evaluate( "rap.editor.execCommand( \"removeFormat\" );" );
+  }
+
   ///////////////////////////
   // browser function handler
   

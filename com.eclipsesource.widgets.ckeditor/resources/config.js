@@ -8,6 +8,10 @@ CKEDITOR.editorConfig = function( config ) {
 	config.language = 'en';
 	
 	config.skin = 'v2';
+	
+	config.toolbar = [];
+	
+	config.toolbarCanCollapse = false;
 
 	config.removePlugins = [
 	  "about",
@@ -55,7 +59,6 @@ CKEDITOR.editorConfig = function( config ) {
 	  "templates",
 	  "undo", // perhaps later
 	  "wsc",
-	  "toolbar",
 	  "panelbutton"
   ].join();
 

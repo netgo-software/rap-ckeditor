@@ -18,7 +18,6 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.ToolBar;
@@ -56,6 +55,13 @@ public class CkEditorDemo implements IEntryPoint {
     boldBtn.addSelectionListener( new SelectionAdapter() {
       public void widgetSelected( SelectionEvent e ) {
         ckEditor.applyStyle( CKEditor.BOLD );
+      }
+    } );
+    ToolItem removeBtn = new ToolItem( toolbar, SWT.NONE );
+    removeBtn.setText( "unformat" );
+    removeBtn.addSelectionListener( new SelectionAdapter() {
+      public void widgetSelected( SelectionEvent e ) {
+        ckEditor.removeFormat();
       }
     } );
     shell.open();

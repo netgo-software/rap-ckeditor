@@ -6,6 +6,9 @@
       rap.init = false;
 	  rap.createEditor = function() {
       rap.editor = CKEDITOR.appendTo( document.body );
+      rap.editor.on( "uiReady", function() {
+        rap.editor.getThemeSpace( "top" ).hide();
+      } );
       rap.editor.on( "dataReady", function() {
         if( !rap.init ) {
           rap.init = true;

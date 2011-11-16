@@ -190,6 +190,15 @@ public class CKEditor_Test extends TestCase {
     verify( editor.browser ).evaluate( contains( "style.apply( rap.editor.document );" ) );
   }
 
+  public void testRemoveFormat() {
+    mockBrowser( editor );
+    editor.onReady();
+    
+    editor.removeFormat();
+    
+    verify( editor.browser ).evaluate( contains( "rap.editor.execCommand( \"removeFormat\" );" ) );
+  }
+  
   /////////
   // Helper
 
