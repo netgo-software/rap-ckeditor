@@ -74,6 +74,15 @@ public class CKEditor_Test extends TestCase {
     String expected = "rap.editor.setData( \"" + text + "\" );";
     verify( editor.browser ).evaluate( expected );
   }
+  
+  public void testSetTextNull() {
+    try {
+      editor.setText( null );
+      fail();
+    } catch( IllegalArgumentException ex ) {
+      // expected
+    }
+  }
 
   public void testSetTextBeforeReady() {
     CKEditor editor = new CKEditor( shell, SWT.NONE );

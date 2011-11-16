@@ -54,6 +54,9 @@ public class CKEditor extends Composite {
   // API
 
   public void setText( String text ) {
+    if( text == null ) {
+      SWT.error( SWT.ERROR_NULL_ARGUMENT );
+    }
     this.text = text;
     if( loaded ) {
       browser.evaluate( "rap.editor.setData( \"" + escapeText( text ) + "\" );" );          
