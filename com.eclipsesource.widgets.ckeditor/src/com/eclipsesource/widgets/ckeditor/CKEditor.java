@@ -22,9 +22,11 @@ import org.eclipse.swt.widgets.Layout;
 public class CKEditor extends Composite {
 
   private static final String URL = "/resources/ckeditor.html";
-  private final static String READY_FUNCTION = "rap_ready";
+  private static final String READY_FUNCTION = "rap_ready";
+  private String text = "";
   Browser browser;
-  private boolean loaded = false;
+  boolean loaded = false;
+  
 
   public CKEditor( Composite parent, int style ) {
     super( parent, style );
@@ -52,29 +54,46 @@ public class CKEditor extends Composite {
   // API
 
   public void setText( String text ) {
-    browser.evaluate( "rap.editor.setData( \"" + text + "\" );" );    
-  }
-  
-  ///////////////
-  // internal API
-  
-  boolean isLoaded() {
-    return loaded;
+    this.text = text;
+    if( loaded ) {
+      browser.evaluate( "rap.editor.setData( \"" + escapeText( text ) + "\" );" );          
+    }
   }
   
   ///////////////////////////
   // browser function handler
   
   void onReady() {
-    loaded = true;
+    if( !loaded ) {
+      loaded = true;
+      syncAll();      
+    }
   }
+  
+  ////////////
+  // internals
   
   private void createBrowserFunctions() {
     new BrowserFunction( browser, READY_FUNCTION ) {
       public Object function( Object[] arguments ) {
+        onReady();
         return null;
       }
     };
+  }
+  
+  private void syncAll() {
+    browser.evaluate( "rap.editor.setData( \"" + escapeText( text ) + "\" );" );
+  }
+  
+  // TODO [tb] : better implementation?
+  private static String escapeText( String text ) {
+    // escaping backslashes, double-quotes, newlines, and carriage-return 
+    String result = text.replaceAll( "\\\\", "\\\\\\\\" );
+    result = result.replaceAll( "\\\"", "\\\\\"" );
+    result = result.replaceAll( "\\\n", "\\\\n" );
+    result = result.replaceAll( "\\\r", "\\\\r" );
+    return result;
   }
 
 }

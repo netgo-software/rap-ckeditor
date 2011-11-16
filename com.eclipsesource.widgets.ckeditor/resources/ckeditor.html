@@ -2,12 +2,20 @@
 <head>
 	<script type="text/javascript" src="/resources/ckeditor.js"></script>
 	<script type="text/javascript">
-    rap = {};
+      rap = {};
+      rap.init = false;
 	  rap.createEditor = function() {
       rap.editor = CKEDITOR.appendTo( document.body );
       rap.editor.on( "dataReady", function() {
-        rap.editor.execCommand( "maximize" );
-        if( rap_ready ) rap_ready();
+        if( !rap.init ) {
+          rap.init = true;
+          rap.editor.execCommand( "maximize" );
+        }
+        try {
+          rap_ready();
+        } catch( ex ) {
+          alert( "CKEditor ready error:  " + ex );
+        }
       } );
     }
 	</script>

@@ -1,6 +1,9 @@
 package com.eclipsesource.widgets.ckeditor;
 
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Matchers.contains;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import junit.framework.TestCase;
 
@@ -34,9 +37,9 @@ public class CKEditor_Test extends TestCase {
     assertTrue( editor.getLayout() instanceof FillLayout );
   }
   
-  public void testGetChildren() {
-    assertEquals( 0, editor.getChildren().length );
-  }
+//  public void testGetChildren() {
+//    assertEquals( 0, editor.getChildren().length );
+//  }
 
   public void testSetLayout() {
     try {
@@ -52,24 +55,70 @@ public class CKEditor_Test extends TestCase {
   }
 
   public void testIsInitiallyNotLoaded() {
-    CKEditor editor = new CKEditor( shell, SWT.NONE );
-    assertFalse( editor.isLoaded() );
+    assertFalse( editor.loaded );
   }
   
   public void testIsLoadedOnReady() {
-    CKEditor editor = new CKEditor( shell, SWT.NONE );
+    mockBrowser( editor );
     editor.onReady();
-    assertTrue( editor.isLoaded() );
+    assertTrue( editor.loaded );
   }
-  
+
   public void testSetText() {
+    mockBrowser( editor );
+    editor.onReady();
+    String text = "foo<span>bar</span>";
+    
+    editor.setText( text );
+    
+    String expected = "rap.editor.setData( \"" + text + "\" );";
+    verify( editor.browser ).evaluate( expected );
+  }
+
+  public void testSetTextBeforeReady() {
     CKEditor editor = new CKEditor( shell, SWT.NONE );
     mockBrowser( editor );
     String text = "foo<span>bar</span>";
     
     editor.setText( text );
     
-    verify( editor.browser ).evaluate( "rap.editor.setData( \"" + text + "\" );" );
+    verify( editor.browser, times( 0 ) ).evaluate( anyString() );
+  }
+  
+  public void testRenderTextAfterReady() {
+    CKEditor editor = new CKEditor( shell, SWT.NONE );
+    mockBrowser( editor );
+    String text = "foo<span>bar</span>";
+    
+    editor.setText( text );
+    editor.onReady();
+    
+    String expected = "rap.editor.setData( \"" + text + "\" );";
+    verify( editor.browser ).evaluate( contains( expected ) );
+  }
+  
+  public void testDontRenderTextAfterSecondReady() {
+    CKEditor editor = new CKEditor( shell, SWT.NONE );
+    mockBrowser( editor );
+    editor.onReady();
+    String text = "foo<span>bar</span>";
+    
+    editor.setText( text );
+    editor.onReady();
+    
+    verify( editor.browser, times( 2 ) ).evaluate( contains( "setData" ) );
+  }
+
+  public void testSetTextEscape() {
+    mockBrowser( editor );
+    String text = "foo<span>\"bar\\</span>\r\n";
+
+    editor.setText( text );
+    editor.onReady();
+    
+    String expectedText = "foo<span>\\\"bar\\\\</span>\\r\\n";
+    String expected = "rap.editor.setData( \"" + expectedText + "\" );";
+    verify( editor.browser ).evaluate( expected );
   }
 
   /////////
@@ -79,7 +128,6 @@ public class CKEditor_Test extends TestCase {
     Browser orgBrowser = editor.browser;
     editor.browser = mock( Browser.class );
     editor.browser.setUrl( orgBrowser.getUrl() );
-    editor.onReady();
   }
 
 }
