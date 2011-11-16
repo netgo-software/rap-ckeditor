@@ -140,15 +140,29 @@ public class CKEditor_Test extends TestCase {
     verify( editor.browser ).evaluate( expected );
   }
   
-  public void testGetTextBeforeReady() {
+  public void testGetTextBeforeFirstReady() {
     CKEditor editor = new CKEditor( shell, SWT.NONE );
     mockBrowser( editor );
     String text = "foo<span>bar</span>";
     
     editor.setText( text );
+    String result = editor.getText();
 
     verify( editor.browser, times( 0 ) ).evaluate( anyString() );
-    assertEquals( text, editor.getText() );
+    assertEquals( text, result );
+  }
+
+  public void testGetTextBeforeReady() {
+    CKEditor editor = new CKEditor( shell, SWT.NONE );
+    mockBrowser( editor );
+    editor.onReady();
+    String text = "foo<span>bar</span>";
+    
+    editor.setText( text );
+    String result = editor.getText();
+    
+    verify( editor.browser, times( 1 ) ).evaluate( anyString() );
+    assertEquals( text, result );
   }
   
   public void testGetTextAfterReady() {
