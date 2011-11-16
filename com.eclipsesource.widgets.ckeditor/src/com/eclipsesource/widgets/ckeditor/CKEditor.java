@@ -83,7 +83,9 @@ public class CKEditor extends Composite {
   }
   
   private void syncAll() {
-    browser.evaluate( "rap.editor.setData( \"" + escapeText( text ) + "\" );" );
+    if( text != "" ) {
+      browser.evaluate( "rap.editor.setData( \"" + escapeText( text ) + "\" );" );
+    }
   }
   
   // TODO [tb] : better implementation?

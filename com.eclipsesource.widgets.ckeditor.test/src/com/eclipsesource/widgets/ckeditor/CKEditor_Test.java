@@ -84,7 +84,16 @@ public class CKEditor_Test extends TestCase {
     
     verify( editor.browser, times( 0 ) ).evaluate( anyString() );
   }
-  
+
+  public void testSetNoTextBeforeReady() {
+    CKEditor editor = new CKEditor( shell, SWT.NONE );
+    mockBrowser( editor );
+    
+    editor.onReady();
+    
+    verify( editor.browser, times( 0 ) ).evaluate( anyString() );
+  }
+
   public void testRenderTextAfterReady() {
     CKEditor editor = new CKEditor( shell, SWT.NONE );
     mockBrowser( editor );
@@ -106,7 +115,7 @@ public class CKEditor_Test extends TestCase {
     editor.setText( text );
     editor.onReady();
     
-    verify( editor.browser, times( 2 ) ).evaluate( contains( "setData" ) );
+    verify( editor.browser, times( 1 ) ).evaluate( contains( "setData" ) );
   }
 
   public void testSetTextEscape() {
@@ -120,7 +129,7 @@ public class CKEditor_Test extends TestCase {
     String expected = "rap.editor.setData( \"" + expectedText + "\" );";
     verify( editor.browser ).evaluate( expected );
   }
-
+  
   /////////
   // Helper
 
