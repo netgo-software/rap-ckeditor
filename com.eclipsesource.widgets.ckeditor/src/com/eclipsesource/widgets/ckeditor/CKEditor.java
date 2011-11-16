@@ -23,6 +23,8 @@ public class CKEditor extends Composite {
 
   private static final String URL = "/resources/ckeditor.html";
   private static final String READY_FUNCTION = "rap_ready";
+  private static final String SETDATA_FUNCTION = "rap.editor.setData";
+  private static final String GETDATA_FUNCTION = "rap.editor.getData";
   private String text = "";
   Browser browser;
   boolean loaded = false;
@@ -59,8 +61,18 @@ public class CKEditor extends Composite {
     }
     this.text = text;
     if( loaded ) {
-      browser.evaluate( "rap.editor.setData( \"" + escapeText( text ) + "\" );" );          
+      browser.evaluate( SETDATA_FUNCTION + "( \"" + escapeText( text ) + "\" );" );          
     }
+  }
+
+  public String getText() {
+    String result;
+    if( text != null ) {
+      result = text;
+    } else {
+      result = ( String )browser.evaluate( "return " + GETDATA_FUNCTION + "();" );
+    }
+    return result;
   }
   
   ///////////////////////////
@@ -71,6 +83,7 @@ public class CKEditor extends Composite {
       loaded = true;
       syncAll();      
     }
+    this.text = null;
   }
   
   ////////////
@@ -87,7 +100,7 @@ public class CKEditor extends Composite {
   
   private void syncAll() {
     if( text != "" ) {
-      browser.evaluate( "rap.editor.setData( \"" + escapeText( text ) + "\" );" );
+      browser.evaluate( SETDATA_FUNCTION + "( \"" + escapeText( text ) + "\" );" );
     }
   }
   

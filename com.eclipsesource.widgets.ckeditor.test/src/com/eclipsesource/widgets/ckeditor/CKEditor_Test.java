@@ -5,6 +5,7 @@ import static org.mockito.Matchers.contains;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import junit.framework.TestCase;
 
 import org.eclipse.rap.rwt.testfixture.Fixture;
@@ -139,6 +140,31 @@ public class CKEditor_Test extends TestCase {
     verify( editor.browser ).evaluate( expected );
   }
   
+  public void testGetTextBeforeReady() {
+    CKEditor editor = new CKEditor( shell, SWT.NONE );
+    mockBrowser( editor );
+    String text = "foo<span>bar</span>";
+    
+    editor.setText( text );
+
+    verify( editor.browser, times( 0 ) ).evaluate( anyString() );
+    assertEquals( text, editor.getText() );
+  }
+  
+  public void testGetTextAfterReady() {
+    CKEditor editor = new CKEditor( shell, SWT.NONE );
+    mockBrowser( editor );
+    editor.onReady();
+    String text = "foo<span>bar</span>";
+    String script = "return rap.editor.getData();";
+    when( editor.browser.evaluate( script ) ).thenReturn( text );
+    
+    String result = editor.getText();
+    
+    verify( editor.browser, times( 1 ) ).evaluate( script );
+    assertEquals( text, result );
+  }
+
   /////////
   // Helper
 

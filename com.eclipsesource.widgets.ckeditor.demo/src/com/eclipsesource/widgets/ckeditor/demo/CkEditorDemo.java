@@ -36,16 +36,16 @@ public class CkEditorDemo implements IEntryPoint {
     // CkEditor
     final CKEditor ckEditor = new CKEditor( shell, SWT.BORDER );
     ckEditor.setText( "bala<i>\"la\\la\"</i>la\r\nfoooo" );
+    System.out.println( ckEditor.getText() );
     //ckEditor.setBackground( display.getSystemColor( SWT.COLOR_BLUE ) );
     GridDataFactory.fillDefaults().grab( true, true ).applyTo( ckEditor );
     // Save button
-    Button downloadBtn = new Button( shell, SWT.NONE );
-    downloadBtn.setText( "Save" );
-    downloadBtn.setLayoutData( new GridData( SWT.RIGHT, GridData.CENTER, false, false ) );
-    downloadBtn.addSelectionListener( new SelectionAdapter() {
-
-      @Override
+    Button saveBtn = new Button( shell, SWT.NONE );
+    saveBtn.setText( "Save" );
+    saveBtn.setLayoutData( new GridData( SWT.RIGHT, GridData.CENTER, false, false ) );
+    saveBtn.addSelectionListener( new SelectionAdapter() {
       public void widgetSelected( SelectionEvent e ) {
+        System.out.println( ckEditor.getText() );
       }
     } );
     shell.open();
