@@ -31,6 +31,11 @@ public class CKEditor extends Composite {
   boolean loaded = false;
   
   public static final Style BOLD = new Style( "b" );
+  public static final Style ITALIC = new Style( "i" );
+  public static final Style UNDERLINE = new Style( "u" );
+  public static final Style STRIKE = new Style( "strike" );
+  public static final Style SUBSCRIPE = new Style( "sub" );
+  public static final Style SUPERSCRIPE = new Style( "sup" );
 
   public CKEditor( Composite parent, int style ) {
     super( parent, style );
@@ -80,7 +85,7 @@ public class CKEditor extends Composite {
   public void applyStyle( Style style ) {
     StringBuilder code = new StringBuilder();
     code.append( "var style = new CKEDITOR.style( " );
-    code.append( style.toString() );
+    code.append( style.toJSON() );
     code.append( " );style.apply( rap.editor.document );" );
     browser.evaluate( code.toString() );
   }

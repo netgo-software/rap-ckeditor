@@ -30,8 +30,7 @@ public class Style {
     }
   }
   
-  @Override
-  public String toString() {
+  public String toJSON() {
     return json.toString();
   }
 
