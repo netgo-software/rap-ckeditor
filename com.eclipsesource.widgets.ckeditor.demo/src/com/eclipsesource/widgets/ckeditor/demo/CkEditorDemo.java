@@ -16,18 +16,14 @@ import org.eclipse.rwt.lifecycle.IEntryPoint;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Menu;
-import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
 
 import com.eclipsesource.widgets.ckeditor.CKEditor;
-import com.eclipsesource.widgets.ckeditor.Style;
 
 
 public class CkEditorDemo implements IEntryPoint {
@@ -52,65 +48,6 @@ public class CkEditorDemo implements IEntryPoint {
     printBtn.addSelectionListener( new SelectionAdapter() {
       public void widgetSelected( SelectionEvent e ) {
         System.out.println( ckEditor.getText() );
-      }
-    } );
-    ToolItem styleBtn = new ToolItem( toolbar, SWT.NONE );
-    styleBtn.setText( "Style" );
-    final Menu dropDownMenu = new Menu( shell, SWT.POP_UP );
-    MenuItem item = new MenuItem( dropDownMenu, SWT.PUSH );
-    item.setText( "Bold" );
-    item.addSelectionListener( new SelectionAdapter() {
-      public void widgetSelected( SelectionEvent e ) {
-        ckEditor.applyStyle( Style.BOLD );
-      }
-    } );
-    item = new MenuItem( dropDownMenu, SWT.PUSH );
-    item.setText( "Italic" );
-    item.addSelectionListener( new SelectionAdapter() {
-      public void widgetSelected( SelectionEvent e ) {
-        ckEditor.applyStyle( Style.ITALIC );
-      }
-    } );
-    item = new MenuItem( dropDownMenu, SWT.PUSH );
-    item.setText( "Strike" );
-    item.addSelectionListener( new SelectionAdapter() {
-      public void widgetSelected( SelectionEvent e ) {
-        ckEditor.applyStyle( Style.STRIKE );
-      }
-    } );
-    item = new MenuItem( dropDownMenu, SWT.PUSH );
-    item.setText( "Subscripe" );
-    item.addSelectionListener( new SelectionAdapter() {
-      public void widgetSelected( SelectionEvent e ) {
-        ckEditor.applyStyle( Style.SUBSCRIPE );
-      }
-    } );
-    item = new MenuItem( dropDownMenu, SWT.PUSH );
-    item.setText( "Superscripe" );
-    item.addSelectionListener( new SelectionAdapter() {
-      public void widgetSelected( SelectionEvent e ) {
-        ckEditor.applyStyle( Style.SUPERSCRIPE );
-      }
-    } );
-    item = new MenuItem( dropDownMenu, SWT.PUSH );
-    item.setText( "Underline" );
-    item.addSelectionListener( new SelectionAdapter() {
-      public void widgetSelected( SelectionEvent e ) {
-        ckEditor.applyStyle( Style.UNDERLINE );
-      }
-    } );
-    styleBtn.addSelectionListener( new SelectionAdapter() {
-      public void widgetSelected( final SelectionEvent event ) {
-        Point point = toolbar.toDisplay( event.x, event.y );
-        dropDownMenu.setLocation( point );
-        dropDownMenu.setVisible( true );
-      }
-    } );
-    ToolItem removeBtn = new ToolItem( toolbar, SWT.NONE );
-    removeBtn.setText( "Unformat" );
-    removeBtn.addSelectionListener( new SelectionAdapter() {
-      public void widgetSelected( SelectionEvent e ) {
-        ckEditor.removeFormat();
       }
     } );
     ToolItem clearBtn = new ToolItem( toolbar, SWT.NONE );

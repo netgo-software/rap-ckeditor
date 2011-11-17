@@ -125,7 +125,7 @@ public class CKEditor_Test extends TestCase {
     String expected = "rap.editor.setData( \"" + text + "\" );";
     verify( editor.browser ).evaluate( contains( expected ) );
   }
-  
+
   public void testNoSecondLoaded() {
     mockBrowser( editor );
     editor.onLoad();
@@ -149,7 +149,7 @@ public class CKEditor_Test extends TestCase {
     String expected = "rap.editor.setData( \"" + expectedText + "\" );";
     verify( editor.browser ).evaluate( contains( expected ) );
   }
-  
+
   public void testGetTextWhenNotReady() {
     mockBrowser( editor );
     editor.onLoad();
@@ -161,7 +161,7 @@ public class CKEditor_Test extends TestCase {
     verify( editor.browser, times( 0 ) ).evaluate( contains( "getText") );
     assertEquals( text, result );
   }
-  
+
   public void testGetTextAfterReady() {
     mockBrowser( editor );
     editor.onLoad();
@@ -175,55 +175,7 @@ public class CKEditor_Test extends TestCase {
     verify( editor.browser, times( 1 ) ).evaluate( script );
     assertEquals( text, result );
   }
-  
-  public void testApplyStyle() {
-    mockBrowser( editor );
-    editor.onLoad();
-    editor.onReady();
-    Style style = new Style( "b" );
-    
-    editor.applyStyle( style );
-    
-    verify( editor.browser, times( 2 ) ).evaluate( anyString() );
-    verify( editor.browser ).evaluate( contains( "var style = new CKEDITOR.style( {" ) );
-    verify( editor.browser ).evaluate( contains( "\"element\":\"b\"" ) );
-    verify( editor.browser ).evaluate( contains( "style.apply( rap.editor.document );" ) );
-  }
 
-  public void testApplyStyleNull() {
-    mockBrowser( editor );
-    editor.onLoad();
-    editor.onReady();
-
-    try {
-      editor.applyStyle( null );
-      fail();
-    } catch( IllegalArgumentException ex ) {
-      // expected
-    }
-    
-  }
-  
-//  public void testApplyStyleBeforeReady() {
-//    mockBrowser( editor );
-//    editor.onLoad();
-//    Style style = new Style( "b" );
-//    
-//    editor.applyStyle( style );
-//    
-//    verify( editor.browser, times( 0 ) ).evaluate( contains( "style.apply" ) );
-//  }
-  
-  public void testRemoveFormat() {
-    mockBrowser( editor );
-    editor.onLoad();
-    editor.onReady();
-    
-    editor.removeFormat();
-    
-    verify( editor.browser ).evaluate( contains( "rap.editor.execCommand( \"removeFormat\" );" ) );
-  }
-  
   /////////
   // Helper
 

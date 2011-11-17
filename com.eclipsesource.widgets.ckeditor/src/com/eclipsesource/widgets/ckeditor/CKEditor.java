@@ -77,18 +77,6 @@ public class CKEditor extends Composite {
     return result;
   }
 
-  public void applyStyle( Style style ) {
-    // TODO [tb] : support applyStyle, removeFormat, removeStyle before ready
-    if( style == null ) {
-      SWT.error( SWT.ERROR_NULL_ARGUMENT );
-    }
-    browser.evaluate( getCodeApplyStyle( style ) );
-  }
-
-  public void removeFormat() {
-    browser.evaluate( getCodeRemoveFormat() );
-  }
-
   //////////////////
   // browser handler
   
@@ -126,7 +114,7 @@ public class CKEditor extends Composite {
       }
     };
   }
-  
+
   private String getCodeCreateEditor() {
     return "rap.createEditor();";
   }
@@ -137,18 +125,6 @@ public class CKEditor extends Composite {
   
   private String getCodeGetText() {
     return "return rap.editor.getData();";
-  }
-  
-  private String getCodeRemoveFormat() {
-    return "rap.editor.execCommand( \"removeFormat\" );";
-  }
-
-  private String getCodeApplyStyle( Style style ) {
-    StringBuilder code = new StringBuilder();
-    code.append( "var style = new CKEDITOR.style( " );
-    code.append( style.toJSON() );
-    code.append( " );style.apply( rap.editor.document );" );
-    return code.toString();
   }
 
   // TODO [tb] : better implementation?
