@@ -78,6 +78,7 @@ public class CKEditor extends Composite {
   }
 
   public void applyStyle( Style style ) {
+    // TODO [tb] : support applyStyle, removeFormat, removeStyle before ready
     if( style == null ) {
       SWT.error( SWT.ERROR_NULL_ARGUMENT );
     }

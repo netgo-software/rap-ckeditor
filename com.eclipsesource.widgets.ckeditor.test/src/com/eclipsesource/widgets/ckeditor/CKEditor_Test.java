@@ -206,11 +206,12 @@ public class CKEditor_Test extends TestCase {
   
 //  public void testApplyStyleBeforeReady() {
 //    mockBrowser( editor );
+//    editor.onLoad();
 //    Style style = new Style( "b" );
 //    
 //    editor.applyStyle( style );
 //    
-//    verify( editor.browser, times( 1 ) ).evaluate( anyString() );
+//    verify( editor.browser, times( 0 ) ).evaluate( contains( "style.apply" ) );
 //  }
   
   public void testRemoveFormat() {
