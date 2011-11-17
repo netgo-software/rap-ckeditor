@@ -28,6 +28,7 @@ public class CKEditor_Test extends TestCase {
     display = new Display();
     shell = new Shell( display );
     editor = new CKEditor( shell, SWT.NONE );
+    editor.onLoad();
   }
 
   @Override
@@ -57,15 +58,27 @@ public class CKEditor_Test extends TestCase {
   }
 
   public void testIsInitiallyNotLoaded() {
+    CKEditor editor = new CKEditor( shell, SWT.NONE );
     assertFalse( editor.loaded );
   }
   
-  public void testIsLoadedOnReady() {
+  public void testIsInitiallyNotReady() {
+    assertFalse( editor.ready );
+  }
+
+  public void testIsLoadedOnLoad() {
+    CKEditor editor = new CKEditor( shell, SWT.NONE );
     mockBrowser( editor );
-    editor.onReady();
+    editor.onLoad();
     assertTrue( editor.loaded );
   }
 
+  public void testIsReadyOnReady() {
+    mockBrowser( editor );
+    editor.onReady();
+    assertTrue( editor.ready );
+  }
+  
   public void testSetText() {
     mockBrowser( editor );
     editor.onReady();
@@ -86,7 +99,7 @@ public class CKEditor_Test extends TestCase {
     }
   }
 
-  public void testSetTextBeforeReady() {
+  public void testSetTextBeforeLoaded() {
     CKEditor editor = new CKEditor( shell, SWT.NONE );
     mockBrowser( editor );
     String text = "foo<span>bar</span>";
@@ -96,37 +109,34 @@ public class CKEditor_Test extends TestCase {
     verify( editor.browser, times( 0 ) ).evaluate( anyString() );
   }
 
-  public void testSetNoTextBeforeReady() {
+  public void testSetNoTextBeforeLoad() {
     CKEditor editor = new CKEditor( shell, SWT.NONE );
     mockBrowser( editor );
     
-    editor.onReady();
+    editor.onLoad();
     
     verify( editor.browser, times( 0 ) ).evaluate( anyString() );
   }
 
-  public void testRenderTextAfterReady() {
+  public void testRenderTextAfterLoaded() {
     CKEditor editor = new CKEditor( shell, SWT.NONE );
     mockBrowser( editor );
     String text = "foo<span>bar</span>";
-    
+
     editor.setText( text );
-    editor.onReady();
+    editor.onLoad();
     
     String expected = "rap.editor.setData( \"" + text + "\" );";
     verify( editor.browser ).evaluate( contains( expected ) );
   }
   
-  public void testDontRenderTextAfterSecondReady() {
-    CKEditor editor = new CKEditor( shell, SWT.NONE );
-    mockBrowser( editor );
-    editor.onReady();
-    String text = "foo<span>bar</span>";
-    
-    editor.setText( text );
-    editor.onReady();
-    
-    verify( editor.browser, times( 1 ) ).evaluate( contains( "setData" ) );
+  public void testNoSecondLoaded() {
+    try {
+      editor.onLoad();
+      fail();
+    } catch( IllegalStateException ex ) {
+      // expected
+    }
   }
 
   public void testSetTextEscape() {
@@ -141,26 +151,14 @@ public class CKEditor_Test extends TestCase {
     verify( editor.browser ).evaluate( contains( expected ) );
   }
   
-  public void testGetTextBeforeFirstReady() {
+  public void testGetTextWhenNotReady() {
     mockBrowser( editor );
     String text = "foo<span>bar</span>";
     
     editor.setText( text );
     String result = editor.getText();
 
-    verify( editor.browser, times( 0 ) ).evaluate( anyString() );
-    assertEquals( text, result );
-  }
-
-  public void testGetTextBeforeReady() {
-    mockBrowser( editor );
-    editor.onReady();
-    String text = "foo<span>bar</span>";
-    
-    editor.setText( text );
-    String result = editor.getText();
-    
-    verify( editor.browser, times( 1 ) ).evaluate( anyString() );
+    verify( editor.browser, times( 0 ) ).evaluate( contains( "getText") );
     assertEquals( text, result );
   }
   

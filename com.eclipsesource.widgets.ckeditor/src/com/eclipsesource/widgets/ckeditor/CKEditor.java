@@ -14,6 +14,8 @@ package com.eclipsesource.widgets.ckeditor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.browser.Browser;
 import org.eclipse.swt.browser.BrowserFunction;
+import org.eclipse.swt.browser.ProgressEvent;
+import org.eclipse.swt.browser.ProgressListener;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Layout;
@@ -34,7 +36,7 @@ public class CKEditor extends Composite {
     super.setLayout( new FillLayout() );
     browser = new Browser( this, SWT.NONE );
     browser.setUrl( URL );
-    createBrowserFunctions();
+    addBrowserHandler();
   }
   
   //////////////////////////////
@@ -83,21 +85,36 @@ public class CKEditor extends Composite {
     browser.evaluate( getCodeRemoveFormat() );
   }
 
-  ///////////////////////////
-  // browser function handler
+  //////////////////
+  // browser handler
+  
+  void onLoad() {
+    if( loaded ) {
+      throw new IllegalStateException( "Document loaded twice" ); 
+    }
+    loaded = true;
+    String code = getCodeCreateEditor();
+    if( !text.equals( "" ) ) {
+      code += getCodeSetText();
+    }
+    browser.evaluate( code );
+  }
   
   void onReady() {
-    if( !loaded ) {
-      loaded = true;
-      syncAll();
-    }
     ready = true;
   }
   
   ////////////
   // internals
   
-  private void createBrowserFunctions() {
+  private void addBrowserHandler() {
+    browser.addProgressListener( new ProgressListener() {
+      public void completed( ProgressEvent event ) {
+        onLoad();
+      }
+      public void changed( ProgressEvent event ) {
+      }
+    } );
     new BrowserFunction( browser, READY_FUNCTION ) {
       public Object function( Object[] arguments ) {
         onReady();
@@ -105,11 +122,9 @@ public class CKEditor extends Composite {
       }
     };
   }
-
-  private void syncAll() {
-    if( text != "" ) {
-      browser.evaluate( getCodeSetText() );
-    }
+  
+  private String getCodeCreateEditor() {
+    return "rap.createEditor();";
   }
 
   private String getCodeSetText() {

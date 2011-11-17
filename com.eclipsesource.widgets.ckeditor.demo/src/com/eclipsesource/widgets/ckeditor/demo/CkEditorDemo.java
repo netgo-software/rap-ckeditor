@@ -113,6 +113,13 @@ public class CkEditorDemo implements IEntryPoint {
         ckEditor.removeFormat();
       }
     } );
+    ToolItem clearBtn = new ToolItem( toolbar, SWT.NONE );
+    clearBtn.setText( "Clear" );
+    clearBtn.addSelectionListener( new SelectionAdapter() {
+      public void widgetSelected( SelectionEvent e ) {
+        ckEditor.setText( "" );
+      }
+    } );
     shell.open();
     runReadAndDispatchLoop( shell );
     return 0;

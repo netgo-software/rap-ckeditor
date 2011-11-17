@@ -5,24 +5,25 @@
       rap = {};
       rap.init = false;
 	  rap.createEditor = function() {
-      rap.editor = CKEDITOR.appendTo( document.body );
-      rap.editor.on( "uiReady", function() {
-        rap.editor.getThemeSpace( "top" ).hide();
-      } );
-      rap.editor.on( "dataReady", function() {
-        if( !rap.init ) {
-          rap.init = true;
-          rap.editor.execCommand( "maximize" );
-        }
-        try {
-          rap_ready();
-        } catch( ex ) {
-          alert( "CKEditor ready error:  " + ex );
-        }
-      } );
-    }
+        rap.editor = CKEDITOR.appendTo( document.body );
+        rap.editor.on( "uiReady", function() {
+          rap.editor.getThemeSpace( "top" ).hide();
+        } );
+        rap.editor.on( "dataReady", function() {
+          if( !rap.init ) {
+            rap.init = true;
+            // NOTE [tb] : does not work in uiReady for some reason:
+	        rap.editor.execCommand( "maximize" ); 
+	      }
+          try {
+            rap_ready();
+          } catch( ex ) {
+            alert( "CKEditor ready error:  " + ex );
+          }
+        } );
+      }
 	</script>
 </head>
-<body onload = "rap.createEditor();" >
+<body>
 </body>
 </html>
