@@ -190,6 +190,20 @@ public class CKEditor_Test extends TestCase {
     verify( editor.browser ).evaluate( contains( "style.apply( rap.editor.document );" ) );
   }
 
+  public void testApplyStyleNull() {
+    mockBrowser( editor );
+    editor.onLoad();
+    editor.onReady();
+
+    try {
+      editor.applyStyle( null );
+      fail();
+    } catch( IllegalArgumentException ex ) {
+      // expected
+    }
+    
+  }
+  
 //  public void testApplyStyleBeforeReady() {
 //    mockBrowser( editor );
 //    Style style = new Style( "b" );

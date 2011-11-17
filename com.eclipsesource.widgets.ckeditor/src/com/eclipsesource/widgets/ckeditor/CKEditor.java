@@ -78,6 +78,9 @@ public class CKEditor extends Composite {
   }
 
   public void applyStyle( Style style ) {
+    if( style == null ) {
+      SWT.error( SWT.ERROR_NULL_ARGUMENT );
+    }
     browser.evaluate( getCodeApplyStyle( style ) );
   }
 
