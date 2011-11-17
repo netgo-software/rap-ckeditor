@@ -16,6 +16,8 @@ import org.eclipse.swt.browser.Browser;
 import org.eclipse.swt.browser.BrowserFunction;
 import org.eclipse.swt.browser.ProgressEvent;
 import org.eclipse.swt.browser.ProgressListener;
+import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Layout;
@@ -28,9 +30,9 @@ public class CKEditor extends Composite {
   private static final String READY_FUNCTION = "rap_ready";
   private String text = "";
   Browser browser;
-  boolean loaded = false;
   boolean ready = false;
-  
+  private StringBuilder evalScript = null;
+
   public CKEditor( Composite parent, int style ) {
     super( parent, style );
     super.setLayout( new FillLayout() );
@@ -39,9 +41,9 @@ public class CKEditor extends Composite {
     browser.setUrl( URL );
     addBrowserHandler();
   }
-  
-  //////////////////////////////
-  // overwrite composite methods
+
+  ////////////////////
+  // overwrite methods
 
   @Override
   public void setLayout( Layout layout ) {
@@ -54,6 +56,12 @@ public class CKEditor extends Composite {
 //    return new Control[ 0 ];
 //  }
 
+  @Override
+  public void setFont( Font font ) {
+    super.setFont( font );
+    writeFont();
+  }
+
   //////
   // API
 
@@ -62,44 +70,52 @@ public class CKEditor extends Composite {
       SWT.error( SWT.ERROR_NULL_ARGUMENT );
     }
     this.text = text;
-    this.ready = false;
-    if( loaded ) {
-      browser.evaluate( getCodeSetText() );          
-    }
+    evaluate( getScriptSetText() );          
+    ready = false;
   }
 
   public String getText() {
-    String result;
-    if( ready ) {
-      result = ( String )browser.evaluate( getCodeGetText() );
-    } else {
-      result = text;
-    }
-    return result;
+    readText();
+    return text;
   }
 
-  //////////////////
-  // browser handler
-  
+  //////////////
+  // browser I/O
+
   void onLoad() {
-    if( loaded ) {
-      throw new IllegalStateException( "Document loaded twice" ); 
-    }
-    loaded = true;
-    String code = getCodeCreateEditor();
-    if( !text.equals( "" ) ) {
-      code += getCodeSetText();
-    }
-    browser.evaluate( code );
+    browser.evaluate( "rap.createEditor();" );
   }
-  
+
   void onReady() {
+    writeFont(); // CKEditor re-creates the document with every setData, loosing inline styles
+    if( evalScript != null ) {
+      browser.evaluate( evalScript.toString() );
+      evalScript = null;
+    }
     ready = true;
   }
-  
-  ////////////
-  // internals
-  
+
+  private void readText() {
+    if( ready ) {
+      text = ( String )browser.evaluate( "return rap.editor.getData();" );
+    }
+  }
+
+  private void evaluate( String script ) {
+    if( ready ) {
+      browser.evaluate( script );
+    } else {
+      if( evalScript == null ) {
+        evalScript = new StringBuilder( script );
+      } else {
+        evalScript.append(  script );
+      }
+    }
+  }
+
+  /////////
+  // helper
+
   private void addBrowserHandler() {
     browser.addProgressListener( new ProgressListener() {
       public void completed( ProgressEvent event ) {
@@ -116,18 +132,25 @@ public class CKEditor extends Composite {
     };
   }
 
-  private String getCodeCreateEditor() {
-    return "rap.createEditor();";
-  }
-
-  private String getCodeSetText() {
+  private String getScriptSetText() {
     return "rap.editor.setData( \"" + escapeText( text ) + "\" );";
   }
-  
-  private String getCodeGetText() {
-    return "return rap.editor.getData();";
+
+  private void writeFont() {
+    evaluate( "rap.editor.document.getBody().setStyle( \"font\", \"" + getCssFont() + "\" );" );
   }
 
+  private String getCssFont() {
+    StringBuilder result = new StringBuilder();
+    if( getFont() != null ) {
+      FontData data = getFont().getFontData()[ 0 ];
+      result.append( data.getHeight() );
+      result.append( "pt " );
+      result.append( escapeText( data.getName() ) );
+    }
+    return result.toString();
+  }
+  
   private static String escapeText( String text ) {
     // escaping backslashes, double-quotes, newlines, and carriage-return 
     StringBuilder result = new StringBuilder();

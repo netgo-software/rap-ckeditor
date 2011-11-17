@@ -11,6 +11,7 @@ import junit.framework.TestCase;
 import org.eclipse.rap.rwt.testfixture.Fixture;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.browser.Browser;
+import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
@@ -59,19 +60,9 @@ public class CKEditor_Test extends TestCase {
   public void testURL() {
     assertEquals( "/resources/ckeditor.html", editor.browser.getUrl() );
   }
-
-  public void testIsInitiallyNotLoaded() {
-    assertFalse( editor.loaded );
-  }
   
   public void testIsInitiallyNotReady() {
     assertFalse( editor.ready );
-  }
-
-  public void testIsLoadedOnLoad() {
-    mockBrowser( editor );
-    editor.onLoad();
-    assertTrue( editor.loaded );
   }
 
   public void testIsReadyOnReady() {
@@ -102,7 +93,7 @@ public class CKEditor_Test extends TestCase {
     }
   }
 
-  public void testSetTextBeforeLoaded() {
+  public void testSetTextBeforeReady() {
     mockBrowser( editor );
     String text = "foo<span>bar</span>";
     
@@ -111,34 +102,23 @@ public class CKEditor_Test extends TestCase {
     verify( editor.browser, times( 0 ) ).evaluate( anyString() );
   }
 
-  public void testSetNoTextBeforeLoad() {
+  public void testSetNoTextBeforeReady() {
     mockBrowser( editor );
     
-    editor.onLoad();
+    editor.onReady();
     
     verify( editor.browser, times( 0 ) ).evaluate( contains( "setText" ) );
   }
 
-  public void testRenderTextAfterLoaded() {
+  public void testRenderTextAfterReady() {
     mockBrowser( editor );
     String text = "foo<span>bar</span>";
 
     editor.setText( text );
-    editor.onLoad();
+    editor.onReady();
     
     String expected = "rap.editor.setData( \"" + text + "\" );";
     verify( editor.browser ).evaluate( contains( expected ) );
-  }
-
-  public void testNoSecondLoaded() {
-    mockBrowser( editor );
-    editor.onLoad();
-    try {
-      editor.onLoad();
-      fail();
-    } catch( IllegalStateException ex ) {
-      // expected
-    }
   }
 
   public void testSetTextEscape() {
@@ -180,6 +160,38 @@ public class CKEditor_Test extends TestCase {
     assertEquals( text, result );
   }
 
+  public void testSetFontAfterReady() {
+    mockBrowser( editor );
+    editor.onLoad();
+    
+    editor.onReady();
+
+    String expected = "setStyle( \"font\"";
+    verify( editor.browser, times( 1 ) ).evaluate( contains( expected ) );
+  }
+
+  public void testSetFontFamilyAndSize() {
+    mockBrowser( editor );
+    editor.onLoad();
+    editor.onReady();
+
+    editor.setFont( new Font( display, "fantasy", 13, 0 ) );
+    
+    String expected = "setStyle( \"font\", \"13pt fantasy";
+    verify( editor.browser, times( 1 ) ).evaluate( contains( expected ) );
+  }
+  
+  public void testSetFontEscape() {
+    mockBrowser( editor );
+    editor.onLoad();
+    editor.onReady();
+    
+    editor.setFont( new Font( display, "\"courier new\"", 13, 0 ) );
+    
+    String expected = "setStyle( \"font\", \"13pt \\\"courier new\\\"";
+    verify( editor.browser, times( 1 ) ).evaluate( contains( expected ) );
+  }
+  
   /////////
   // Helper
 

@@ -29,25 +29,33 @@ import com.eclipsesource.widgets.ckeditor.CKEditor;
 public class CkEditorDemo implements IEntryPoint {
 
   public int createUI() {
-    Display display = new Display();
+    final Display display = new Display();
     Shell shell = new Shell( display );
     shell.setBounds( 10, 10, 800, 550 );
     shell.setText( "CkEditor Demo" );
+
     shell.setLayout( new GridLayout( 1, false ) );
     // CkEditor
     final CKEditor ckEditor = new CKEditor( shell, SWT.NONE );
+    ckEditor.setFont( new org.eclipse.swt.graphics.Font( display, "fantasy", 13, 0 ) );
     ckEditor.setText( "asdf<script type=\"text/javascript\"> alert(1);</script>asdf" );
     ckEditor.setLayoutData( new GridData() );
     System.out.println( ckEditor.getText() );
     ckEditor.setBackground( display.getSystemColor( SWT.COLOR_YELLOW ) );
     GridDataFactory.fillDefaults().grab( true, true ).applyTo( ckEditor );
     final ToolBar toolbar = new ToolBar( shell, SWT.FLAT );
-    // Save button
     ToolItem printBtn = new ToolItem( toolbar, SWT.PUSH );
     printBtn.setText( "Print" );
     printBtn.addSelectionListener( new SelectionAdapter() {
       public void widgetSelected( SelectionEvent e ) {
         System.out.println( ckEditor.getText() );
+      }
+    } );
+    ToolItem fontBtn = new ToolItem( toolbar, SWT.PUSH );
+    fontBtn.setText( "Font" );
+    fontBtn.addSelectionListener( new SelectionAdapter() {
+      public void widgetSelected( SelectionEvent e ) {
+        ckEditor.setFont( new org.eclipse.swt.graphics.Font( display, "serif", 13, 0 ) );
       }
     } );
     ToolItem clearBtn = new ToolItem( toolbar, SWT.NONE );
