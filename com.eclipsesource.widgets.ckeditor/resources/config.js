@@ -7,16 +7,15 @@ CKEDITOR.editorConfig = function( config ) {
 
 	config.language = 'en';
 	
-	config.skin = 'v2';
+	config.skin = 'kama';
 	
-	config.toolbar = [];
+	config.toolbar = [ { name: 'basicstyles',  items : [ 'Bold','Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat' ] } ];
 	
 	config.toolbarCanCollapse = false;
 
 	config.removePlugins = [
 	  "about",
 	  "a11yhelp",
-	  "basicstyles",
 	  "bidi",
 	  "blockquote",
 	  "colorbutton",

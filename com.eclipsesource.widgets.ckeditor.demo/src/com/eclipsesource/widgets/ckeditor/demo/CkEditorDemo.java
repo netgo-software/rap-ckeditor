@@ -35,7 +35,7 @@ public class CkEditorDemo implements IEntryPoint {
     shell.setText( "CkEditor Demo" );
     shell.setLayout( new GridLayout( 1, false ) );
     // CkEditor
-    final CKEditor ckEditor = new CKEditor( shell, SWT.BORDER );
+    final CKEditor ckEditor = new CKEditor( shell, SWT.NONE );
     ckEditor.setText( "bala<i>\"la\\la\"</i>la\r\nfoooo" );
     ckEditor.setLayoutData( new GridData() );
     System.out.println( ckEditor.getText() );
