@@ -34,6 +34,7 @@ public class CKEditor extends Composite {
   public CKEditor( Composite parent, int style ) {
     super( parent, style );
     super.setLayout( new FillLayout() );
+    this.setBackgroundMode( SWT.INHERIT_FORCE );
     browser = new Browser( this, SWT.BORDER );
     browser.setUrl( URL );
     addBrowserHandler();
@@ -127,14 +128,24 @@ public class CKEditor extends Composite {
     return "return rap.editor.getData();";
   }
 
-  // TODO [tb] : better implementation?
   private static String escapeText( String text ) {
     // escaping backslashes, double-quotes, newlines, and carriage-return 
-    String result = text.replaceAll( "\\\\", "\\\\\\\\" );
-    result = result.replaceAll( "\\\"", "\\\\\"" );
-    result = result.replaceAll( "\\\n", "\\\\n" );
-    result = result.replaceAll( "\\\r", "\\\\r" );
-    return result;
+    StringBuilder result = new StringBuilder();
+    for( int i = 0; i < text.length(); i++ ) {
+      char ch = text.charAt( i );
+      if( ch == '\n' ) {
+        result.append( "\\n" );
+      } else if( ch == '\r' ) {
+        result.append( "\\r" );
+      } else if( ch == '\\' ) {
+        result.append( "\\\\" );
+      } else if( ch == '"' ) {
+        result.append( "\\\"" );
+      } else {
+        result.append( ch );
+      }
+    }
+    return result.toString();
   }
 
 }

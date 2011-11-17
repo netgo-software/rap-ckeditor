@@ -36,10 +36,10 @@ public class CkEditorDemo implements IEntryPoint {
     shell.setLayout( new GridLayout( 1, false ) );
     // CkEditor
     final CKEditor ckEditor = new CKEditor( shell, SWT.NONE );
-    ckEditor.setText( "bala<i>\"la\\la\"</i>la\r\nfoooo" );
+    ckEditor.setText( "asdf<script type=\"text/javascript\"> alert(1);</script>asdf" );
     ckEditor.setLayoutData( new GridData() );
     System.out.println( ckEditor.getText() );
-    //ckEditor.setBackground( display.getSystemColor( SWT.COLOR_BLUE ) );
+    ckEditor.setBackground( display.getSystemColor( SWT.COLOR_YELLOW ) );
     GridDataFactory.fillDefaults().grab( true, true ).applyTo( ckEditor );
     final ToolBar toolbar = new ToolBar( shell, SWT.FLAT );
     // Save button
