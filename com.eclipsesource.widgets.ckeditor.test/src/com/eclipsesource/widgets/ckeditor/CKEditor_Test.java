@@ -138,7 +138,7 @@ public class CKEditor_Test extends TestCase {
     
     String expectedText = "foo<span>\\\"bar\\\\</span>\\r\\n";
     String expected = "rap.editor.setData( \"" + expectedText + "\" );";
-    verify( editor.browser ).evaluate( expected );
+    verify( editor.browser ).evaluate( contains( expected ) );
   }
   
   public void testGetTextBeforeFirstReady() {

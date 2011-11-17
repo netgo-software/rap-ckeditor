@@ -24,19 +24,11 @@ public class CKEditor extends Composite {
 
   private static final String URL = "/resources/ckeditor.html";
   private static final String READY_FUNCTION = "rap_ready";
-  private static final String SETDATA_FUNCTION = "rap.editor.setData";
-  private static final String GETDATA_FUNCTION = "rap.editor.getData";
   private String text = "";
   Browser browser;
   boolean loaded = false;
+  boolean ready = false;
   
-  public static final Style BOLD = new Style( "b" );
-  public static final Style ITALIC = new Style( "i" );
-  public static final Style UNDERLINE = new Style( "u" );
-  public static final Style STRIKE = new Style( "strike" );
-  public static final Style SUBSCRIPE = new Style( "sub" );
-  public static final Style SUPERSCRIPE = new Style( "sup" );
-
   public CKEditor( Composite parent, int style ) {
     super( parent, style );
     super.setLayout( new FillLayout() );
@@ -67,31 +59,28 @@ public class CKEditor extends Composite {
       SWT.error( SWT.ERROR_NULL_ARGUMENT );
     }
     this.text = text;
+    this.ready = false;
     if( loaded ) {
-      browser.evaluate( SETDATA_FUNCTION + "( \"" + escapeText( text ) + "\" );" );          
+      browser.evaluate( getCodeSetText() );          
     }
   }
 
   public String getText() {
     String result;
-    if( text != null ) {
-      result = text;
+    if( ready ) {
+      result = ( String )browser.evaluate( getCodeGetText() );
     } else {
-      result = ( String )browser.evaluate( "return " + GETDATA_FUNCTION + "();" );
+      result = text;
     }
     return result;
   }
 
   public void applyStyle( Style style ) {
-    StringBuilder code = new StringBuilder();
-    code.append( "var style = new CKEDITOR.style( " );
-    code.append( style.toJSON() );
-    code.append( " );style.apply( rap.editor.document );" );
-    browser.evaluate( code.toString() );
+    browser.evaluate( getCodeApplyStyle( style ) );
   }
 
   public void removeFormat() {
-    browser.evaluate( "rap.editor.execCommand( \"removeFormat\" );" );
+    browser.evaluate( getCodeRemoveFormat() );
   }
 
   ///////////////////////////
@@ -100,9 +89,9 @@ public class CKEditor extends Composite {
   void onReady() {
     if( !loaded ) {
       loaded = true;
-      syncAll();      
+      syncAll();
     }
-    this.text = null;
+    ready = true;
   }
   
   ////////////
@@ -116,13 +105,33 @@ public class CKEditor extends Composite {
       }
     };
   }
-  
+
   private void syncAll() {
     if( text != "" ) {
-      browser.evaluate( SETDATA_FUNCTION + "( \"" + escapeText( text ) + "\" );" );
+      browser.evaluate( getCodeSetText() );
     }
   }
+
+  private String getCodeSetText() {
+    return "rap.editor.setData( \"" + escapeText( text ) + "\" );";
+  }
   
+  private String getCodeGetText() {
+    return "return rap.editor.getData();";
+  }
+  
+  private String getCodeRemoveFormat() {
+    return "rap.editor.execCommand( \"removeFormat\" );";
+  }
+
+  private String getCodeApplyStyle( Style style ) {
+    StringBuilder code = new StringBuilder();
+    code.append( "var style = new CKEDITOR.style( " );
+    code.append( style.toJSON() );
+    code.append( " );style.apply( rap.editor.document );" );
+    return code.toString();
+  }
+
   // TODO [tb] : better implementation?
   private static String escapeText( String text ) {
     // escaping backslashes, double-quotes, newlines, and carriage-return 

@@ -18,8 +18,15 @@ import org.json.JSONObject;
 
 public class Style {
   
-  JSONObject json = new JSONObject();
+  public static final Style SUPERSCRIPE = new Style( "sup" );
+  public static final Style SUBSCRIPE = new Style( "sub" );
+  public static final Style STRIKE = new Style( "strike" );
+  public static final Style UNDERLINE = new Style( "u" );
+  public static final Style ITALIC = new Style( "i" );
+  public static final Style BOLD = new Style( "b" );
  
+  JSONObject json = new JSONObject();
+
   Style( String element ) {
     try {
       json.put( "element", element );
