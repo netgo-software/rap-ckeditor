@@ -34,7 +34,7 @@ public class CKEditor extends Composite {
   public CKEditor( Composite parent, int style ) {
     super( parent, style );
     super.setLayout( new FillLayout() );
-    browser = new Browser( this, SWT.NONE );
+    browser = new Browser( this, SWT.BORDER );
     browser.setUrl( URL );
     addBrowserHandler();
   }
