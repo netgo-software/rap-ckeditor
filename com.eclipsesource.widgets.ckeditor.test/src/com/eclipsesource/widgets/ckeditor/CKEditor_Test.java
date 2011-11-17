@@ -28,7 +28,6 @@ public class CKEditor_Test extends TestCase {
     display = new Display();
     shell = new Shell( display );
     editor = new CKEditor( shell, SWT.NONE );
-    editor.onLoad();
   }
 
   @Override
@@ -58,7 +57,6 @@ public class CKEditor_Test extends TestCase {
   }
 
   public void testIsInitiallyNotLoaded() {
-    CKEditor editor = new CKEditor( shell, SWT.NONE );
     assertFalse( editor.loaded );
   }
   
@@ -67,7 +65,6 @@ public class CKEditor_Test extends TestCase {
   }
 
   public void testIsLoadedOnLoad() {
-    CKEditor editor = new CKEditor( shell, SWT.NONE );
     mockBrowser( editor );
     editor.onLoad();
     assertTrue( editor.loaded );
@@ -75,12 +72,14 @@ public class CKEditor_Test extends TestCase {
 
   public void testIsReadyOnReady() {
     mockBrowser( editor );
+    editor.onLoad();
     editor.onReady();
     assertTrue( editor.ready );
   }
   
   public void testSetText() {
     mockBrowser( editor );
+    editor.onLoad();
     editor.onReady();
     String text = "foo<span>bar</span>";
     
@@ -100,7 +99,6 @@ public class CKEditor_Test extends TestCase {
   }
 
   public void testSetTextBeforeLoaded() {
-    CKEditor editor = new CKEditor( shell, SWT.NONE );
     mockBrowser( editor );
     String text = "foo<span>bar</span>";
     
@@ -110,16 +108,14 @@ public class CKEditor_Test extends TestCase {
   }
 
   public void testSetNoTextBeforeLoad() {
-    CKEditor editor = new CKEditor( shell, SWT.NONE );
     mockBrowser( editor );
     
     editor.onLoad();
     
-    verify( editor.browser, times( 0 ) ).evaluate( anyString() );
+    verify( editor.browser, times( 0 ) ).evaluate( contains( "setText" ) );
   }
 
   public void testRenderTextAfterLoaded() {
-    CKEditor editor = new CKEditor( shell, SWT.NONE );
     mockBrowser( editor );
     String text = "foo<span>bar</span>";
 
@@ -131,6 +127,8 @@ public class CKEditor_Test extends TestCase {
   }
   
   public void testNoSecondLoaded() {
+    mockBrowser( editor );
+    editor.onLoad();
     try {
       editor.onLoad();
       fail();
@@ -141,6 +139,7 @@ public class CKEditor_Test extends TestCase {
 
   public void testSetTextEscape() {
     mockBrowser( editor );
+    editor.onLoad();
     String text = "foo<span>\"bar\\</span>\r\n";
 
     editor.setText( text );
@@ -153,6 +152,7 @@ public class CKEditor_Test extends TestCase {
   
   public void testGetTextWhenNotReady() {
     mockBrowser( editor );
+    editor.onLoad();
     String text = "foo<span>bar</span>";
     
     editor.setText( text );
@@ -164,6 +164,7 @@ public class CKEditor_Test extends TestCase {
   
   public void testGetTextAfterReady() {
     mockBrowser( editor );
+    editor.onLoad();
     editor.onReady();
     String text = "foo<span>bar</span>";
     String script = "return rap.editor.getData();";
@@ -177,19 +178,30 @@ public class CKEditor_Test extends TestCase {
   
   public void testApplyStyle() {
     mockBrowser( editor );
+    editor.onLoad();
     editor.onReady();
     Style style = new Style( "b" );
     
     editor.applyStyle( style );
     
-    verify( editor.browser, times( 1 ) ).evaluate( anyString() );
+    verify( editor.browser, times( 2 ) ).evaluate( anyString() );
     verify( editor.browser ).evaluate( contains( "var style = new CKEDITOR.style( {" ) );
     verify( editor.browser ).evaluate( contains( "\"element\":\"b\"" ) );
     verify( editor.browser ).evaluate( contains( "style.apply( rap.editor.document );" ) );
   }
 
+//  public void testApplyStyleBeforeReady() {
+//    mockBrowser( editor );
+//    Style style = new Style( "b" );
+//    
+//    editor.applyStyle( style );
+//    
+//    verify( editor.browser, times( 1 ) ).evaluate( anyString() );
+//  }
+  
   public void testRemoveFormat() {
     mockBrowser( editor );
+    editor.onLoad();
     editor.onReady();
     
     editor.removeFormat();
