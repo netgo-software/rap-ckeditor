@@ -62,19 +62,17 @@ public class CKEditor_Test extends TestCase {
   }
   
   public void testIsInitiallyNotReady() {
-    assertFalse( editor.ready );
+    assertFalse( editor.clientReady );
   }
 
   public void testIsReadyOnReady() {
     mockBrowser( editor );
-    editor.onLoad();
     editor.onReady();
-    assertTrue( editor.ready );
+    assertTrue( editor.clientReady );
   }
   
   public void testSetText() {
     mockBrowser( editor );
-    editor.onLoad();
     editor.onReady();
     String text = "foo<span>bar</span>";
     
@@ -123,7 +121,6 @@ public class CKEditor_Test extends TestCase {
 
   public void testSetTextEscape() {
     mockBrowser( editor );
-    editor.onLoad();
     String text = "foo<span>\"bar\\</span>\r\n";
 
     editor.setText( text );
@@ -136,7 +133,6 @@ public class CKEditor_Test extends TestCase {
 
   public void testGetTextWhenNotReady() {
     mockBrowser( editor );
-    editor.onLoad();
     String text = "foo<span>bar</span>";
     
     editor.setText( text );
@@ -148,7 +144,6 @@ public class CKEditor_Test extends TestCase {
 
   public void testGetTextAfterReady() {
     mockBrowser( editor );
-    editor.onLoad();
     editor.onReady();
     String text = "foo<span>bar</span>";
     String script = "return rap.editor.getData();";
@@ -162,7 +157,6 @@ public class CKEditor_Test extends TestCase {
 
   public void testSetFontAfterReady() {
     mockBrowser( editor );
-    editor.onLoad();
     
     editor.onReady();
 
@@ -172,23 +166,21 @@ public class CKEditor_Test extends TestCase {
 
   public void testSetFontFamilyAndSize() {
     mockBrowser( editor );
-    editor.onLoad();
     editor.onReady();
 
     editor.setFont( new Font( display, "fantasy", 13, 0 ) );
     
-    String expected = "setStyle( \"font\", \"13pt fantasy";
+    String expected = "setStyle( \"font\", \"13px fantasy";
     verify( editor.browser, times( 1 ) ).evaluate( contains( expected ) );
   }
   
   public void testSetFontEscape() {
     mockBrowser( editor );
-    editor.onLoad();
     editor.onReady();
     
     editor.setFont( new Font( display, "\"courier new\"", 13, 0 ) );
     
-    String expected = "setStyle( \"font\", \"13pt \\\"courier new\\\"";
+    String expected = "setStyle( \"font\", \"13px \\\"courier new\\\"";
     verify( editor.browser, times( 1 ) ).evaluate( contains( expected ) );
   }
   

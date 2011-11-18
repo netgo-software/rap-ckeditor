@@ -1,21 +1,18 @@
 /*******************************************************************************
- * Copyright (c) 2002, 2011 Innoopract Informationssysteme GmbH.
+ * Copyright (c) 2011 EclipseSource
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors:
- *    Innoopract Informationssysteme GmbH - initial API and implementation
- *    EclipseSource - ongoing development
+ *    EclipseSource - initial API and implementation
  ******************************************************************************/
 package com.eclipsesource.widgets.ckeditor;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.browser.Browser;
 import org.eclipse.swt.browser.BrowserFunction;
-import org.eclipse.swt.browser.ProgressEvent;
-import org.eclipse.swt.browser.ProgressListener;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.layout.FillLayout;
@@ -30,8 +27,8 @@ public class CKEditor extends Composite {
   private static final String READY_FUNCTION = "rap_ready";
   private String text = "";
   Browser browser;
-  boolean ready = false;
-  private StringBuilder evalScript = null;
+  boolean clientReady = false;
+  private StringBuilder scriptBuffer = null;
 
   public CKEditor( Composite parent, int style ) {
     super( parent, style );
@@ -50,12 +47,6 @@ public class CKEditor extends Composite {
     throw new UnsupportedOperationException( "Cannot change internal layout of CkEditor" );
   }
 
-//  TODO [ tb ] : can not be overwritten until RAP bug 363844 is fixed
-//  @Override
-//  public Control[] getChildren() {
-//    return new Control[ 0 ];
-//  }
-
   @Override
   public void setFont( Font font ) {
     super.setFont( font );
@@ -66,15 +57,17 @@ public class CKEditor extends Composite {
   // API
 
   public void setText( String text ) {
+    checkWidget();
     if( text == null ) {
       SWT.error( SWT.ERROR_NULL_ARGUMENT );
     }
     this.text = text;
-    evaluate( getScriptSetText() );          
-    ready = false;
+    writeText();          
+    clientReady = false; // order is important
   }
 
   public String getText() {
+    checkWidget();
     readText();
     return text;
   }
@@ -82,34 +75,19 @@ public class CKEditor extends Composite {
   //////////////
   // browser I/O
 
-  void onLoad() {
-    browser.evaluate( "rap.createEditor();" );
+  void onReady() {
+    writeFont(); // CKEditor re-creates the document with every setData, losing inline styles
+    evalOnReadyScript();
+    clientReady = true;
   }
 
-  void onReady() {
-    writeFont(); // CKEditor re-creates the document with every setData, loosing inline styles
-    if( evalScript != null ) {
-      browser.evaluate( evalScript.toString() );
-      evalScript = null;
-    }
-    ready = true;
+  private void writeText() {
+    evalOnReady( "rap.editor.setData( \"" + escapeText( text ) + "\" );" );
   }
 
   private void readText() {
-    if( ready ) {
+    if( clientReady ) {
       text = ( String )browser.evaluate( "return rap.editor.getData();" );
-    }
-  }
-
-  private void evaluate( String script ) {
-    if( ready ) {
-      browser.evaluate( script );
-    } else {
-      if( evalScript == null ) {
-        evalScript = new StringBuilder( script );
-      } else {
-        evalScript.append(  script );
-      }
     }
   }
 
@@ -117,13 +95,6 @@ public class CKEditor extends Composite {
   // helper
 
   private void addBrowserHandler() {
-    browser.addProgressListener( new ProgressListener() {
-      public void completed( ProgressEvent event ) {
-        onLoad();
-      }
-      public void changed( ProgressEvent event ) {
-      }
-    } );
     new BrowserFunction( browser, READY_FUNCTION ) {
       public Object function( Object[] arguments ) {
         onReady();
@@ -132,12 +103,26 @@ public class CKEditor extends Composite {
     };
   }
 
-  private String getScriptSetText() {
-    return "rap.editor.setData( \"" + escapeText( text ) + "\" );";
+  private void evalOnReady( String script ) {
+    if( clientReady ) {
+      browser.evaluate( script );
+    } else {
+      if( scriptBuffer == null ) {
+        scriptBuffer = new StringBuilder();
+      }
+      scriptBuffer.append( script );
+    }
+  }
+
+  private void evalOnReadyScript() {
+    if( scriptBuffer != null ) {
+      browser.evaluate( scriptBuffer.toString() );
+      scriptBuffer = null;
+    }
   }
 
   private void writeFont() {
-    evaluate( "rap.editor.document.getBody().setStyle( \"font\", \"" + getCssFont() + "\" );" );
+    evalOnReady( "rap.editor.document.getBody().setStyle( \"font\", \"" + getCssFont() + "\" );" );
   }
 
   private String getCssFont() {
@@ -145,7 +130,7 @@ public class CKEditor extends Composite {
     if( getFont() != null ) {
       FontData data = getFont().getFontData()[ 0 ];
       result.append( data.getHeight() );
-      result.append( "pt " );
+      result.append( "px " );
       result.append( escapeText( data.getName() ) );
     }
     return result.toString();
