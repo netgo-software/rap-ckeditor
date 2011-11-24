@@ -58,7 +58,7 @@ public class CKEditor_Test extends TestCase {
   }
 
   public void testURL() {
-    assertEquals( "/resources/ckeditor.html", editor.browser.getUrl() );
+    assertEquals( "rwt-resources/ckeditor/ckeditor.html", editor.browser.getUrl() );
   }
   
   public void testIsInitiallyNotReady() {

@@ -43,7 +43,7 @@ public class CkEditorDemo implements IEntryPoint {
     System.out.println( ckEditor.getText() );
     ckEditor.setBackground( display.getSystemColor( SWT.COLOR_YELLOW ) );
     GridDataFactory.fillDefaults().grab( true, true ).applyTo( ckEditor );
-    final ToolBar toolbar = new ToolBar( shell, SWT.FLAT );
+    ToolBar toolbar = new ToolBar( shell, SWT.FLAT );
     ToolItem printBtn = new ToolItem( toolbar, SWT.PUSH );
     printBtn.setText( "Print" );
     printBtn.addSelectionListener( new SelectionAdapter() {

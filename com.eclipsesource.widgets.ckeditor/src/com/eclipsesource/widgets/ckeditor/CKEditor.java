@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2011 EclipseSource
+ * Copyright (c) 2011 EclipseSource.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,6 +10,11 @@
  ******************************************************************************/
 package com.eclipsesource.widgets.ckeditor;
 
+import java.io.IOException;
+import java.io.InputStream;
+
+import org.eclipse.rwt.RWT;
+import org.eclipse.rwt.resources.IResourceManager;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.browser.Browser;
 import org.eclipse.swt.browser.BrowserFunction;
@@ -20,11 +25,22 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Layout;
 
 
-
 public class CKEditor extends Composite {
 
-  private static final String URL = "/resources/ckeditor.html";
+  private static final String RESOURCES_PATH = "resources/";
+  private static final String REGISTER_PATH = "ckeditor/";
   private static final String READY_FUNCTION = "rap_ready";
+
+  private static final String[] RESOURCE_FILES = {
+    "ckeditor.html",
+    "ckeditor.js",
+    "config.js",
+    "contents.css",
+    "skins/kama/editor.css",
+    "skins/kama/icons.png",
+    "skins/kama/images/sprites.png"
+  };
+  
   private String text = "";
   Browser browser;
   boolean clientReady = false;
@@ -34,9 +50,39 @@ public class CKEditor extends Composite {
     super( parent, style );
     super.setLayout( new FillLayout() );
     this.setBackgroundMode( SWT.INHERIT_FORCE );
+    registerResources();
     browser = new Browser( this, SWT.BORDER );
-    browser.setUrl( URL );
+    browser.setUrl( getEditorHtmlLocation() );
     addBrowserHandler();
+  }
+
+  private void registerResources() {
+    IResourceManager resourceManager = RWT.getResourceManager();
+    boolean isRegistered = resourceManager.isRegistered( REGISTER_PATH + RESOURCE_FILES[ 0 ] );
+    if( !isRegistered ) {
+      try {
+        for( String fileName : RESOURCE_FILES ) {
+          register( resourceManager, fileName );
+        }
+      } catch( IOException ioe ) {
+        throw new IllegalArgumentException( "Failed to load resources", ioe );
+      }
+    }
+  }
+
+  private String getEditorHtmlLocation() {
+    IResourceManager resourceManager = RWT.getResourceManager();
+    return resourceManager.getLocation( REGISTER_PATH + RESOURCE_FILES[ 0 ] );
+  }
+
+  private void register( IResourceManager resourceManager, String fileName ) throws IOException {
+    ClassLoader classLoader = CKEditor.class.getClassLoader();
+    InputStream inputStream = classLoader.getResourceAsStream( RESOURCES_PATH + fileName );
+    try {
+      resourceManager.register( REGISTER_PATH + fileName, inputStream );
+    } finally {
+      inputStream.close();
+    }
   }
 
   ////////////////////
@@ -77,12 +123,16 @@ public class CKEditor extends Composite {
 
   void onReady() {
     writeFont(); // CKEditor re-creates the document with every setData, losing inline styles
-    evalOnReadyScript();
+    evalScriptBuffer();
     clientReady = true;
   }
 
   private void writeText() {
     evalOnReady( "rap.editor.setData( \"" + escapeText( text ) + "\" );" );
+  }
+
+  private void writeFont() {
+    evalOnReady( "rap.editor.document.getBody().setStyle( \"font\", \"" + getCssFont() + "\" );" );
   }
 
   private void readText() {
@@ -114,15 +164,11 @@ public class CKEditor extends Composite {
     }
   }
 
-  private void evalOnReadyScript() {
+  private void evalScriptBuffer() {
     if( scriptBuffer != null ) {
       browser.evaluate( scriptBuffer.toString() );
       scriptBuffer = null;
     }
-  }
-
-  private void writeFont() {
-    evalOnReady( "rap.editor.document.getBody().setStyle( \"font\", \"" + getCssFont() + "\" );" );
   }
 
   private String getCssFont() {
