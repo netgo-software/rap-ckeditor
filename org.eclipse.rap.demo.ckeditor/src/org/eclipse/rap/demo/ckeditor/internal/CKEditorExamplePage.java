@@ -13,6 +13,7 @@ package org.eclipse.rap.demo.ckeditor.internal;
 import org.eclipse.rap.examples.ExampleUtil;
 import org.eclipse.rap.examples.IExamplePage;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.browser.Browser;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Color;
@@ -21,6 +22,9 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.MessageBox;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
 
@@ -34,7 +38,7 @@ public class CKEditorExamplePage implements IExamplePage {
     createEditorExample( parent );
   }
 
-  private void createEditorExample( Composite parent ) {
+  private void createEditorExample( final Composite parent ) {
     final Display display = parent.getDisplay();
     Composite composite = new Composite( parent, SWT.NONE );
     composite.setLayoutData( ExampleUtil.createFillData() );
@@ -47,18 +51,18 @@ public class CKEditorExamplePage implements IExamplePage {
     Composite toolbar = new Composite( composite, SWT.NONE );
     toolbar.setLayoutData( new GridData( SWT.FILL, SWT.FILL, true, false  ) );
     toolbar.setLayout( new GridLayout( 3, false ) );
-    Button printBtn = new Button( toolbar, SWT.PUSH );
-    printBtn.setText( "Show Content" );
-    printBtn.addSelectionListener( new SelectionAdapter() {
+    Button showContent = new Button( toolbar, SWT.PUSH );
+    showContent.setText( "Show Content" );
+    showContent.addSelectionListener( new SelectionAdapter() {
       public void widgetSelected( SelectionEvent e ) {
-        //System.out.println( ckEditor.getText() );
+        showContent( parent, ckEditor, false );
       }
     } );
-    Button fontBtn = new Button( toolbar, SWT.PUSH );
-    fontBtn.setText( "Font" );
-    fontBtn.addSelectionListener( new SelectionAdapter() {
+    Button showSource = new Button( toolbar, SWT.PUSH );
+    showSource.setText( "Show Souce" );
+    showSource.addSelectionListener( new SelectionAdapter() {
       public void widgetSelected( SelectionEvent e ) {
-        ckEditor.setFont( new org.eclipse.swt.graphics.Font( display, "serif", 13, 0 ) );
+        showContent( parent, ckEditor, true );
       }
     } );
     Button clearBtn = new Button( toolbar, SWT.NONE );
@@ -70,5 +74,41 @@ public class CKEditorExamplePage implements IExamplePage {
     } );
     
   }
+  
+  private void showContent( Composite parent, CKEditor ckEditor, boolean source ) {
+    int style = SWT.DIALOG_TRIM | SWT.APPLICATION_MODAL;
+    final Shell content = new Shell( parent.getShell(), style );
+    content.setLayout( new GridLayout( 1, true ) );
+    String text = ckEditor.getText();
+    if( source ) {
+      content.setText( "Rich Text Source" );
+      Text viewer = new Text( content, SWT.MULTI );
+      viewer.setLayoutData( new GridData( 400, 400 ) );
+      viewer.setText( text );
+      viewer.setEditable( false );
+    } else {
+      content.setText( "Rich Text" );
+      Browser viewer = new Browser( content, SWT.NONE );
+      viewer.setLayoutData( new GridData( 400, 400 ) );
+      viewer.setText( text );
+      viewer.setEnabled( false );
+    }
+    Button ok = new Button( content, SWT.PUSH );
+    ok.setLayoutData( new GridData( SWT.RIGHT, SWT.BOTTOM, false, false ) );
+    ok.setText( "OK" );
+    ok.addSelectionListener( new SelectionAdapter() {
+      public void widgetSelected( SelectionEvent e ) {
+        content.dispose();
+      }
+    } );
+    content.setDefaultButton( ok );
+    content.pack();
+    Display display = parent.getDisplay();
+    int left = ( display.getClientArea().width / 2 ) - ( content.getBounds().width / 2 );
+    content.setLocation( left, 40 );
+    content.open();
+    ok.setFocus();
+  }
+
 
 }

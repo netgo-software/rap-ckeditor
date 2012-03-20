@@ -503,7 +503,7 @@ a:hover.cke_colorauto,a:hover.cke_colormore,a:focus.cke_colorauto,a:focus.cke_co
 }
 
 .cke_skin_kama .cke_button a.cke_on {
-	background-color: #a3d7ff;
+	background-color: #c0c0bb;
 	filter: alpha(opacity = 100);
 	opacity: 1;
 	padding: 2px 4px;
