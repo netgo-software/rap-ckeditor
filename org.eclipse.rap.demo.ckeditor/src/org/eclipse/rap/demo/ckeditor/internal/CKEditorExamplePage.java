@@ -59,7 +59,7 @@ public class CKEditorExamplePage implements IExamplePage {
       }
     } );
     Button showSource = new Button( toolbar, SWT.PUSH );
-    showSource.setText( "Show Souce" );
+    showSource.setText( "Show Source" );
     showSource.addSelectionListener( new SelectionAdapter() {
       public void widgetSelected( SelectionEvent e ) {
         showContent( parent, ckEditor, true );
