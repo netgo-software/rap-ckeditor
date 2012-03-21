@@ -82,7 +82,7 @@ public class CKEditorExamplePage implements IExamplePage {
     String text = ckEditor.getText();
     if( source ) {
       content.setText( "Rich Text Source" );
-      Text viewer = new Text( content, SWT.MULTI );
+      Text viewer = new Text( content, SWT.MULTI | SWT.WRAP );
       viewer.setLayoutData( new GridData( 400, 400 ) );
       viewer.setText( text );
       viewer.setEditable( false );
