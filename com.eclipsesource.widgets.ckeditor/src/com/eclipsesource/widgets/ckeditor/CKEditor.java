@@ -36,6 +36,7 @@ public class CKEditor extends Composite {
     "ckeditor.js",
     "config.js",
     "contents.css",
+    "lang/en.js",
     "skins/kama/editor.css",
     "skins/kama/icons.png",
     "skins/kama/images/sprites.png"
