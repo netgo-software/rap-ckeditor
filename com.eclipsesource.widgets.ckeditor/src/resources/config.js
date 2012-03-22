@@ -124,13 +124,14 @@ CKEDITOR.editorConfig = function( config ) {
    * A list of semi colon separated style names (by default tags) representing
    * the style definition for each entry to be displayed in the Format combo in
    * the toolbar. Each entry must have its relative definition configuration in a
-   * setting named "format_(tagName)". For example, the "p" entry has its
-   * definition taken from "config.format_p = { element : 'p' };"
-   * The tags 'p','pre','address','div', and h1-h6 are predefined. 
+   * setting named "format_(tagName)". Example:
+   * config.format_tags = "bla;[...]";
+   * config.format_bla = { element : "p", styles : { 'color' : 'Blue' } };  
+   * The current language file must also have an entry for each tag, like this: "tag_bla : 'Bla'"
+   * The tags 'p','pre','address','div', and h1-h6 are predefined, but can be overwritten.
    */
   config.format_tags = 'p;h1;h2;h3;h4;h5;h6;pre;address';
-
-
+  
   /**
    * A comma separated list of elements to be removed when executing the "remove
    " format" command. Note that only inline elements are allowed.
