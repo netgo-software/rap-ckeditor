@@ -9,7 +9,7 @@ The text can be any valid HTML, but should be limited to the subset the editor c
 ## Customization
 
 The editor can be customized by editing the files in the <code>src/resources</code> folder of the <code>com.eclipsesource.widgets.ckeditor</code> bundle.
-You might need to clear the browsers chache and restart the server for all changes to take effect.
+You might need to clear the browsers cache and restart the server for all changes to take effect.
 
 ### Editor Configuration
 
