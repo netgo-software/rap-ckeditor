@@ -22,17 +22,13 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.swt.widgets.ToolBar;
-import org.eclipse.swt.widgets.ToolItem;
-
 import com.eclipsesource.widgets.ckeditor.CKEditor;
 
 
 public class CKEditorExamplePage implements IExamplePage {
-  
+
   public void createControl( Composite parent ) {
     parent.setLayout( ExampleUtil.createMainLayout( 2 ) );
     createEditorExample( parent );
@@ -54,6 +50,7 @@ public class CKEditorExamplePage implements IExamplePage {
     Button showContent = new Button( toolbar, SWT.PUSH );
     showContent.setText( "Show Content" );
     showContent.addSelectionListener( new SelectionAdapter() {
+      @Override
       public void widgetSelected( SelectionEvent e ) {
         showContent( parent, ckEditor, false );
       }
@@ -61,6 +58,7 @@ public class CKEditorExamplePage implements IExamplePage {
     Button showSource = new Button( toolbar, SWT.PUSH );
     showSource.setText( "Show Source" );
     showSource.addSelectionListener( new SelectionAdapter() {
+      @Override
       public void widgetSelected( SelectionEvent e ) {
         showContent( parent, ckEditor, true );
       }
@@ -68,13 +66,14 @@ public class CKEditorExamplePage implements IExamplePage {
     Button clearBtn = new Button( toolbar, SWT.NONE );
     clearBtn.setText( "Clear" );
     clearBtn.addSelectionListener( new SelectionAdapter() {
+      @Override
       public void widgetSelected( SelectionEvent e ) {
         ckEditor.setText( "" );
       }
     } );
-    
+
   }
-  
+
   private void showContent( Composite parent, CKEditor ckEditor, boolean source ) {
     int style = SWT.DIALOG_TRIM | SWT.APPLICATION_MODAL;
     final Shell content = new Shell( parent.getShell(), style );
@@ -97,6 +96,7 @@ public class CKEditorExamplePage implements IExamplePage {
     ok.setLayoutData( new GridData( SWT.RIGHT, SWT.BOTTOM, false, false ) );
     ok.setText( "OK" );
     ok.addSelectionListener( new SelectionAdapter() {
+      @Override
       public void widgetSelected( SelectionEvent e ) {
         content.dispose();
       }
