@@ -12,7 +12,6 @@ package org.eclipse.rap.demo.ckeditor.internal;
 
 import org.eclipse.rap.examples.IExampleContribution;
 import org.eclipse.rap.examples.IExamplePage;
-import org.eclipse.rwt.application.Application;
 
 
 public class CKEditorExampleContribution implements IExampleContribution {
@@ -27,8 +26,5 @@ public class CKEditorExampleContribution implements IExampleContribution {
 
   public IExamplePage createPage() {
     return new CKEditorExamplePage();
-  }
-
-  public void configure( Application application ) {
   }
 }
