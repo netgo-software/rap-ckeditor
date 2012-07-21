@@ -1,10 +1,10 @@
 /*******************************************************************************
- * Copyright (c) 2002, 2011 Innoopract Informationssysteme GmbH.
+ * Copyright (c) 2002, 2012 Innoopract Informationssysteme GmbH and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Innoopract Informationssysteme GmbH - initial API and implementation
  *    EclipseSource - ongoing development
@@ -12,7 +12,7 @@
 package com.eclipsesource.widgets.ckeditor.demo;
 
 import org.eclipse.jface.layout.GridDataFactory;
-import org.eclipse.rwt.lifecycle.IEntryPoint;
+import org.eclipse.rap.rwt.lifecycle.IEntryPoint;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -47,6 +47,7 @@ public class CkEditorDemo implements IEntryPoint {
     ToolItem printBtn = new ToolItem( toolbar, SWT.PUSH );
     printBtn.setText( "Print" );
     printBtn.addSelectionListener( new SelectionAdapter() {
+      @Override
       public void widgetSelected( SelectionEvent e ) {
         System.out.println( ckEditor.getText() );
       }
@@ -54,6 +55,7 @@ public class CkEditorDemo implements IEntryPoint {
     ToolItem fontBtn = new ToolItem( toolbar, SWT.PUSH );
     fontBtn.setText( "Font" );
     fontBtn.addSelectionListener( new SelectionAdapter() {
+      @Override
       public void widgetSelected( SelectionEvent e ) {
         ckEditor.setFont( new org.eclipse.swt.graphics.Font( display, "serif", 13, 0 ) );
       }
@@ -61,6 +63,7 @@ public class CkEditorDemo implements IEntryPoint {
     ToolItem clearBtn = new ToolItem( toolbar, SWT.NONE );
     clearBtn.setText( "Clear" );
     clearBtn.addSelectionListener( new SelectionAdapter() {
+      @Override
       public void widgetSelected( SelectionEvent e ) {
         ckEditor.setText( "" );
       }

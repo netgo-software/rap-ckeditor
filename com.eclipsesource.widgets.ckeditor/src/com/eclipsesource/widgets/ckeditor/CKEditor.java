@@ -1,10 +1,10 @@
 /*******************************************************************************
- * Copyright (c) 2011 EclipseSource.
+ * Copyright (c) 2011, 2012 EclipseSource.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    EclipseSource - initial API and implementation
  ******************************************************************************/
@@ -13,8 +13,8 @@ package com.eclipsesource.widgets.ckeditor;
 import java.io.IOException;
 import java.io.InputStream;
 
-import org.eclipse.rwt.RWT;
-import org.eclipse.rwt.resources.IResourceManager;
+import org.eclipse.rap.rwt.RWT;
+import org.eclipse.rap.rwt.resources.IResourceManager;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.browser.Browser;
 import org.eclipse.swt.browser.BrowserFunction;
@@ -42,7 +42,7 @@ public class CKEditor extends Composite {
     "skins/kama/images/sprites.png",
     "skins/kama/images/sprites_ie6.png"
   };
-  
+
   private String text = "";
   Browser browser;
   boolean clientReady = false;
@@ -51,7 +51,7 @@ public class CKEditor extends Composite {
   public CKEditor( Composite parent, int style ) {
     super( parent, style );
     super.setLayout( new FillLayout() );
-    this.setBackgroundMode( SWT.INHERIT_FORCE );
+    setBackgroundMode( SWT.INHERIT_FORCE );
     registerResources();
     browser = new Browser( this, SWT.BORDER );
     browser.setUrl( getEditorHtmlLocation() );
@@ -110,7 +110,7 @@ public class CKEditor extends Composite {
       SWT.error( SWT.ERROR_NULL_ARGUMENT );
     }
     this.text = text;
-    writeText();          
+    writeText();
     clientReady = false; // order is important
   }
 
@@ -148,6 +148,7 @@ public class CKEditor extends Composite {
 
   private void addBrowserHandler() {
     new BrowserFunction( browser, READY_FUNCTION ) {
+      @Override
       public Object function( Object[] arguments ) {
         onReady();
         return null;
@@ -183,9 +184,9 @@ public class CKEditor extends Composite {
     }
     return result.toString();
   }
-  
+
   private static String escapeText( String text ) {
-    // escaping backslashes, double-quotes, newlines, and carriage-return 
+    // escaping backslashes, double-quotes, newlines, and carriage-return
     StringBuilder result = new StringBuilder();
     for( int i = 0; i < text.length(); i++ ) {
       char ch = text.charAt( i );
