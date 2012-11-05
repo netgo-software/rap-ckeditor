@@ -6,7 +6,7 @@
       <entrypoint
             class="com.eclipsesource.widgets.ckeditor.demo.CkEditorDemo"
             id="org.eclipse.rap.widget.ckedit.demo.entrypoint"
-            parameter="ckeditor">
+            path="ckeditor">
       </entrypoint>
    </extension>
 
