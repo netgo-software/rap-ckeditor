@@ -39,11 +39,11 @@ public class CKEditor_Test extends TestCase {
   public void testGetLayout() {
     assertTrue( editor.getLayout() instanceof FillLayout );
   }
-  
+
   public void testBackgroundMode() {
     assertEquals( SWT.INHERIT_FORCE, editor.getBackgroundMode() );
   }
-  
+
 //  public void testGetChildren() {
 //    assertEquals( 0, editor.getChildren().length );
 //  }
@@ -60,7 +60,7 @@ public class CKEditor_Test extends TestCase {
   public void testURL() {
     assertEquals( "rwt-resources/ckeditor/ckeditor.html", editor.browser.getUrl() );
   }
-  
+
   public void testIsInitiallyNotReady() {
     assertFalse( editor.clientReady );
   }
@@ -70,18 +70,18 @@ public class CKEditor_Test extends TestCase {
     editor.onReady();
     assertTrue( editor.clientReady );
   }
-  
+
   public void testSetText() {
     mockBrowser( editor );
     editor.onReady();
     String text = "foo<span>bar</span>";
-    
+
     editor.setText( text );
-    
+
     String expected = "rap.editor.setData( \"" + text + "\" );";
     verify( editor.browser ).evaluate( expected );
   }
-  
+
   public void testSetTextNull() {
     try {
       editor.setText( null );
@@ -94,17 +94,17 @@ public class CKEditor_Test extends TestCase {
   public void testSetTextBeforeReady() {
     mockBrowser( editor );
     String text = "foo<span>bar</span>";
-    
+
     editor.setText( text );
-    
+
     verify( editor.browser, times( 0 ) ).evaluate( anyString() );
   }
 
   public void testSetNoTextBeforeReady() {
     mockBrowser( editor );
-    
+
     editor.onReady();
-    
+
     verify( editor.browser, times( 0 ) ).evaluate( contains( "setText" ) );
   }
 
@@ -114,7 +114,7 @@ public class CKEditor_Test extends TestCase {
 
     editor.setText( text );
     editor.onReady();
-    
+
     String expected = "rap.editor.setData( \"" + text + "\" );";
     verify( editor.browser ).evaluate( contains( expected ) );
   }
@@ -125,7 +125,7 @@ public class CKEditor_Test extends TestCase {
 
     editor.setText( text );
     editor.onReady();
-    
+
     String expectedText = "foo<span>\\\"bar\\\\</span>\\r\\n";
     String expected = "rap.editor.setData( \"" + expectedText + "\" );";
     verify( editor.browser ).evaluate( contains( expected ) );
@@ -134,7 +134,7 @@ public class CKEditor_Test extends TestCase {
   public void testGetTextWhenNotReady() {
     mockBrowser( editor );
     String text = "foo<span>bar</span>";
-    
+
     editor.setText( text );
     String result = editor.getText();
 
@@ -148,16 +148,16 @@ public class CKEditor_Test extends TestCase {
     String text = "foo<span>bar</span>";
     String script = "return rap.editor.getData();";
     when( editor.browser.evaluate( script ) ).thenReturn( text );
-    
+
     String result = editor.getText();
-    
+
     verify( editor.browser, times( 1 ) ).evaluate( script );
     assertEquals( text, result );
   }
 
   public void testSetFontAfterReady() {
     mockBrowser( editor );
-    
+
     editor.onReady();
 
     String expected = "setStyle( \"font\"";
@@ -169,21 +169,21 @@ public class CKEditor_Test extends TestCase {
     editor.onReady();
 
     editor.setFont( new Font( display, "fantasy", 13, 0 ) );
-    
+
     String expected = "setStyle( \"font\", \"13px fantasy";
     verify( editor.browser, times( 1 ) ).evaluate( contains( expected ) );
   }
-  
+
   public void testSetFontEscape() {
     mockBrowser( editor );
     editor.onReady();
-    
+
     editor.setFont( new Font( display, "\"courier new\"", 13, 0 ) );
-    
+
     String expected = "setStyle( \"font\", \"13px \\\"courier new\\\"";
     verify( editor.browser, times( 1 ) ).evaluate( contains( expected ) );
   }
-  
+
   /////////
   // Helper
 
