@@ -12,7 +12,7 @@
 package com.eclipsesource.widgets.ckeditor.demo;
 
 import org.eclipse.jface.layout.GridDataFactory;
-import org.eclipse.rap.rwt.lifecycle.IEntryPoint;
+import org.eclipse.rap.rwt.application.EntryPoint;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -26,7 +26,7 @@ import org.eclipse.swt.widgets.ToolItem;
 import com.eclipsesource.widgets.ckeditor.CKEditor;
 
 
-public class CkEditorDemo implements IEntryPoint {
+public class CkEditorDemo implements EntryPoint {
 
   public int createUI() {
     final Display display = new Display();
