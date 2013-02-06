@@ -108,6 +108,7 @@ public class CKEditor extends Composite {
       SWT.error( SWT.ERROR_NULL_ARGUMENT );
     }
     this.text = text;
+    remoteObject.set( "text", text );
   }
 
   public String getText() {

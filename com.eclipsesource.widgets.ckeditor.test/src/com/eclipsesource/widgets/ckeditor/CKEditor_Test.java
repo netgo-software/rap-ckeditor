@@ -33,12 +33,12 @@ public class CKEditor_Test extends TestCase {
     Fixture.setUp();
     display = new Display();
     shell = new Shell( display );
-    editor = new CKEditor( shell, SWT.BORDER );
     Fixture.fakeNewRequest();
     remoteObject = mock( RemoteObject.class );
     connection = mock( Connection.class );
     when( connection.createRemoteObject( anyString() ) ).thenReturn( remoteObject );
     Fixture.fakeConnection( connection );
+    editor = new CKEditor( shell, SWT.BORDER );
   }
 
   @Override
@@ -56,9 +56,6 @@ public class CKEditor_Test extends TestCase {
   }
 
   public void testContructor_CreatesRemoteObjectWithCorrectType() {
-
-    new CKEditor( shell, SWT.BORDER );
-
     verify( connection ).createRemoteObject( eq( "eclipsesource.CKEditor" ) );
   }
 
@@ -68,21 +65,18 @@ public class CKEditor_Test extends TestCase {
 
     new CKEditor( shell, SWT.BORDER );
 
-    verify( loader ).require( eq( resourceManager.getLocation( "ckeditor/ckeditor.js" ) ) );
-    verify( loader ).require( eq( resourceManager.getLocation( "ckeditor/config.js" ) ) );
-    verify( loader ).require( eq( resourceManager.getLocation( "ckeditor/handler.js" ) ) );
+    verify( loader ).require( resourceManager.getLocation( "ckeditor/ckeditor.js" ) );
+    verify( loader ).require( resourceManager.getLocation( "ckeditor/config.js" ) );
+    verify( loader ).require( resourceManager.getLocation( "ckeditor/handler.js" ) );
   }
 
-//  public void testSetText() {
-//    mockBrowser( editor );
-//    editor.onReady();
-//    String text = "foo<span>bar</span>";
-//
-//    editor.setText( text );
-//
-//    String expected = "rap.editor.setData( \"" + text + "\" );";
-//    verify( editor.browser ).evaluate( expected );
-//  }
+  public void testSetText() {
+    String text = "foo<span>bar</span>";
+
+    editor.setText( text );
+
+    verify( remoteObject ).set( "text", text );
+  }
 
   private JavaScriptLoader mockJavaScriptLoader() {
     WebClient client = mock( WebClient.class );
