@@ -68,7 +68,7 @@ span.cke_skin_kama {
   -webkit-border-radius: 5px;
   border-radius: 5px;
   border: 1px solid tranparent;
-  padding: 5px;
+  padding: 0px;
 }
 
 .cke_skin_kama span.cke_browser_webkit,.cke_skin_kama span.cke_browser_gecko18

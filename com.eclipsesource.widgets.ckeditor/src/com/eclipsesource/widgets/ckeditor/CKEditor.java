@@ -14,13 +14,13 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import org.eclipse.rap.rwt.RWT;
-import org.eclipse.rap.rwt.service.IResourceManager;
+import org.eclipse.rap.rwt.client.service.JavaScriptLoader;
+import org.eclipse.rap.rwt.remote.Connection;
+import org.eclipse.rap.rwt.remote.RemoteObject;
+import org.eclipse.rap.rwt.service.ResourceManager;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.browser.Browser;
-import org.eclipse.swt.browser.BrowserFunction;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
-import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Layout;
 
@@ -29,7 +29,6 @@ public class CKEditor extends Composite {
 
   private static final String RESOURCES_PATH = "resources/";
   private static final String REGISTER_PATH = "ckeditor/";
-  private static final String READY_FUNCTION = "rap_ready";
 
   private static final String[] RESOURCE_FILES = {
     "ckeditor.html",
@@ -42,24 +41,21 @@ public class CKEditor extends Composite {
     "skins/kama/images/sprites.png",
     "skins/kama/images/sprites_ie6.png"
   };
+  private static final String REMOTE_TYPE = "eclipsesource.CKEditor";
 
   private String text = "";
-  Browser browser;
-  boolean clientReady = false;
-  private StringBuilder scriptBuffer = null;
+  private RemoteObject remoteObject;
 
   public CKEditor( Composite parent, int style ) {
     super( parent, style );
-    super.setLayout( new FillLayout() );
-    setBackgroundMode( SWT.INHERIT_FORCE );
     registerResources();
-    browser = new Browser( this, SWT.BORDER );
-    browser.setUrl( getEditorHtmlLocation() );
-    addBrowserHandler();
+    loadJavaScript();
+    Connection connection = RWT.getUISession().getConnection();
+    remoteObject = connection.createRemoteObject( REMOTE_TYPE );
   }
 
   private void registerResources() {
-    IResourceManager resourceManager = RWT.getResourceManager();
+    ResourceManager resourceManager = RWT.getResourceManager();
     boolean isRegistered = resourceManager.isRegistered( REGISTER_PATH + RESOURCE_FILES[ 0 ] );
     if( !isRegistered ) {
       try {
@@ -72,12 +68,15 @@ public class CKEditor extends Composite {
     }
   }
 
-  private String getEditorHtmlLocation() {
-    IResourceManager resourceManager = RWT.getResourceManager();
-    return resourceManager.getLocation( REGISTER_PATH + RESOURCE_FILES[ 0 ] );
+  private void loadJavaScript() {
+    JavaScriptLoader jsLoader = RWT.getClient().getService( JavaScriptLoader.class );
+    ResourceManager resourceManager = RWT.getResourceManager();
+    jsLoader.require( resourceManager.getLocation( REGISTER_PATH + "ckeditor.js" ) );
+    jsLoader.require( resourceManager.getLocation( REGISTER_PATH + "config.js" ) );
+    jsLoader.require( resourceManager.getLocation( REGISTER_PATH + "handler.js" ) );
   }
 
-  private void register( IResourceManager resourceManager, String fileName ) throws IOException {
+  private void register( ResourceManager resourceManager, String fileName ) throws IOException {
     ClassLoader classLoader = CKEditor.class.getClassLoader();
     InputStream inputStream = classLoader.getResourceAsStream( RESOURCES_PATH + fileName );
     try {
@@ -98,7 +97,6 @@ public class CKEditor extends Composite {
   @Override
   public void setFont( Font font ) {
     super.setFont( font );
-    writeFont();
   }
 
   //////
@@ -110,69 +108,13 @@ public class CKEditor extends Composite {
       SWT.error( SWT.ERROR_NULL_ARGUMENT );
     }
     this.text = text;
-    writeText();
-    clientReady = false; // order is important
   }
 
   public String getText() {
     checkWidget();
-    readText();
     return text;
   }
 
-  //////////////
-  // browser I/O
-
-  void onReady() {
-    writeFont(); // CKEditor re-creates the document with every setData, losing inline styles
-    evalScriptBuffer();
-    clientReady = true;
-  }
-
-  private void writeText() {
-    evalOnReady( "rap.editor.setData( \"" + escapeText( text ) + "\" );" );
-  }
-
-  private void writeFont() {
-    evalOnReady( "rap.editor.document.getBody().setStyle( \"font\", \"" + getCssFont() + "\" );" );
-  }
-
-  private void readText() {
-    if( clientReady ) {
-      text = ( String )browser.evaluate( "return rap.editor.getData();" );
-    }
-  }
-
-  /////////
-  // helper
-
-  private void addBrowserHandler() {
-    new BrowserFunction( browser, READY_FUNCTION ) {
-      @Override
-      public Object function( Object[] arguments ) {
-        onReady();
-        return null;
-      }
-    };
-  }
-
-  private void evalOnReady( String script ) {
-    if( clientReady ) {
-      browser.evaluate( script );
-    } else {
-      if( scriptBuffer == null ) {
-        scriptBuffer = new StringBuilder();
-      }
-      scriptBuffer.append( script );
-    }
-  }
-
-  private void evalScriptBuffer() {
-    if( scriptBuffer != null ) {
-      browser.evaluate( scriptBuffer.toString() );
-      scriptBuffer = null;
-    }
-  }
 
   private String getCssFont() {
     StringBuilder result = new StringBuilder();
