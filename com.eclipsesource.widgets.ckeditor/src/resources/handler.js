@@ -18,8 +18,8 @@
   }
 
   eclipsesource.CKEditor = function( properties ) {
-    console.log( "create" );
-  }
+    rap.getObject( properties.parent );
+  };
 
   eclipsesource.CKEditor.prototype = {
 
