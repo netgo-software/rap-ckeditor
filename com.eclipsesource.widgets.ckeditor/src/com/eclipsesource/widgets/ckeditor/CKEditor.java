@@ -110,6 +110,7 @@ public class CKEditor extends Composite {
   @Override
   public void setFont( Font font ) {
     super.setFont( font );
+    remoteObject.set( "font", getCssFont() );
   }
 
   //////
@@ -136,27 +137,7 @@ public class CKEditor extends Composite {
       FontData data = getFont().getFontData()[ 0 ];
       result.append( data.getHeight() );
       result.append( "px " );
-      result.append( escapeText( data.getName() ) );
-    }
-    return result.toString();
-  }
-
-  private static String escapeText( String text ) {
-    // escaping backslashes, double-quotes, newlines, and carriage-return
-    StringBuilder result = new StringBuilder();
-    for( int i = 0; i < text.length(); i++ ) {
-      char ch = text.charAt( i );
-      if( ch == '\n' ) {
-        result.append( "\\n" );
-      } else if( ch == '\r' ) {
-        result.append( "\\r" );
-      } else if( ch == '\\' ) {
-        result.append( "\\\\" );
-      } else if( ch == '"' ) {
-        result.append( "\\\"" );
-      } else {
-        result.append( ch );
-      }
+      result.append( data.getName() );
     }
     return result.toString();
   }

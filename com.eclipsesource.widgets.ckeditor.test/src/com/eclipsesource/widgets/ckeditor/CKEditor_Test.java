@@ -20,6 +20,7 @@ import org.eclipse.rap.rwt.remote.RemoteObject;
 import org.eclipse.rap.rwt.service.ResourceManager;
 import org.eclipse.rap.rwt.testfixture.Fixture;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
@@ -110,35 +111,11 @@ public class CKEditor_Test extends TestCase {
   }
 
 
-//
-//  public void testSetFontAfterReady() {
-//    mockBrowser( editor );
-//
-//    editor.onReady();
-//
-//    String expected = "setStyle( \"font\"";
-//    verify( editor.browser, times( 1 ) ).evaluate( contains( expected ) );
-//  }
+  public void testSetFont_RendersToClient() {
+    editor.setFont( new Font( display, "fantasy", 13, 0 ) );
 
-//  public void testSetFontFamilyAndSize() {
-//    mockBrowser( editor );
-//    editor.onReady();
-//
-//    editor.setFont( new Font( display, "fantasy", 13, 0 ) );
-//
-//    String expected = "setStyle( \"font\", \"13px fantasy";
-//    verify( editor.browser, times( 1 ) ).evaluate( contains( expected ) );
-//  }
-
-//  public void testSetFontEscape() {
-//    mockBrowser( editor );
-//    editor.onReady();
-//
-//    editor.setFont( new Font( display, "\"courier new\"", 13, 0 ) );
-//
-//    String expected = "setStyle( \"font\", \"13px \\\"courier new\\\"";
-//    verify( editor.browser, times( 1 ) ).evaluate( contains( expected ) );
-//  }
+    verify( remoteObject ).set( "font", "13px fantasy" );
+  }
 
   /////////
   // Helper
