@@ -12,10 +12,13 @@ package com.eclipsesource.widgets.ckeditor;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Map;
 
 import org.eclipse.rap.rwt.RWT;
 import org.eclipse.rap.rwt.client.service.JavaScriptLoader;
+import org.eclipse.rap.rwt.remote.AbstractOperationHandler;
 import org.eclipse.rap.rwt.remote.Connection;
+import org.eclipse.rap.rwt.remote.OperationHandler;
 import org.eclipse.rap.rwt.remote.RemoteObject;
 import org.eclipse.rap.rwt.service.ResourceManager;
 import org.eclipse.swt.SWT;
@@ -46,12 +49,22 @@ public class CKEditor extends Composite {
   private String text = "";
   private RemoteObject remoteObject;
 
+  private OperationHandler operationHandler = new AbstractOperationHandler() {
+    @Override
+    public void handleSet( Map<String, Object> properties ) {
+      if( properties.containsKey( "text" ) ) {
+        CKEditor.this.text = ( String )properties.get( "text" );
+      }
+    }
+  };
+
   public CKEditor( Composite parent, int style ) {
     super( parent, style );
     registerResources();
     loadJavaScript();
     Connection connection = RWT.getUISession().getConnection();
     remoteObject = connection.createRemoteObject( REMOTE_TYPE );
+    remoteObject.setHandler( operationHandler );
   }
 
   private void registerResources() {

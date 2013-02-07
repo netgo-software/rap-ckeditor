@@ -5,12 +5,17 @@ import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import junit.framework.TestCase;
 
 import org.eclipse.rap.rwt.RWT;
 import org.eclipse.rap.rwt.client.WebClient;
 import org.eclipse.rap.rwt.client.service.JavaScriptLoader;
 import org.eclipse.rap.rwt.remote.Connection;
+import org.eclipse.rap.rwt.remote.OperationHandler;
 import org.eclipse.rap.rwt.remote.RemoteObject;
 import org.eclipse.rap.rwt.service.ResourceManager;
 import org.eclipse.rap.rwt.testfixture.Fixture;
@@ -18,6 +23,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
+import org.mockito.ArgumentCaptor;
 
 
 public class CKEditor_Test extends TestCase {
@@ -70,20 +76,20 @@ public class CKEditor_Test extends TestCase {
     verify( loader ).require( resourceManager.getLocation( "ckeditor/handler.js" ) );
   }
 
-  public void testSetText() {
+  public void testSetText_GetText() {
+    String text = "foo<span>bar</span>";
+
+    editor.setText( text );
+
+    assertEquals( text, editor.getText() );
+  }
+
+  public void testSetText_RendersToClient() {
     String text = "foo<span>bar</span>";
 
     editor.setText( text );
 
     verify( remoteObject ).set( "text", text );
-  }
-
-  private JavaScriptLoader mockJavaScriptLoader() {
-    WebClient client = mock( WebClient.class );
-    Fixture.fakeClient( client );
-    JavaScriptLoader loader = mock( JavaScriptLoader.class );
-    when( client.getService( JavaScriptLoader.class ) ).thenReturn( loader );
-    return loader;
   }
 
   public void testSetTextNull() {
@@ -93,6 +99,14 @@ public class CKEditor_Test extends TestCase {
     } catch( IllegalArgumentException ex ) {
       // expected
     }
+  }
+
+  public void testSetTextFromClient() {
+    String text = "foo<span>bar</span>";
+
+    remoteSet( remoteObject, "text", text );
+
+    assertEquals( text, editor.getText() );
   }
 
 
@@ -129,5 +143,24 @@ public class CKEditor_Test extends TestCase {
   /////////
   // Helper
 
+  private JavaScriptLoader mockJavaScriptLoader() {
+    WebClient client = mock( WebClient.class );
+    Fixture.fakeClient( client );
+    JavaScriptLoader loader = mock( JavaScriptLoader.class );
+    when( client.getService( JavaScriptLoader.class ) ).thenReturn( loader );
+    return loader;
+  }
+
+  private static void remoteSet( RemoteObject remoteObjectMock, String proprety, Object value ) {
+    Map<String, Object> properties = new HashMap<String, Object>();
+    properties.put( proprety, value );
+    getHandler( remoteObjectMock ).handleSet( properties );
+  }
+
+  private static OperationHandler getHandler( RemoteObject remoteObjectMock ) {
+    ArgumentCaptor<OperationHandler> captor = ArgumentCaptor.forClass( OperationHandler.class );
+    verify( remoteObjectMock ).setHandler( captor.capture() );
+    return captor.getValue();
+  }
 
 }
