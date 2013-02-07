@@ -34,9 +34,9 @@ public class CKEditor extends Composite {
   private static final String REGISTER_PATH = "ckeditor/";
 
   private static final String[] RESOURCE_FILES = {
-    "ckeditor.html",
     "ckeditor.js",
     "config.js",
+    "handler.js",
     "contents.css",
     "lang/en.js",
     "skins/kama/editor.css",
