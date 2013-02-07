@@ -14,6 +14,7 @@ import junit.framework.TestCase;
 import org.eclipse.rap.rwt.RWT;
 import org.eclipse.rap.rwt.client.WebClient;
 import org.eclipse.rap.rwt.client.service.JavaScriptLoader;
+import org.eclipse.rap.rwt.lifecycle.WidgetUtil;
 import org.eclipse.rap.rwt.remote.Connection;
 import org.eclipse.rap.rwt.remote.OperationHandler;
 import org.eclipse.rap.rwt.remote.RemoteObject;
@@ -64,6 +65,10 @@ public class CKEditor_Test extends TestCase {
 
   public void testContructor_CreatesRemoteObjectWithCorrectType() {
     verify( connection ).createRemoteObject( eq( "eclipsesource.CKEditor" ) );
+  }
+
+  public void testContructor_SetsParent() {
+    verify( remoteObject ).set( "parent", WidgetUtil.getId( editor ) );
   }
 
   public void testContructor_LoadsJavaScriptFiles() {

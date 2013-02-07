@@ -16,6 +16,7 @@ import java.util.Map;
 
 import org.eclipse.rap.rwt.RWT;
 import org.eclipse.rap.rwt.client.service.JavaScriptLoader;
+import org.eclipse.rap.rwt.lifecycle.WidgetUtil;
 import org.eclipse.rap.rwt.remote.AbstractOperationHandler;
 import org.eclipse.rap.rwt.remote.Connection;
 import org.eclipse.rap.rwt.remote.OperationHandler;
@@ -65,6 +66,7 @@ public class CKEditor extends Composite {
     Connection connection = RWT.getUISession().getConnection();
     remoteObject = connection.createRemoteObject( REMOTE_TYPE );
     remoteObject.setHandler( operationHandler );
+    remoteObject.set( "parent", WidgetUtil.getId( this ) );
   }
 
   private void registerResources() {
