@@ -57,7 +57,7 @@ public class CkEditorDemo implements EntryPoint {
     fontBtn.addSelectionListener( new SelectionAdapter() {
       @Override
       public void widgetSelected( SelectionEvent e ) {
-        ckEditor.setFont( new org.eclipse.swt.graphics.Font( display, "serif", 13, 0 ) );
+        ckEditor.setFont( new org.eclipse.swt.graphics.Font( display, "serif", 9, 0 ) );
       }
     } );
     ToolItem clearBtn = new ToolItem( toolbar, SWT.NONE );

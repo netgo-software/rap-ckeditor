@@ -27,6 +27,7 @@ var CKEDITOR_BASEPATH = "rwt-resources/ckeditor/";
     this.editor = CKEDITOR.appendTo( this.element );
     this.parent.addListener( "Resize", this.layout );
     this.editor.on( "instanceReady", this.onReady );
+    window.glob = this;
   };
 
   eclipsesource.CKEditor.prototype = {
@@ -56,7 +57,9 @@ var CKEDITOR_BASEPATH = "rwt-resources/ckeditor/";
 
     setFont : function( font ) {
       if( this.ready ) {
-        this.editor.document.getBody().setStyle( "font", font );
+        async( this, function() { // Needed by IE for some reason
+          this.editor.document.getBody().setStyle( "font", font );
+        } );
       } else {
         this._font = font;
       }
@@ -88,6 +91,12 @@ var CKEDITOR_BASEPATH = "rwt-resources/ckeditor/";
       var method = context[ methodNames[ i ] ];
       context[ methodNames[ i ] ] = bind( context, method );
     }
+  };
+
+  var async = function( context, func ) {
+    window.setTimeout( function(){
+      func.apply( context );
+    }, 0 );
   };
 
 }());

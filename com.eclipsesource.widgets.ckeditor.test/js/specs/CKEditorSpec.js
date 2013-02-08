@@ -129,10 +129,12 @@ describe( "eclipsesource.CKEditor", function() {
     var body;
 
     beforeEach( function() {
+      jasmine.Clock.useMock(); // ckeditor uses async functions because IE says so
       createEditor();
       body = editor.editor.document.getBody();
       spyOn( body, "setStyle" );
       editor.setFont( "13px Arial" );
+      jasmine.Clock.tick( 0 );
     } );
 
     it( "does nothing when editor is not ready", function() {
@@ -141,12 +143,14 @@ describe( "eclipsesource.CKEditor", function() {
 
     it( "calls body.setStyle on a ready event", function() {
       editor.onReady.call();
+      jasmine.Clock.tick( 0 );
       expect( body.setStyle ).toHaveBeenCalledWith( "font", "13px Arial" );
     } );
 
     it( "calls body.setStyle after a ready event", function() {
       editor.onReady.call();
       editor.setFont( "15px Fantasy" );
+      jasmine.Clock.tick( 0 );
       expect( body.setStyle ).toHaveBeenCalledWith( "font", "15px Fantasy" );
     } );
 
