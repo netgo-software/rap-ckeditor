@@ -37,7 +37,7 @@ public class CkEditorDemo implements EntryPoint {
     shell.setLayout( new GridLayout( 1, false ) );
     // CkEditor
     final CKEditor ckEditor = new CKEditor( shell, SWT.NONE );
-    ckEditor.setFont( new org.eclipse.swt.graphics.Font( display, "fantasy", 13, 0 ) );
+    ckEditor.setFont( new org.eclipse.swt.graphics.Font( display, "fantasy", 19, 0 ) );
     ckEditor.setText( "asdf<script type=\"text/javascript\"> alert(1);</script>asdf" );
     ckEditor.setLayoutData( new GridData() );
     System.out.println( ckEditor.getText() );

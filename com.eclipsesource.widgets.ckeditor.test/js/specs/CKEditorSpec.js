@@ -97,6 +97,8 @@ describe( "eclipsesource.CKEditor", function() {
 
     } );
 
+  } );
+
   describe( "The setText function", function() {
 
     beforeEach( function() {
@@ -122,6 +124,31 @@ describe( "eclipsesource.CKEditor", function() {
 
   } );
 
+  describe( "The setFont function", function() {
+
+    var body;
+
+    beforeEach( function() {
+      createEditor();
+      body = editor.editor.document.getBody();
+      spyOn( body, "setStyle" );
+      editor.setFont( "13px Arial" );
+    } );
+
+    it( "does nothing when editor is not ready", function() {
+      expect( body.setStyle ).not.toHaveBeenCalled();
+    } );
+
+    it( "calls body.setStyle on a ready event", function() {
+      editor.onReady.call();
+      expect( body.setStyle ).toHaveBeenCalledWith( "font", "13px Arial" );
+    } );
+
+    it( "calls body.setStyle after a ready event", function() {
+      editor.onReady.call();
+      editor.setFont( "15px Fantasy" );
+      expect( body.setStyle ).toHaveBeenCalledWith( "font", "15px Fantasy" );
+    } );
 
   } );
 

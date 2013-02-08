@@ -10,7 +10,7 @@ rap = {
     append : function(){},
     addListener : function(){},
     removeListener : function(){},
-    getClientArea : function(){}
+    getClientArea : function(){ return [ 0, 0, 0, 0 ]; }
   },
 
   on: function( eventType, listener ) {
