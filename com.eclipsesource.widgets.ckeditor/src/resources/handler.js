@@ -36,10 +36,16 @@ var CKEDITOR_BASEPATH = "rwt-resources/ckeditor/";
     onReady : function() {
       this.ready = true;
       this.layout();
+      this.setText( this._text );
+      delete this._text;
     },
 
     setText : function( text ) {
-      console.log( "setText", text );
+      if( this.ready ) {
+        this.editor.setData( text );
+      } else {
+        this._text = text;
+      }
     },
 
     setFont : function( font ) {
@@ -63,7 +69,6 @@ var CKEDITOR_BASEPATH = "rwt-resources/ckeditor/";
 
   var bind = function( context, method ) {
     return function() {
-      console.log( method, context, arguments );
       return method.apply( context, arguments );
     };
   };

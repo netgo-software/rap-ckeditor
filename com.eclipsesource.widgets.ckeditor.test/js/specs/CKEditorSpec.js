@@ -66,12 +66,12 @@ describe( "eclipsesource.CKEditor", function() {
         expect( editor.editor.resize ).not.toHaveBeenCalled();
       } );
 
-      it( "updates the outer element position on a Ready event", function() {
+      it( "updates the outer element position on a ready event", function() {
         editor.onReady.call();
         expect( getPosition( editor.element ) ).toEqual( [ 1, 2 ] );
       } );
 
-      it( "updates the editor element size on a Ready event", function() {
+      it( "updates the editor element size on a ready event", function() {
         spyOn( editor.editor, "resize" );
         editor.onReady.call();
         expect( editor.editor.resize ).toHaveBeenCalledWith( 100, 110 );
@@ -96,6 +96,31 @@ describe( "eclipsesource.CKEditor", function() {
       } );
 
     } );
+
+  describe( "The setText function", function() {
+
+    beforeEach( function() {
+      createEditor();
+      spyOn( editor.editor, "setData" );
+      editor.setText( "foo" );
+    } );
+
+    it( "does nothing when editor is not ready", function() {
+      expect( editor.editor.setData ).not.toHaveBeenCalled();
+    } );
+
+    it( "calls setData on a ready event", function() {
+      editor.onReady.call();
+      expect( editor.editor.setData ).toHaveBeenCalledWith( "foo" );
+    } );
+
+    it( "calls setData after a ready event", function() {
+      editor.onReady.call();
+      editor.setText( "bar" );
+      expect( editor.editor.setData ).toHaveBeenCalledWith( "bar" );
+    } );
+
+  } );
 
 
   } );
