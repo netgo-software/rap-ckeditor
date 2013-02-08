@@ -8,19 +8,19 @@
     }
   };
 
-  window.CKEditor = {
+  window.CKEDITOR = {
     editor : function(){},
     appendTo : function( element ) {
-      return new CKEditor.editor( element );
+      return new CKEDITOR.editor( element );
     }
   };
 
   createStubs(
-    CKEditor.editor.prototype,
+    CKEDITOR.editor.prototype,
     [ "on", "resize", "setData", "getData", "checkDirty", "resetDirty" ]
   );
 
-  CKEditor.editor.prototype.document = {
+  CKEDITOR.editor.prototype.document = {
     "getBody" : function() {
       return this.body;
     },

@@ -86,9 +86,9 @@ public class CKEditor extends Composite {
   private void loadJavaScript() {
     JavaScriptLoader jsLoader = RWT.getClient().getService( JavaScriptLoader.class );
     ResourceManager resourceManager = RWT.getResourceManager();
+    jsLoader.require( resourceManager.getLocation( REGISTER_PATH + "handler.js" ) );
     jsLoader.require( resourceManager.getLocation( REGISTER_PATH + "ckeditor.js" ) );
     jsLoader.require( resourceManager.getLocation( REGISTER_PATH + "config.js" ) );
-    jsLoader.require( resourceManager.getLocation( REGISTER_PATH + "handler.js" ) );
   }
 
   private void register( ResourceManager resourceManager, String fileName ) throws IOException {

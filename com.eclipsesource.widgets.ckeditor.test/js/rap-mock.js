@@ -9,7 +9,8 @@ rap = {
   fakeComposite : {
     append : function(){},
     addListener : function(){},
-    removeListener : function(){}
+    removeListener : function(){},
+    getClientArea : function(){}
   },
 
   on: function( eventType, listener ) {
