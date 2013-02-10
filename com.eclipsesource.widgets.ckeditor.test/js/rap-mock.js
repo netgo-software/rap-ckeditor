@@ -42,7 +42,7 @@ rap = {
   },
 
   getRemoteObject : function( clientObject ) {
-    return this.fakeRemoteObect;
+    return this.fakeRemoteObject;
   },
 
   setup: function() {

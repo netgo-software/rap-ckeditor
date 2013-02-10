@@ -20,14 +20,14 @@ var CKEDITOR_BASEPATH = "rwt-resources/ckeditor/";
   }
 
   eclipsesource.CKEditor = function( properties ) {
-    bindAll( this, [ "layout", "onReady" ] );
+    bindAll( this, [ "layout", "onReady", "onSend" ] );
     this.parent = rap.getObject( properties.parent );
     this.element = document.createElement( "div" );
     this.parent.append( this.element );
     this.editor = CKEDITOR.appendTo( this.element );
     this.parent.addListener( "Resize", this.layout );
     this.editor.on( "instanceReady", this.onReady );
-    window.glob = this;
+    rap.on( "send", this.onSend );
   };
 
   eclipsesource.CKEditor.prototype = {
@@ -35,6 +35,7 @@ var CKEDITOR_BASEPATH = "rwt-resources/ckeditor/";
     ready : false,
 
     onReady : function() {
+      // TODO [tb] : on IE 7/8 the iframe and body has to be made transparent explicitly
       this.ready = true;
       this.layout();
       if( this._text ) {
@@ -44,6 +45,13 @@ var CKEDITOR_BASEPATH = "rwt-resources/ckeditor/";
       if( this._font ) {
         this.setFont( this._font );
         delete this._font;
+      }
+    },
+
+    onSend : function() {
+      if( this.editor.checkDirty() ) {
+        rap.getRemoteObject( this ).set( "text", this.editor.getData() );
+        this.editor.resetDirty();
       }
     },
 

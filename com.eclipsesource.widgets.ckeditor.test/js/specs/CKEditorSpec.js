@@ -42,6 +42,12 @@ describe( "eclipsesource.CKEditor", function() {
       expect( editor.editor.on ).toHaveBeenCalledWith( "instanceReady", editor.onReady );
     } );
 
+    it( "should add a send listener", function() {
+      spyOn( rap, "on" );
+      createEditor();
+      expect( rap.on ).toHaveBeenCalledWith( "send", editor.onSend );
+    } );
+
   } );
 
   describe( "The layout function", function() {
@@ -76,6 +82,7 @@ describe( "eclipsesource.CKEditor", function() {
         editor.onReady.call();
         expect( editor.editor.resize ).toHaveBeenCalledWith( 100, 110 );
       } );
+
     } );
 
     describe( "of an editor that is ready, ", function() {
@@ -156,5 +163,55 @@ describe( "eclipsesource.CKEditor", function() {
 
   } );
 
+
+  describe( "The onSend function", function() {
+
+    beforeEach( function() {
+      spyOn( rap, "getRemoteObject" ).andCallThrough();
+      createEditor();
+    } );
+
+    describe( "of an editor that has not changed", function() {
+
+      it( "sends nothing", function() {
+        spyOn( rap.fakeRemoteObject, "set" );
+        editor.onSend.call();
+        expect( rap.fakeRemoteObject.set ).not.toHaveBeenCalled();
+      } );
+
+      it( "does not call resetDirty", function() {
+        spyOn( editor.editor, "resetDirty" );
+        editor.onSend.call();
+        expect( editor.editor.resetDirty ).not.toHaveBeenCalled();
+      } );
+
+    } );
+    describe( "of an editor that has changed", function() {
+
+      beforeEach( function() {
+        spyOn( editor.editor, "checkDirty" ).andReturn( true );
+      } );
+
+      it( "gets a remote object for itself", function() {
+        editor.onSend.call();
+        expect( rap.getRemoteObject ).toHaveBeenCalledWith( editor );
+      } );
+
+      it( "sends text from getData", function() {
+        spyOn( rap.fakeRemoteObject, "set" );
+        spyOn( editor.editor, "getData" ).andReturn( "foo bar" );
+        editor.onSend.call();
+        expect( rap.fakeRemoteObject.set ).toHaveBeenCalledWith( "text", "foo bar" );
+      } );
+
+      it( "calls resetDirty", function() {
+        spyOn( editor.editor, "resetDirty" );
+        editor.onSend.call();
+        expect( editor.editor.resetDirty ).toHaveBeenCalled();
+      } );
+
+    } );
+
+  } );
 
 } );
