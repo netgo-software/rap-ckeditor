@@ -1,6 +1,8 @@
-# CKEditor for RAP
+# CKEditor for RAP 2.0
 
-This is a custom widget for the Rich Ajax Platform (RAP) that wraps the CKEditor, a web-based WYSIWYG/Rich-Text editor. To run it you need RAP 1.4M4 or later.
+This is a custom widget for the Remote Application Platform (RAP) that wraps the CKEditor, a web-based WYSIWYG/Rich-Text editor. 
+This version is based on the remote API that has been added in RAP 2.0. If you wish to run it with RAP 1.5,
+check out the "streams/1.5" branch.
 
 ## API
 Currently, the API consists of the two methods <code>getText</code> and <code>setText</code>. 
@@ -44,7 +46,7 @@ An addition to the RAP Examples Demo.
 
 ### com.eclipsesource.widgets.ckeditor.test
 
-JUnit Tests.
+JUnit an Jasmine Tests.
 
 ## Legal
 
