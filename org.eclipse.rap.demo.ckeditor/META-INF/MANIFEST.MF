@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Validation Example Page
+Bundle-Name: Rich Text Editor Example Page
 Bundle-SymbolicName: org.eclipse.rap.demo.ckeditor
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.eclipse.rap.demo.ckeditor.internal.Activator
