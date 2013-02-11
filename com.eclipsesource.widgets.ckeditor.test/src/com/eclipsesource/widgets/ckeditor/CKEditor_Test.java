@@ -122,6 +122,12 @@ public class CKEditor_Test extends TestCase {
     verify( remoteObject ).set( "font", "13px fantasy" );
   }
 
+  public void testDispose_RendersDestroyToClient() {
+    editor.dispose();
+
+    verify( remoteObject ).destroy();
+  }
+
   /////////
   // Helper
 

@@ -186,6 +186,7 @@ describe( "eclipsesource.CKEditor", function() {
       } );
 
     } );
+
     describe( "of an editor that has changed", function() {
 
       beforeEach( function() {
@@ -210,6 +211,26 @@ describe( "eclipsesource.CKEditor", function() {
         expect( editor.editor.resetDirty ).toHaveBeenCalled();
       } );
 
+    } );
+
+  } );
+
+  describe( "The destroy function", function() {
+
+    beforeEach( function() {
+      createEditor();
+    } );
+
+    it( "de-registers the onSend function", function() {
+      spyOn( rap, "off" );
+      editor.destroy();
+      expect( rap.off ).toHaveBeenCalledWith( "send", editor.onSend );
+    } );
+
+    it( "destroys the editor", function() {
+      spyOn( editor.editor, "destroy" );
+      editor.destroy();
+      expect( editor.editor.destroy ).toHaveBeenCalled();
     } );
 
   } );

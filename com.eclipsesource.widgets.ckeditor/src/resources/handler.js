@@ -74,7 +74,9 @@ var CKEDITOR_BASEPATH = "rwt-resources/ckeditor/";
     },
 
     destroy : function() {
-      console.log( "destroy" );
+      rap.off( "send", this.onSend );
+      this.editor.destroy();
+      this.element.parentNode.removeChild( this.element );
     },
 
     layout : function() {

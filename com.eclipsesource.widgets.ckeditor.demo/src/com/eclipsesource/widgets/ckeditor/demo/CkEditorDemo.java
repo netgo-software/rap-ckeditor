@@ -52,6 +52,14 @@ public class CkEditorDemo implements EntryPoint {
         System.out.println( ckEditor.getText() );
       }
     } );
+    ToolItem destrBtn = new ToolItem( toolbar, SWT.PUSH );
+    destrBtn.setText( "Dispose" );
+    destrBtn.addSelectionListener( new SelectionAdapter() {
+      @Override
+      public void widgetSelected( SelectionEvent e ) {
+        ckEditor.dispose();
+      }
+    } );
     ToolItem fontBtn = new ToolItem( toolbar, SWT.PUSH );
     fontBtn.setText( "Font" );
     fontBtn.addSelectionListener( new SelectionAdapter() {

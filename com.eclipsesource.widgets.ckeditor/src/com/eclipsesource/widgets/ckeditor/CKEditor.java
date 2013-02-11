@@ -115,6 +115,12 @@ public class CKEditor extends Composite {
     remoteObject.set( "font", getCssFont() );
   }
 
+  @Override
+  public void dispose() {
+    remoteObject.destroy();
+    super.dispose();
+  }
+
   //////
   // API
 

@@ -35,7 +35,8 @@ rap = {
     }
   },
 
-  registerTypeHandler: function( typeHandler ) {},
+  registerTypeHandler : function( typeHandler ) {
+  },
 
   getObject : function( id ) {
     return this.fakeComposite;
