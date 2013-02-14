@@ -1,42 +1,34 @@
 rap = {
 
-  _listeners: {},
+  /////////////////////////////////////////////////////
+  // mock RemoteObject returned for rap.getRemoteObject
 
   fakeRemoteObject : {
-    set : function(){}
+    set : function( property, value ){},
+    notify : function( event, properties ){},
+    call : function( method, properties ){}
   },
 
+  /////////////////////////////////////////////////////
+  // mock Composite returned for rap.getObject
+
   fakeComposite : {
-    append : function(){},
+    append : function( node ){
+      document.createElement( "div" ).appendChild( node );
+    },
     addListener : function(){},
     removeListener : function(){},
     getClientArea : function(){ return [ 0, 0, 0, 0 ]; }
   },
 
-  on: function( eventType, listener ) {
-    if( !this._listeners[ eventType ] ) {
-      this._listeners[ eventType ] = [];
-    }
-    this._listeners[ eventType ].push( listener );
-  },
+  ///////////////////////////
+  // stubs for public RAP API
 
-  off: function( eventType, listener ) {
-    if( this._listeners[ eventType ] ) {
-      var listeners = this._listeners[ eventType ];
-      var index = -1;
-      for( var i = 0; i < listeners.length; i++ ) {
-        if( listeners[ i ] === listener ) {
-          index = i;
-        }
-      }
-      if( index !== -1 ) {
-        listeners.splice( i, 1 );
-      }
-    }
-  },
+  on: function( eventType, listener ) {},
 
-  registerTypeHandler : function( typeHandler ) {
-  },
+  off: function( eventType, listener ) {},
+
+  registerTypeHandler : function( typeHandler ) {},
 
   getObject : function( id ) {
     return this.fakeComposite;
@@ -44,19 +36,6 @@ rap = {
 
   getRemoteObject : function( clientObject ) {
     return this.fakeRemoteObject;
-  },
-
-  setup: function() {
-    this._listeners = {};
-  },
-
-  notify: function( eventType ) {
-    if( this._listeners[ eventType ] ) {
-      var listeners = this._listeners[ eventType ];
-      for( var i = 0; i < listeners.length; i++ ) {
-        listeners[ i ]();
-      }
-    }
   }
 
 };
