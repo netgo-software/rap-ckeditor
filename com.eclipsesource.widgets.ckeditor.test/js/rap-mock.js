@@ -1,41 +1,38 @@
-rap = {
+RapMock = function() {
 
-  /////////////////////////////////////////////////////
-  // mock RemoteObject returned for rap.getRemoteObject
+  this.fakeRemoteObject = {
+    set : function(){},
+    notify : function(){},
+    call : function(){}
+  };
 
-  fakeRemoteObject : {
-    set : function( property, value ){},
-    notify : function( event, properties ){},
-    call : function( method, properties ){}
-  },
-
-  /////////////////////////////////////////////////////
-  // mock Composite returned for rap.getObject
-
-  fakeComposite : {
+  this.fakeComposite = {
     append : function( node ){
       document.createElement( "div" ).appendChild( node );
     },
     addListener : function(){},
     removeListener : function(){},
     getClientArea : function(){ return [ 0, 0, 0, 0 ]; }
-  },
+  };
 
-  ///////////////////////////
-  // stubs for public RAP API
+};
 
-  on: function( eventType, listener ) {},
+RapMock.prototype = {
 
-  off: function( eventType, listener ) {},
+  on: function() {},
 
-  registerTypeHandler : function( typeHandler ) {},
+  off: function() {},
 
-  getObject : function( id ) {
+  registerTypeHandler : function() {},
+
+  getObject : function() {
     return this.fakeComposite;
   },
 
-  getRemoteObject : function( clientObject ) {
+  getRemoteObject : function() {
     return this.fakeRemoteObject;
   }
 
 };
+
+rap = new RapMock();

@@ -6,6 +6,11 @@ describe( "eclipsesource.CKEditor", function() {
     editor = new eclipsesource.CKEditor( { "parent" : "w2" } );
   };
 
+  beforeEach( function() {
+    rap = new RapMock();
+    editor = null;
+  } );
+
   afterEach( function() {
     editor = null;
   } );
@@ -140,7 +145,9 @@ describe( "eclipsesource.CKEditor", function() {
       createEditor();
       body = editor.editor.document.getBody();
       spyOn( body, "setStyle" );
+
       editor.setFont( "13px Arial" );
+
       jasmine.Clock.tick( 0 );
     } );
 
