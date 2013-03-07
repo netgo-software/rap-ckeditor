@@ -4,18 +4,18 @@ CKEDITOR.editorConfig = function( config ) {
    * If you change the language, remember to also change CKEditor#RESOURCE_FILES to
    * load the corresponding "/lang/xxx.js" file.
    */
-	config.language = 'en';
-	
-	/**
-	 * You can freely change the tool-items arrangement or remove them. You can not add new ones
-	 * (from the full CKEditor version) without adapting config.removePlugins and 
-	 * building a new ckeditor.js. Take care: An incorrectly placed "," and the editor 
-	 * won't start in IE.
-	 */
+  config.language = 'en';
+
+  /**
+   * You can freely change the tool-items arrangement or remove them. You can not add new ones
+   * (from the full CKEditor version) without adapting config.removePlugins and
+   * building a new ckeditor.js. Take care: An incorrectly placed "," and the editor
+   * won't start in IE.
+   */
   config.toolbar = [
     {
-      name: 'basicstyles',  
-      items : [ 
+      name: 'basicstyles',
+      items : [
         'Bold',
         'Italic',
         'Underline',
@@ -24,25 +24,25 @@ CKEDITOR.editorConfig = function( config ) {
         'Superscript',
         '-',
         'RemoveFormat'
-      ] 
+      ]
     },
     {
-      name: 'paragraph',  
-      items : [ 
+      name: 'paragraph',
+      items : [
        'JustifyLeft',
        'JustifyCenter',
        'JustifyRight',
        'JustifyBlock',
        '-',
-       'Outdent', 
+       'Outdent',
        'Indent',
        '-',
        'NumberedList',
        'BulletedList'
-     ] 
+     ]
     },
     {
-      name: 'advanced',  
+      name: 'advanced',
       items : [
         'Format',
         'Font',
@@ -54,20 +54,20 @@ CKEDITOR.editorConfig = function( config ) {
   ];
 
   config.toolbarCanCollapse = false;
-  
+
   /**
    * Defines the colors to be displayed in the color selectors. This is a string
    * containing hexadecimal notation for HTML colors, without the "#" prefix.
    * A color name may optionally be defined by prefixing the entries with
    * a name and the slash character. For example, "FontColor1/FF9900" will be
    * displayed as the color #FF9900 in the selector, but will be output as "FontColor1".
-   */  
+   */
   config.colorButton_colors =
     '000,800000,8B4513,2F4F4F,008080,000080,4B0082,696969,' +
     'B22222,A52A2A,DAA520,006400,40E0D0,0000CD,800080,808080,' +
     'F00,FF8C00,FFD700,008000,0FF,00F,EE82EE,A9A9A9,' +
     'FFA07A,FFA500,FFFF00,00FF00,AFEEEE,ADD8E6,DDA0DD,D3D3D3,' +
-    'FFF0F5,FAEBD7,FFFFE0,F0FFF0,F0FFFF,F0F8FF,E6E6FA,FFF';  
+    'FFF0F5,FAEBD7,FFFFE0,F0FFF0,F0FFFF,F0F8FF,E6E6FA,FFF';
 
 
   /**
@@ -126,12 +126,12 @@ CKEDITOR.editorConfig = function( config ) {
    * the toolbar. Each entry must have its relative definition configuration in a
    * setting named "format_(tagName)". Example:
    * config.format_tags = "bla;[...]";
-   * config.format_bla = { element : "p", styles : { 'color' : 'Blue' } };  
+   * config.format_bla = { element : "p", styles : { 'color' : 'Blue' } };
    * The current language file must also have an entry for each tag, like this: "tag_bla : 'Bla'"
    * The tags 'p','pre','address','div', and h1-h6 are predefined, but can be overwritten.
    */
   config.format_tags = 'p;h1;h2;h3;h4;h5;h6;pre;address';
-  
+
   /**
    * A comma separated list of elements to be removed when executing the "remove
    " format" command. Note that only inline elements are allowed.
@@ -155,56 +155,58 @@ CKEDITOR.editorConfig = function( config ) {
   config.skin = 'kama';
 
   config.colorButton_enableMore = false;
-  
+
   config.autoGrow_onStartup = true;
-  
+
   config.autoGrow_maxHeight = 0;
 
   config.autoGrow_minHeight = 0;
 
-	config.removePlugins = [
-	  "about",
-	  "a11yhelp",
-	  "bidi",
-	  "blockquote",
-	  "clipboard",
-	  "colordialog",
-	  "contextmenu", 
-	  "dialogadvtab",
-	  "div",
-	  "elementspath",
-	  "filebrowser",
-	  "find",
-	  "flash",
-	  "forms",
-	  "horizontalrule",
-	  "iframe","" +
-	  "image", 
-	  "link",
-	  "liststyle",
-	  "newpage",
-	  "pagebreak",
-	  "pastefromword",
-	  "pastetext",
-	  "popup",
-	  "preview",
-	  "print",
-	  "resize",
-	  "save",
-	  "scayt",
-	  "smiley",
-	  "showblocks", 
-	  "showborders",
-	  "sourcearea",
-	  "stylescombo",
-	  "table",
-	  "tabletools",
-	  "specialchar",
-	  "tab",
-	  "templates",
-	  "undo",
-	  "wsc",
-	  "panelbutton"
+  config.baseFloatZIndex = 3000000;
+
+  config.removePlugins = [
+    "about",
+    "a11yhelp",
+    "bidi",
+    "blockquote",
+    "clipboard",
+    "colordialog",
+    "contextmenu",
+    "dialogadvtab",
+    "div",
+    "elementspath",
+    "filebrowser",
+    "find",
+    "flash",
+    "forms",
+    "horizontalrule",
+    "iframe","" +
+    "image",
+    "link",
+    "liststyle",
+    "newpage",
+    "pagebreak",
+    "pastefromword",
+    "pastetext",
+    "popup",
+    "preview",
+    "print",
+    "resize",
+    "save",
+    "scayt",
+    "smiley",
+    "showblocks",
+    "showborders",
+    "sourcearea",
+    "stylescombo",
+    "table",
+    "tabletools",
+    "specialchar",
+    "tab",
+    "templates",
+    "undo",
+    "wsc",
+    "panelbutton"
   ].join();
 
 };

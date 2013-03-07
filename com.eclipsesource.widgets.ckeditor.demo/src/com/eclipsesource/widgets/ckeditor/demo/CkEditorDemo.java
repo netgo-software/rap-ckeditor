@@ -38,7 +38,7 @@ public class CkEditorDemo implements EntryPoint {
     // CkEditor
     final CKEditor ckEditor = new CKEditor( shell, SWT.NONE );
     ckEditor.setFont( new org.eclipse.swt.graphics.Font( display, "fantasy", 19, 0 ) );
-    ckEditor.setText( "asdf<script type=\"text/javascript\"> alert(1);</script>asdf" );
+    ckEditor.setText( "Hello Fantasy Font" );
     ckEditor.setLayoutData( new GridData() );
     System.out.println( ckEditor.getText() );
     ckEditor.setBackground( display.getSystemColor( SWT.COLOR_YELLOW ) );
