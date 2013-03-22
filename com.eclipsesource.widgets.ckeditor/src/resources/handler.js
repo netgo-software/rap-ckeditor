@@ -20,14 +20,12 @@ var CKEDITOR_BASEPATH = "rwt-resources/ckeditor/";
   }
 
   eclipsesource.CKEditor = function( properties ) {
-    bindAll( this, [ "layout", "onReady", "onSend" ] );
+    bindAll( this, [ "layout", "onReady", "onSend", "onRender" ] );
     this.parent = rap.getObject( properties.parent );
     this.element = document.createElement( "div" );
     this.parent.append( this.element );
-    this.editor = CKEDITOR.appendTo( this.element );
     this.parent.addListener( "Resize", this.layout );
-    this.editor.on( "instanceReady", this.onReady );
-    rap.on( "send", this.onSend );
+    rap.on( "render", this.onRender );
   };
 
   eclipsesource.CKEditor.prototype = {
@@ -45,6 +43,15 @@ var CKEDITOR_BASEPATH = "rwt-resources/ckeditor/";
       if( this._font ) {
         this.setFont( this._font );
         delete this._font;
+      }
+    },
+
+    onRender : function() {
+      if( this.element.parentNode ) {
+        rap.off( "render", this.onRender );
+        this.editor = CKEDITOR.appendTo( this.element );
+        this.editor.on( "instanceReady", this.onReady );
+        rap.on( "send", this.onSend );
       }
     },
 

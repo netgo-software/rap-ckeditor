@@ -29,28 +29,48 @@ describe( "eclipsesource.CKEditor", function() {
       expect( rap.fakeComposite.append ).toHaveBeenCalledWith( editor.element );
     } );
 
-    it( "should create an CKEditor instance with it's own element'", function() {
-      spyOn( CKEDITOR, "appendTo" ).andCallThrough();
-      createEditor();
-      expect( CKEDITOR.appendTo ).toHaveBeenCalledWith( editor.element );
-    } );
-
     it( "should add a resize listener", function() {
       spyOn( rap.fakeComposite, "addListener" );
       createEditor();
       expect( rap.fakeComposite.addListener ).toHaveBeenCalledWith( "Resize", editor.layout );
     } );
 
-    it( "should add a ready listener", function() {
-      spyOn( CKEDITOR.editor.prototype, "on" );
+    it( "should add a render listener", function() {
+      spyOn( rap, "on" );
       createEditor();
-      expect( editor.editor.on ).toHaveBeenCalledWith( "instanceReady", editor.onReady );
+      expect( rap.on ).toHaveBeenCalledWith( "render", editor.onRender );
+    } );
+
+  } );
+
+  describe( "The render function", function() {
+
+    beforeEach( function() {
+      createEditor();
+    } );
+
+    it( "should remove itself from the listeners", function() {
+      spyOn( rap, "off" );
+      editor.onRender.call();
+      expect( rap.off ).toHaveBeenCalledWith( "render", editor.onRender );
+    } );
+
+    it( "should create a CKEditor instance with it's own element'", function() {
+      spyOn( CKEDITOR, "appendTo" ).andCallThrough();
+      editor.onRender.call();
+      expect( CKEDITOR.appendTo ).toHaveBeenCalledWith( editor.element );
     } );
 
     it( "should add a send listener", function() {
       spyOn( rap, "on" );
-      createEditor();
+      editor.onRender.call();
       expect( rap.on ).toHaveBeenCalledWith( "send", editor.onSend );
+    } );
+
+    it( "should add a ready listener", function() {
+      spyOn( CKEDITOR.editor.prototype, "on" );
+      editor.onRender.call();
+      expect( editor.editor.on ).toHaveBeenCalledWith( "instanceReady", editor.onReady );
     } );
 
   } );
@@ -59,6 +79,7 @@ describe( "eclipsesource.CKEditor", function() {
 
     beforeEach( function() {
       createEditor();
+      editor.onRender.call();
       spyOn( rap.fakeComposite, "getClientArea" ).andReturn( [ 1, 2, 100, 110 ] );
     } );
 
@@ -115,6 +136,7 @@ describe( "eclipsesource.CKEditor", function() {
 
     beforeEach( function() {
       createEditor();
+      editor.onRender.call();
       spyOn( editor.editor, "setData" );
       editor.setText( "foo" );
     } );
@@ -143,6 +165,7 @@ describe( "eclipsesource.CKEditor", function() {
     beforeEach( function() {
       jasmine.Clock.useMock(); // ckeditor uses async functions because IE says so
       createEditor();
+      editor.onRender.call();
       body = editor.editor.document.getBody();
       spyOn( body, "setStyle" );
 
@@ -176,6 +199,7 @@ describe( "eclipsesource.CKEditor", function() {
     beforeEach( function() {
       spyOn( rap, "getRemoteObject" ).andCallThrough();
       createEditor();
+      editor.onRender.call();
     } );
 
     describe( "of an editor that has not changed", function() {
@@ -226,6 +250,7 @@ describe( "eclipsesource.CKEditor", function() {
 
     beforeEach( function() {
       createEditor();
+      editor.onRender.call();
     } );
 
     it( "de-registers the onSend function", function() {
