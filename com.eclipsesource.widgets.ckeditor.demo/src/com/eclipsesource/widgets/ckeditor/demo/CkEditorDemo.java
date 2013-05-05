@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2002, 2012 Innoopract Informationssysteme GmbH and others.
+ * Copyright (c) 2002, 2013 Innoopract Informationssysteme GmbH and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,39 +11,35 @@
  ******************************************************************************/
 package com.eclipsesource.widgets.ckeditor.demo;
 
-import org.eclipse.jface.layout.GridDataFactory;
-import org.eclipse.rap.rwt.application.EntryPoint;
+import org.eclipse.rap.rwt.application.AbstractEntryPoint;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
 
 import com.eclipsesource.widgets.ckeditor.CKEditor;
 
 
-public class CkEditorDemo implements EntryPoint {
+public class CkEditorDemo extends AbstractEntryPoint {
 
-  public int createUI() {
-    final Display display = new Display();
-    Shell shell = new Shell( display );
-    shell.setBounds( 10, 10, 800, 550 );
-    shell.setText( "CkEditor Demo" );
-
-    shell.setLayout( new GridLayout( 1, false ) );
+  @Override
+  protected void createContents( final Composite parent ) {
+    getShell().setText( "CkEditor Demo" );
+    parent.setLayout( new GridLayout( 1, false ) );
     // CkEditor
-    final CKEditor ckEditor = new CKEditor( shell, SWT.NONE );
-    ckEditor.setFont( new org.eclipse.swt.graphics.Font( display, "fantasy", 19, 0 ) );
+    final CKEditor ckEditor = new CKEditor( parent, SWT.NONE );
+    ckEditor.setFont( new Font( parent.getDisplay(), "fantasy", 19, 0 ) );
     ckEditor.setText( "Hello Fantasy Font" );
     ckEditor.setLayoutData( new GridData() );
     System.out.println( ckEditor.getText() );
-    ckEditor.setBackground( display.getSystemColor( SWT.COLOR_YELLOW ) );
-    GridDataFactory.fillDefaults().grab( true, true ).applyTo( ckEditor );
-    ToolBar toolbar = new ToolBar( shell, SWT.FLAT );
+    ckEditor.setBackground( parent.getDisplay().getSystemColor( SWT.COLOR_YELLOW ) );
+    ckEditor.setLayoutData( new GridData( SWT.FILL, SWT.FILL, true, true ) );
+    ToolBar toolbar = new ToolBar( parent, SWT.FLAT );
     ToolItem printBtn = new ToolItem( toolbar, SWT.PUSH );
     printBtn.setText( "Print" );
     printBtn.addSelectionListener( new SelectionAdapter() {
@@ -65,7 +61,7 @@ public class CkEditorDemo implements EntryPoint {
     fontBtn.addSelectionListener( new SelectionAdapter() {
       @Override
       public void widgetSelected( SelectionEvent e ) {
-        ckEditor.setFont( new org.eclipse.swt.graphics.Font( display, "serif", 9, 0 ) );
+        ckEditor.setFont( new Font( parent.getDisplay(), "serif", 9, 0 ) );
       }
     } );
     ToolItem clearBtn = new ToolItem( toolbar, SWT.NONE );
@@ -76,16 +72,6 @@ public class CkEditorDemo implements EntryPoint {
         ckEditor.setText( "" );
       }
     } );
-    shell.open();
-    runReadAndDispatchLoop( shell );
-    return 0;
   }
 
-  private void runReadAndDispatchLoop( Shell shell ) {
-    while( !shell.isDisposed() ) {
-      if( !shell.getDisplay().readAndDispatch() ) {
-        shell.getDisplay().sleep();
-      }
-    }
-  }
 }

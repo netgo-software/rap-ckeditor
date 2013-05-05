@@ -5,9 +5,9 @@ Bundle-SymbolicName: com.eclipsesource.widgets.ckeditor.test
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: ECLIPSESOURCE
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Require-Bundle: org.junit,
+Require-Bundle: org.junit;bundle-version="4.8.2",
  com.eclipsesource.widgets.ckeditor;bundle-version="1.0.0",
- org.eclipse.rap.rwt,
- org.eclipse.rap.rwt.testfixture,
+ org.eclipse.rap.rwt;bundle-version="2.1.0",
+ org.eclipse.rap.rwt.testfixture;bundle-version="2.1.0",
  org.mockito;bundle-version="1.8.4",
  org.objenesis;bundle-version="1.0.0"

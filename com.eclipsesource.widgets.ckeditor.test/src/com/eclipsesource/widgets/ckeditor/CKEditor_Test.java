@@ -6,11 +6,10 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import junit.framework.TestCase;
 
+import org.eclipse.rap.json.JsonObject;
+import org.eclipse.rap.json.JsonValue;
 import org.eclipse.rap.rwt.RWT;
 import org.eclipse.rap.rwt.client.WebClient;
 import org.eclipse.rap.rwt.client.service.JavaScriptLoader;
@@ -110,7 +109,7 @@ public class CKEditor_Test extends TestCase {
   public void testSetTextFromClient() {
     String text = "foo<span>bar</span>";
 
-    remoteSet( remoteObject, "text", text );
+    remoteSet( remoteObject, "text", JsonValue.valueOf( text ) );
 
     assertEquals( text, editor.getText() );
   }
@@ -139,10 +138,8 @@ public class CKEditor_Test extends TestCase {
     return loader;
   }
 
-  private static void remoteSet( RemoteObject remoteObjectMock, String proprety, Object value ) {
-    Map<String, Object> properties = new HashMap<String, Object>();
-    properties.put( proprety, value );
-    getHandler( remoteObjectMock ).handleSet( properties );
+  private static void remoteSet( RemoteObject remoteObjectMock, String proprety, JsonValue value ) {
+    getHandler( remoteObjectMock ).handleSet( new JsonObject().add( proprety, value ) );
   }
 
   private static OperationHandler getHandler( RemoteObject remoteObjectMock ) {

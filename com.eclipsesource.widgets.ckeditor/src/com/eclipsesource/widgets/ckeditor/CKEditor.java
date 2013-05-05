@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2011, 2012 EclipseSource.
+ * Copyright (c) 2011, 2012 EclipseSource and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,8 +12,8 @@ package com.eclipsesource.widgets.ckeditor;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Map;
-
+import org.eclipse.rap.json.JsonObject;
+import org.eclipse.rap.json.JsonValue;
 import org.eclipse.rap.rwt.RWT;
 import org.eclipse.rap.rwt.client.service.JavaScriptLoader;
 import org.eclipse.rap.rwt.lifecycle.WidgetUtil;
@@ -48,13 +48,14 @@ public class CKEditor extends Composite {
   private static final String REMOTE_TYPE = "eclipsesource.CKEditor";
 
   private String text = "";
-  private RemoteObject remoteObject;
+  private final RemoteObject remoteObject;
 
-  private OperationHandler operationHandler = new AbstractOperationHandler() {
+  private final OperationHandler operationHandler = new AbstractOperationHandler() {
     @Override
-    public void handleSet( Map<String, Object> properties ) {
-      if( properties.containsKey( "text" ) ) {
-        CKEditor.this.text = ( String )properties.get( "text" );
+    public void handleSet( JsonObject properties ) {
+      JsonValue textValue = properties.get( "text" );
+      if( textValue != null ) {
+        text = textValue.asString();
       }
     }
   };
