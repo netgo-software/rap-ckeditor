@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component>
+  <name>
+    RichText Widget
+  </name>
+  <maintainer>
+    Tim Buschtöns
+  </maintainer>
+  <description>
+    The RichText widget for RAP is based on the CKEditor and is compatible with
+    RAP 2.1 and above.
+  </description>
+</component>
