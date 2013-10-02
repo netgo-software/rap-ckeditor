@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name:  RAP CKEditor Widget (Incubation)
+Bundle-Name: RAP CKEditor Widget (Incubation)
 Bundle-SymbolicName: org.eclipse.rap.addons.ckeditor
 Bundle-Version: 0.1.0.qualifier
 Bundle-ActivationPolicy: lazy

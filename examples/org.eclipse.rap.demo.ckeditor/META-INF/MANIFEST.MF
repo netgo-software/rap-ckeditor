@@ -1,12 +1,12 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: CKEditor Demo
-Bundle-SymbolicName: com.eclipsesource.widgets.ckeditor.demo
-Bundle-Version: 1.0.0.qualifier
-Bundle-Vendor: EclipseSource
-Require-Bundle: com.eclipsesource.widgets.ckeditor;bundle-version="1.0.0",
- org.eclipse.rap.rwt;bundle-version="2.1.0"
+Bundle-Name: RAP CKEditor Widget Demo (Incubation)
+Bundle-SymbolicName: org.eclipse.rap.demo.ckeditor
+Bundle-Version: 0.1.0.qualifier
+Bundle-Vendor: Eclipse.org - RAP Incubator
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
-Bundle-Activator: com.eclipsesource.widgets.ckeditor.demo.Activator
+Bundle-Activator: org.eclipse.rap.demo.ckeditor.Activator
+Require-Bundle: org.eclipse.rap.addons.ckeditor;bundle-version="0.1.0",
+ org.eclipse.rap.rwt;bundle-version="2.1.0"
 Import-Package: org.osgi.framework;version="1.7.0"

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2012 EclipseSource and others.
+ * Copyright (c) 2013 EclipseSource and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,23 +8,16 @@
  * Contributors:
  *    EclipseSource - initial API and implementation
  ******************************************************************************/
-package org.eclipse.rap.demo.ckeditor.internal;
+package org.eclipse.rap.demo.ckeditor;
 
-import org.eclipse.rap.examples.IExampleContribution;
-import org.eclipse.rap.examples.IExamplePage;
+import org.eclipse.rap.rwt.application.Application;
+import org.eclipse.rap.rwt.application.ApplicationConfiguration;
 
 
-public class CKEditorExampleContribution implements IExampleContribution {
+public class CkEditorConfiguration implements ApplicationConfiguration {
 
-  public String getId() {
-    return "ckeditor";
+  public void configure( Application application ) {
+    application.addEntryPoint( "/ckeditor", CkEditorDemo.class, null );
   }
 
-  public String getTitle() {
-    return "Rich Text Editor";
-  }
-
-  public IExamplePage createPage() {
-    return new CKEditorExamplePage();
-  }
 }
