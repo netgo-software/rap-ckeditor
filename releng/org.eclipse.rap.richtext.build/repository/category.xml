@@ -21,4 +21,16 @@
     <category name="org.eclipse.rap.incubator.category"/>
   </feature>
 
+  <bundle 
+      id="org.eclipse.rap.demo.ckeditor" 
+      version="0.1.0.qualifier">
+    <category name="org.eclipse.rap.incubator.category"/>
+  </bundle>
+
+  <bundle 
+      id="org.eclipse.rap.examples.pages.ckeditor" 
+      version="0.1.0.qualifier">
+    <category name="org.eclipse.rap.incubator.category"/>
+  </bundle>
+
 </site>

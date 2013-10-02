@@ -21,22 +21,8 @@
     <relativePath>../../../org.eclipse.rap.incubator.releng/releng/org.eclipse.rap.incubator.releng/parent</relativePath>
   </parent>
 
-  <artifactId>org.eclipse.rap.richtext.build</artifactId>
+  <artifactId>org.eclipse.rap.demo.ckeditor</artifactId>
   <version>0.1.0-SNAPSHOT</version>
-  <packaging>pom</packaging>
-
-  <modules>
-    <!-- bundles -->
-    <module>../../bundles/org.eclipse.rap.addons.ckeditor</module>
-    <!-- tests -->
-    <module>../../tests/org.eclipse.rap.addons.ckeditor.test</module>
-    <!-- examples -->
-    <module>../../examples/org.eclipse.rap.demo.ckeditor</module>
-    <module>../../examples/org.eclipse.rap.examples.pages.ckeditor</module>
-    <!-- features -->
-    <module>../../features/org.eclipse.rap.richtext.feature</module>
-    <!-- releng -->
-    <module>repository</module>
-  </modules>
+  <packaging>eclipse-plugin</packaging>
 
 </project>
