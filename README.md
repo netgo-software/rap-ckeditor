@@ -1,4 +1,4 @@
-# CKEditor for RAP 2.0
+# CKEditor for RAP 2.1
 
 This is a custom widget for the Remote Application Platform (RAP) that wraps the CKEditor, a web-based WYSIWYG/Rich-Text editor. 
 This version is based on the remote API that has been added in RAP 2.0. If you wish to run it with RAP 1.5,
@@ -10,7 +10,7 @@ The text can be any valid HTML, but should be limited to the subset the editor c
 
 ## Customization
 
-The editor can be customized by editing the files in the <code>src/resources</code> folder of the <code>com.eclipsesource.widgets.ckeditor</code> bundle.
+The editor can be customized by editing the files in the <code>src/resources</code> folder of the <code>org.eclipse.rap.addons.ckeditor</code> bundle.
 You might need to clear the browsers cache and restart the server for all changes to take effect.
 
 ### Editor Configuration
@@ -31,20 +31,20 @@ The <code>ckeditor.pack</code> used for this project can be found in the bundles
 
 ## Bundle overview
 
-### com.eclipsesource.widgets.ckeditor
+### org.eclipse.rap.addons.ckeditor
 
-The Widget itself (<code>com.eclipsesource.widgets.ckeditor.CKEditor</code>) and the required resources.
+The Widget itself (<code>org.eclipse.rap.addons.ckeditor.CKEditor</code>) and the required resources.
 
-### com.eclipsesource.widgets.ckeditor.demo
+### org.eclipse.rap.demo.ckeditor
 
 A demo application for the widget.
 Contains a launch configuration.
 
-### org.eclipse.rap.demo.ckeditor.
+### org.eclipse.rap.examples.pages.ckeditor
 
-An addition to the RAP Examples Demo.
+A page addition to the RAP Examples Demo.
 
-### com.eclipsesource.widgets.ckeditor.test
+### org.eclipse.rap.addons.ckeditor.test
 
 JUnit an Jasmine Tests.
 
