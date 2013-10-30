@@ -36,8 +36,6 @@ public class CkEditorDemo extends AbstractEntryPoint {
     ckEditor.setFont( new Font( parent.getDisplay(), "fantasy", 19, 0 ) );
     ckEditor.setText( "Hello Fantasy Font" );
     ckEditor.setLayoutData( new GridData() );
-    System.out.println( ckEditor.getText() );
-    ckEditor.setBackground( parent.getDisplay().getSystemColor( SWT.COLOR_YELLOW ) );
     ckEditor.setLayoutData( new GridData( SWT.FILL, SWT.FILL, true, true ) );
     ToolBar toolbar = new ToolBar( parent, SWT.FLAT );
     ToolItem printBtn = new ToolItem( toolbar, SWT.PUSH );
