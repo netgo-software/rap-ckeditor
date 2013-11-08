@@ -1,4 +1,8 @@
-# CKEditor for RAP 2.0
+# CKEditor for RAP
+
+### Important Notice: As of 2013-11-08 the code and the development have been transferred to eclipse.org. 
+### The code is now available from the RAP Incubator project at http://www.eclipse.org/rap/incubator/
+### The new Git repository can be found at http://git.eclipse.org/c/rap/incubator/org.eclipse.rap.incubator.richtext.git/
 
 This is a custom widget for the Remote Application Platform (RAP) that wraps the CKEditor, a web-based WYSIWYG/Rich-Text editor. 
 This version is based on the remote API that has been added in RAP 2.0. If you wish to run it with RAP 1.5,
