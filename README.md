@@ -1,4 +1,4 @@
-# CKEditor for RAP
+# CKEditor 4 for RAP
 
 This is a custom widget for the Rich Ajax Platform (RAP) that wraps the CKEditor, a web-based WYSIWYG/Rich-Text editor. To run it you need RAP 1.4M4 or later.
 
@@ -8,7 +8,7 @@ The text can be any valid HTML, but should be limited to the subset the editor c
 
 ## Customization
 
-The editor can be customized by editing the files in the <code>src/resources</code> folder of the <code>com.eclipsesource.widgets.ckeditor</code> bundle.
+The editor can be customized by editing the files in the <code>src/main/resources/resources</code> folder of the <code>de.tolina.common.rwt.widgets.ckeditor</code> bundle.
 You might need to clear the browsers cache and restart the server for all changes to take effect.
 
 ### Editor Configuration
@@ -26,25 +26,6 @@ To change the editors colors, borders, spacings, etc, edit <code>editor.css</cod
 For various reasions some plugins have been removed from <code>ckeditor.js</code> and disabled in <code>config.js</code>, therefore not all options of the full CKEdtior are working.
 If you wish, you can compile your own <code>ckeditor.js</code>. Get more info here: http://docs.cksource.com/CKEditor_3.x/Developers_Guide/CKPackager
 The <code>ckeditor.pack</code> used for this project can be found in the bundles <code>docs</code> folder.
-
-## Bundle overview
-
-### com.eclipsesource.widgets.ckeditor
-
-The Widget itself (<code>com.eclipsesource.widgets.ckeditor.CKEditor</code>) and the required resources.
-
-### com.eclipsesource.widgets.ckeditor.demo
-
-A demo application for the widget.
-Contains a launch configuration.
-
-### org.eclipse.rap.demo.ckeditor.
-
-An addition to the RAP Examples Demo.
-
-### com.eclipsesource.widgets.ckeditor.test
-
-JUnit Tests.
 
 ## Legal
 

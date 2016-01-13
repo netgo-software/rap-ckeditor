@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Copyright (C) 2011, 2012 EclipseSource and others.
+	All rights reserved. This program and the accompanying materials
+	are made available under the terms of the Eclipse Public License v1.0
+	which accompanies this distribution, and is available at
+	http://www.eclipse.org/legal/epl-v10.html
+
+	Contributors:
+	EclipseSource - initial implementation
+	arxes-tolina - migrate to Maven-only project
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>de.tolina.common</groupId>
+	<artifactId>rap-ckeditor</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+
+	<url>https://github.com/arxes-tolina/rap-ckeditor</url>
+
+	<licenses>
+		<license>
+			<name>Eclipse Puplic License v1.0</name>
+			<url>http://www.eclipse.org/legal/epl-v10.html</url>
+		</license>
+	</licenses>
+
+	<organization>
+		<name>arxes-tolina GmbH</name>
+		<url>https://www.arxes-tolina.de/</url>
+	</organization>
+
+	<issueManagement>
+		<url>https://github.com/arxes-tolina/rap-ckeditor/issues</url>
+	</issueManagement>
+	<scm>
+		<connection>scm:git:https://github.com/arxes-tolina/rap-ckeditor.git</connection>
+		<url>https://github.com/arxes-tolina/rap-ckeditor</url>
+		<tag>streams/1.5</tag>
+	</scm>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.3</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.eclipse.rap</groupId>
+			<artifactId>org.eclipse.rap.rwt</artifactId>
+			<version>1.5.0</version>
+			<optional>true</optional>
+		</dependency>
+	</dependencies>
+</project>
