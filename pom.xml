@@ -15,7 +15,7 @@
 
 	<groupId>de.tolina.common</groupId>
 	<artifactId>rap-ckeditor</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.0</version>
 
 	<url>https://github.com/arxes-tolina/rap-ckeditor</url>
 
@@ -37,7 +37,7 @@
 	<scm>
 		<connection>scm:git:https://github.com/arxes-tolina/rap-ckeditor.git</connection>
 		<url>https://github.com/arxes-tolina/rap-ckeditor</url>
-		<tag>streams/1.5</tag>
+		<tag>mvn_01_00_00</tag>
 	</scm>
 
 	<build>
