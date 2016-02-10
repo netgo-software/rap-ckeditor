@@ -3,19 +3,22 @@ Copyright (c) 2003-2013, CKSource - Frederico Knabben. All rights reserved.
 For licensing, see LICENSE.md or http://ckeditor.com/license
 */
 
-body
+body.cke_editable
 {
 	/* Font */
-	font-family: sans-serif, Arial, Verdana, "Trebuchet MS";
-	font-size: 12px;
+	font-family: Arial, Verdana, "Trebuchet MS", sans-serif;
 
 	/* Text color */
 	color: #333;
 
 	/* Remove the background color to make it transparent */
 	background-color: #fff;
+	margin-left: 20px;
+}
 
-	margin: 20px;
+body.cke_editable.din-a4
+{
+    width: 172mm;
 }
 
 .cke_editable
@@ -103,4 +106,8 @@ pre
 span[lang]
 {
    font-style: italic;
+}
+
+.ckeditor-locked {
+    background-color: #DFDFDF;
 }

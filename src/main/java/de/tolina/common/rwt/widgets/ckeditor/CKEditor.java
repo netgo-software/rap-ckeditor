@@ -322,6 +322,8 @@ public class CKEditor extends Composite {
 			"plugins/dialog/samples/dialog.html", //
 			"plugins/dialog/samples/assets/my_dialog.js", //
 			"plugins/dialogui/plugin.js", //
+			"plugins/dinavier/icons/dinavier.png",
+			"plugins/dinavier/plugin.js",
 			"plugins/fakeobjects/images/spacer.gif", //
 			"plugins/font/plugin.js", //
 			"plugins/font/lang/af.js", //
@@ -544,6 +546,7 @@ public class CKEditor extends Composite {
 			"plugins/scayt/README.md", //
 			"plugins/scayt/dialogs/options.js", //
 			"plugins/scayt/dialogs/toolbar.css", //
+			"plugins/showborders/plugin.js", //
 			"plugins/specialchar/dialogs/specialchar.js", //
 			"plugins/specialchar/dialogs/lang/ar.js", //
 			"plugins/specialchar/dialogs/lang/bg.js", //

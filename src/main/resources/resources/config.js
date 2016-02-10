@@ -20,7 +20,8 @@ CKEDITOR.editorConfig = function( config ) {
 		{ name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align' ] },
 		{ name: 'styles' },
 		{ name: 'colors' },
-		{ name: 'document', groups: [ 'mode', 'document', 'doctools' ] }
+		//{ name: 'document', groups: [ 'mode', 'document', 'doctools' ] }
+		{ name: 'dinavier' }
 	];
 
 	// Remove some buttons, provided by the standard plugins, which we don't
@@ -37,7 +38,7 @@ CKEDITOR.editorConfig = function( config ) {
 	// Make dialogs simpler.
 	config.removeDialogTabs = 'image:advanced;link:advanced';
 	
-	config.extraPlugins = 'onchange,font,liststyle,dialog,dialogui,clipboard,pastefromword,colorbutton';
+	config.extraPlugins = 'onchange,font,liststyle,dialog,dialogui,clipboard,pastefromword,colorbutton,dinavier,showborders';
 	
     config.allowedContent = true;	
 	
