@@ -1,0 +1,17 @@
+branches:
+  only:
+    - streams/1.5
+
+language: java
+jdk:
+  - oraclejdk7
+  - oraclejdk8
+deploy:
+  provider: releases
+  api_key:
+    secure: ${apikey}
+  file: target/*.jar
+  file_glob: true
+  on:
+    tags: true
+    repo: arxes-tolina/rap-ckeditor
