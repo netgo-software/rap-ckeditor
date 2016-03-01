@@ -38,7 +38,7 @@ CKEDITOR.editorConfig = function( config ) {
 	// Make dialogs simpler.
 	config.removeDialogTabs = 'image:advanced;link:advanced';
 	
-	config.extraPlugins = 'onchange,font,liststyle,dialog,dialogui,clipboard,pastefromword,colorbutton,dinavier,showborders';
+	config.extraPlugins = 'onchange,font,liststyle,dialog,dialogui,clipboard,pastefromword,colorbutton,dinavier,showborders,justify,indent,indentlist,indentblock';
 	
     config.allowedContent = true;	
 	

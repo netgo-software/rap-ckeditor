@@ -19,6 +19,20 @@
           alert( "CKEditor ready error:  " + ex );
         }
       } );
+      CKEDITOR.on('dialogDefinition', function (evt) {
+          var dialog = evt.data;
+
+          if (dialog.name == 'table') {
+              // Get dialog definition.
+              var def = evt.data.definition;
+
+              def.removeContents('advanced');
+              var infoTab = def.getContents('info');
+              infoTab.remove('txtCaption');
+              infoTab.get('txtCellSpace')['default'] = '0';
+              infoTab.get('txtWidth')['default'] = '172mm';
+          }
+      });
       rap.editor.on('instanceReady', function () {
           if (rap.editor.getCommand('dinaVier').state == CKEDITOR.TRISTATE_DISABLED) {
         	  rap.editor.getCommand('dinaVier').setState(CKEDITOR.TRISTATE_OFF);
