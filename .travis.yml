@@ -1,6 +1,5 @@
 branches:
   only:
-    - streams/1.5
     - streams/2.3
 
 language: java
