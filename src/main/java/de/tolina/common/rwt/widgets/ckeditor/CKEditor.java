@@ -14,8 +14,8 @@ package de.tolina.common.rwt.widgets.ckeditor;
 import java.io.IOException;
 import java.io.InputStream;
 
-import org.eclipse.rwt.RWT;
-import org.eclipse.rwt.resources.IResourceManager;
+import org.eclipse.rap.rwt.RWT;
+import org.eclipse.rap.rwt.service.IResourceManager;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.browser.Browser;
 import org.eclipse.swt.browser.BrowserFunction;
