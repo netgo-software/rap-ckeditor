@@ -67,8 +67,8 @@ span.cke_skin_kama {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
-  border: 0px solid transparent;
-  padding: 0px;
+  border: 1px solid tranparent;
+  padding: 5px;
 }
 
 .cke_skin_kama span.cke_browser_webkit,.cke_skin_kama span.cke_browser_gecko18
@@ -134,7 +134,7 @@ span.cke_skin_kama {
 }
 
 .cke_skin_kama .cke_focus {
-  /*outline: auto 5px -webkit-focus-ring-color;*/
+  outline: auto 5px -webkit-focus-ring-color;
 }
 
 .cke_skin_kama textarea.cke_source {
@@ -909,7 +909,7 @@ a:hover.cke_colorauto,a:hover.cke_colormore,a:focus.cke_colorauto,a:focus.cke_co
   border-right: 1px solid #DAD9D9;
   float: left;
   padding: 2px;
-  height: 25px;
+  height: 21px;
   margin-right: 6px;
   margin-bottom: 0px;
 }

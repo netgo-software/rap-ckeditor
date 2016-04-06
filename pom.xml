@@ -5,6 +5,7 @@
 	are made available under the terms of the Eclipse Public License v1.0
 	which accompanies this distribution, and is available at
 	http://www.eclipse.org/legal/epl-v10.html
+
 	Contributors:
 	EclipseSource - initial implementation
 	arxes-tolina - migrate to Maven-only project
@@ -14,13 +15,13 @@
 
 	<groupId>de.tolina.common</groupId>
 	<artifactId>rap-ckeditor</artifactId>
-	<version>2.3.1-SNAPSHOT</version>
+	<version>1.0.1</version>
 
 	<url>https://github.com/arxes-tolina/rap-ckeditor</url>
 
 	<licenses>
 		<license>
-			<name>Eclipse Public License v1.0</name>
+			<name>Eclipse Puplic License v1.0</name>
 			<url>http://www.eclipse.org/legal/epl-v10.html</url>
 		</license>
 	</licenses>
@@ -36,7 +37,7 @@
 	<scm>
 		<connection>scm:git:https://github.com/arxes-tolina/rap-ckeditor.git</connection>
 		<url>https://github.com/arxes-tolina/rap-ckeditor</url>
-		<tag>streams/2.3</tag>
+		<tag>mvn_01_00_01</tag>
 	</scm>
 
 	<build>
@@ -57,7 +58,7 @@
 		<dependency>
 			<groupId>org.eclipse.rap</groupId>
 			<artifactId>org.eclipse.rap.rwt</artifactId>
-			<version>2.3.1</version>
+			<version>1.5.0</version>
 			<optional>true</optional>
 		</dependency>
 	</dependencies>
