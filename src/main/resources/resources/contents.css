@@ -16,11 +16,6 @@ body.cke_editable
 	margin-left: 20px;
 }
 
-body.cke_editable.din-a4
-{
-    width: 172mm;
-}
-
 .cke_editable
 {
 	font-size: 10pt;

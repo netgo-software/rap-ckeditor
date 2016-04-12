@@ -34,20 +34,6 @@
           }
       });
       rap.editor.on('instanceReady', function () {
-          if (rap.editor.getCommand('dinaVier').state == CKEDITOR.TRISTATE_DISABLED) {
-        	  rap.editor.getCommand('dinaVier').setState(CKEDITOR.TRISTATE_OFF);
-          }
-          rap.editor.on('resize', function (ev) {
-              if (ev.editor.getCommand('dinaVier').state == CKEDITOR.TRISTATE_ON) {
-                  ev.editor.document.getBody().removeStyle('min-height');
-                  var hoehe = ev.editor.ui.space('contents').getStyle('height');
-                  hoehe = parseInt(hoehe.substring(0, hoehe.length - 2)) - 28 + "px";
-                  hoehe = hoehe + ' !important';
-                  ev.editor.document.getBody().$.style.cssText = 'min-height: ' + hoehe;
-              }
-
-          });
-          rap.editor.execCommand('dinaVier');
           rap.editor.execCommand( 'maximize' );
       });
     }
