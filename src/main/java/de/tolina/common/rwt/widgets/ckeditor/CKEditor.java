@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import org.eclipse.rap.rwt.RWT;
-import org.eclipse.rap.rwt.service.IResourceManager;
+import org.eclipse.rap.rwt.service.ResourceManager;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.browser.Browser;
 import org.eclipse.swt.browser.BrowserFunction;
@@ -800,7 +800,7 @@ public class CKEditor extends Composite {
 	}
 
 	private void registerResources() {
-		final IResourceManager resourceManager = RWT.getResourceManager();
+		final ResourceManager resourceManager = RWT.getResourceManager();
 		final boolean isRegistered = resourceManager.isRegistered(REGISTER_PATH + RESOURCE_FILES[0]);
 		if (!isRegistered) {
 			try {
@@ -814,11 +814,11 @@ public class CKEditor extends Composite {
 	}
 
 	private String getEditorHtmlLocation() {
-		final IResourceManager resourceManager = RWT.getResourceManager();
+		final ResourceManager resourceManager = RWT.getResourceManager();
 		return resourceManager.getLocation(REGISTER_PATH + RESOURCE_FILES[0]);
 	}
 
-	private void register(final IResourceManager resourceManager, final String fileName) throws IOException {
+	private void register(final ResourceManager resourceManager, final String fileName) throws IOException {
 		final ClassLoader classLoader = CKEditor.class.getClassLoader();
 		final InputStream inputStream = classLoader.getResourceAsStream(RESOURCES_PATH + fileName);
 		try {
