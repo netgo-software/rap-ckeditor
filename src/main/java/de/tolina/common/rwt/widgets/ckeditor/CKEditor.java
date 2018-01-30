@@ -42,6 +42,7 @@ public class CKEditor extends Composite {
 			"adapters/jquery.js", //
 			"lang/af.js", //
 			"lang/ar.js", //
+			"lang/az.js", //
 			"lang/bg.js", //
 			"lang/bn.js", //
 			"lang/bs.js", //
@@ -50,6 +51,7 @@ public class CKEditor extends Composite {
 			"lang/cy.js", //
 			"lang/da.js", //
 			"lang/de.js", //
+			"lang/de-ch.js", //
 			"lang/el.js", //
 			"lang/en-au.js", //
 			"lang/en-ca.js", //
@@ -57,6 +59,7 @@ public class CKEditor extends Composite {
 			"lang/en.js", //
 			"lang/eo.js", //
 			"lang/es.js", //
+			"lang/es-mx.js", //
 			"lang/et.js", //
 			"lang/eu.js", //
 			"lang/fa.js", //
@@ -86,6 +89,7 @@ public class CKEditor extends Composite {
 			"lang/nb.js", //
 			"lang/nl.js", //
 			"lang/no.js", //
+			"lang/oc.js", //
 			"lang/pl.js", //
 			"lang/pt-br.js", //
 			"lang/pt.js", //
@@ -100,6 +104,7 @@ public class CKEditor extends Composite {
 			"lang/sv.js", //
 			"lang/th.js", //
 			"lang/tr.js", //
+			"lang/tt.js", //
 			"lang/ug.js", //
 			"lang/uk.js", //
 			"lang/vi.js", //
@@ -108,20 +113,28 @@ public class CKEditor extends Composite {
 			"plugins/icons.png", //
 			"plugins/icons_hidpi.png", //
 			"plugins/a11yhelp/dialogs/a11yhelp.js", //
+			"plugins/a11yhelp/dialogs/lang/af.js", //
 			"plugins/a11yhelp/dialogs/lang/ar.js", //
+			"plugins/a11yhelp/dialogs/lang/az.js", //
 			"plugins/a11yhelp/dialogs/lang/bg.js", //
 			"plugins/a11yhelp/dialogs/lang/ca.js", //
 			"plugins/a11yhelp/dialogs/lang/cs.js", //
 			"plugins/a11yhelp/dialogs/lang/cy.js", //
 			"plugins/a11yhelp/dialogs/lang/da.js", //
 			"plugins/a11yhelp/dialogs/lang/de.js", //
+			"plugins/a11yhelp/dialogs/lang/de-ch.js", //
 			"plugins/a11yhelp/dialogs/lang/el.js", //
 			"plugins/a11yhelp/dialogs/lang/en.js", //
+			"plugins/a11yhelp/dialogs/lang/en-au.js", //
+			"plugins/a11yhelp/dialogs/lang/en-gb.js", //
 			"plugins/a11yhelp/dialogs/lang/eo.js", //
 			"plugins/a11yhelp/dialogs/lang/es.js", //
+			"plugins/a11yhelp/dialogs/lang/es-mx.js", //
 			"plugins/a11yhelp/dialogs/lang/et.js", //
+			"plugins/a11yhelp/dialogs/lang/eu.js", //
 			"plugins/a11yhelp/dialogs/lang/fa.js", //
 			"plugins/a11yhelp/dialogs/lang/fi.js", //
+			"plugins/a11yhelp/dialogs/lang/fo.js", //
 			"plugins/a11yhelp/dialogs/lang/fr-ca.js", //
 			"plugins/a11yhelp/dialogs/lang/fr.js", //
 			"plugins/a11yhelp/dialogs/lang/gl.js", //
@@ -143,6 +156,7 @@ public class CKEditor extends Composite {
 			"plugins/a11yhelp/dialogs/lang/nb.js", //
 			"plugins/a11yhelp/dialogs/lang/nl.js", //
 			"plugins/a11yhelp/dialogs/lang/no.js", //
+			"plugins/a11yhelp/dialogs/lang/oc.js", //
 			"plugins/a11yhelp/dialogs/lang/pl.js", //
 			"plugins/a11yhelp/dialogs/lang/pt-br.js", //
 			"plugins/a11yhelp/dialogs/lang/pt.js", //
@@ -157,9 +171,11 @@ public class CKEditor extends Composite {
 			"plugins/a11yhelp/dialogs/lang/sv.js", //
 			"plugins/a11yhelp/dialogs/lang/th.js", //
 			"plugins/a11yhelp/dialogs/lang/tr.js", //
+			"plugins/a11yhelp/dialogs/lang/tt.js", //
 			"plugins/a11yhelp/dialogs/lang/ug.js", //
 			"plugins/a11yhelp/dialogs/lang/uk.js", //
 			"plugins/a11yhelp/dialogs/lang/vi.js", //
+			"plugins/a11yhelp/dialogs/lang/zh.js", //
 			"plugins/a11yhelp/dialogs/lang/zh-cn.js", //
 			"plugins/a11yhelp/dialogs/lang/_translationstatus.txt", //
 			"plugins/about/dialogs/about.js", //
@@ -617,7 +633,9 @@ public class CKEditor extends Composite {
 			"plugins/liststyle/lang/zh-cn.js", //
 			"plugins/liststyle/lang/zh.js", //
 			"plugins/magicline/images/icon.png", //
+			"plugins/magicline/images/icon-rtl.png", //
 			"plugins/magicline/images/hidpi/icon.png", //
+			"plugins/magicline/images/hidpi/icon-rtl.png", //
 			"plugins/onchange/plugin.js", //
 			"plugins/onchange/docs/install.html", //
 			"plugins/onchange/docs/styles.css", //
@@ -696,21 +714,28 @@ public class CKEditor extends Composite {
 			"plugins/pastefromword/lang/zh.js", //
 			"plugins/scayt/LICENSE.md", //
 			"plugins/scayt/README.md", //
+			"plugins/scayt/CHANGELOG.md", //
 			"plugins/scayt/dialogs/options.js", //
 			"plugins/scayt/dialogs/toolbar.css", //
+			"plugins/scayt/dialogs/dialog.css", //
+			"plugins/scayt/skins/moono-lisa/scayt.css", //
 			"plugins/showborders/plugin.js", //
 			"plugins/specialchar/dialogs/specialchar.js", //
 			"plugins/specialchar/dialogs/lang/ar.js", //
+			"plugins/specialchar/dialogs/lang/az.js", //
 			"plugins/specialchar/dialogs/lang/bg.js", //
 			"plugins/specialchar/dialogs/lang/ca.js", //
 			"plugins/specialchar/dialogs/lang/cs.js", //
 			"plugins/specialchar/dialogs/lang/cy.js", //
+			"plugins/specialchar/dialogs/lang/da.js", //
 			"plugins/specialchar/dialogs/lang/de.js", //
+			"plugins/specialchar/dialogs/lang/de-ch.js", //
 			"plugins/specialchar/dialogs/lang/el.js", //
 			"plugins/specialchar/dialogs/lang/en.js", //
 			"plugins/specialchar/dialogs/lang/eo.js", //
 			"plugins/specialchar/dialogs/lang/es.js", //
 			"plugins/specialchar/dialogs/lang/et.js", //
+			"plugins/specialchar/dialogs/lang/es-mx.js", //
 			"plugins/specialchar/dialogs/lang/fa.js", //
 			"plugins/specialchar/dialogs/lang/fi.js", //
 			"plugins/specialchar/dialogs/lang/fr-ca.js", //
@@ -723,14 +748,17 @@ public class CKEditor extends Composite {
 			"plugins/specialchar/dialogs/lang/it.js", //
 			"plugins/specialchar/dialogs/lang/ja.js", //
 			"plugins/specialchar/dialogs/lang/km.js", //
+			"plugins/specialchar/dialogs/lang/ko.js", //
 			"plugins/specialchar/dialogs/lang/ku.js", //
 			"plugins/specialchar/dialogs/lang/lv.js", //
 			"plugins/specialchar/dialogs/lang/nb.js", //
 			"plugins/specialchar/dialogs/lang/nl.js", //
 			"plugins/specialchar/dialogs/lang/no.js", //
+			"plugins/specialchar/dialogs/lang/oc.js", //
 			"plugins/specialchar/dialogs/lang/pl.js", //
 			"plugins/specialchar/dialogs/lang/pt-br.js", //
 			"plugins/specialchar/dialogs/lang/pt.js", //
+			"plugins/specialchar/dialogs/lang/ro.js", //
 			"plugins/specialchar/dialogs/lang/ru.js", //
 			"plugins/specialchar/dialogs/lang/si.js", //
 			"plugins/specialchar/dialogs/lang/sk.js", //
@@ -739,13 +767,17 @@ public class CKEditor extends Composite {
 			"plugins/specialchar/dialogs/lang/sv.js", //
 			"plugins/specialchar/dialogs/lang/th.js", //
 			"plugins/specialchar/dialogs/lang/tr.js", //
+			"plugins/specialchar/dialogs/lang/tt.js", //
 			"plugins/specialchar/dialogs/lang/ug.js", //
 			"plugins/specialchar/dialogs/lang/uk.js", //
 			"plugins/specialchar/dialogs/lang/vi.js", //
+			"plugins/specialchar/dialogs/lang/zh.js", //
 			"plugins/specialchar/dialogs/lang/zh-cn.js", //
 			"plugins/specialchar/dialogs/lang/_translationstatus.txt", //
+			"plugins/tableselection/styles/tableselection.css", //
 			"plugins/table/dialogs/table.js", //
 			"plugins/tabletools/dialogs/tableCell.js", //
+			"plugins/widget/images/handle.png", //
 			"plugins/wsc/LICENSE.md", //
 			"plugins/wsc/README.md", //
 			"plugins/wsc/dialogs/ciframe.html", //
@@ -754,6 +786,7 @@ public class CKEditor extends Composite {
 			"plugins/wsc/dialogs/wsc.css", //
 			"plugins/wsc/dialogs/wsc.js", //
 			"plugins/wsc/dialogs/wsc_ie.js", //
+			"plugins/wsc/skins/moono-lisa/wsc.css", //
 			"skins/kama/editor.css", //
 			"skins/kama/icons.png", //
 			"skins/kama/images/sprites.png", //
@@ -781,7 +814,29 @@ public class CKEditor extends Composite {
 			"skins/moono/images/hidpi/close.png", //
 			"skins/moono/images/hidpi/lock-open.png", //
 			"skins/moono/images/hidpi/lock.png", //
-			"skins/moono/images/hidpi/refresh.png" //
+			"skins/moono/images/hidpi/refresh.png", //
+			"skins/moono-lisa/dialog.css", //
+			"skins/moono-lisa/dialog_ie.css", //
+			"skins/moono-lisa/dialog_ie8.css", //
+			"skins/moono-lisa/dialog_iequirks.css", //
+			"skins/moono-lisa/editor.css", //
+			"skins/moono-lisa/editor_gecko.css", //
+			"skins/moono-lisa/editor_ie.css", //
+			"skins/moono-lisa/editor_ie8.css", //
+			"skins/moono-lisa/editor_iequirks.css", //
+			"skins/moono-lisa/icons.png", //
+			"skins/moono-lisa/icons_hidpi.png", //
+			"skins/moono-lisa/images/arrow.png", //
+			"skins/moono-lisa/images/close.png", //
+			"skins/moono-lisa/images/hidpi/close.png", //
+			"skins/moono-lisa/images/hidpi/lock.png", //
+			"skins/moono-lisa/images/hidpi/lock-open.png", //
+			"skins/moono-lisa/images/hidpi/refresh.png", //
+			"skins/moono-lisa/images/lock.png", //
+			"skins/moono-lisa/images/lock-open.png", //
+			"skins/moono-lisa/images/refresh.png", //
+			"skins/moono-lisa/images/spinner.gif", //
+			"skins/moono-lisa/readme.md", //
 	};
 
 	private String text = "";
