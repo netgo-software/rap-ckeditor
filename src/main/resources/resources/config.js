@@ -30,12 +30,12 @@ CKEDITOR.editorConfig = function( config ) {
 	// need to have in the Standard(s) toolbar.
 	// config.removeButtons = 'Underline,Subscript,Superscript';
 	config.disableNativeSpellChecker = false;
-	config.removeButtons = 'Image,Styles,Maximize,Subscript,Superscript,Format';
+	config.removeButtons = 'Image,Maximize,Subscript,Superscript,Format,Font,FontSize';
 
 	// Se the most common block elements.
     config.format_tags = 'p;h1;h2;h3;pre';
 
-    config.fontSize_sizes = '8/8pt;9/9pt;10/10pt;11/11pt;12/12pt;14/14pt;16/16pt;18/18pt;20/20pt;22/22pt;24/24pt;26/26pt;28/28pt;36/36pt;48/48pt;72/72pt';
+    config.fontSize_sizes = '8/8pt;9/9pt;9.5/9.5pt;10/10pt;11/11pt;12/12pt;14/14pt;16/16pt;18/18pt;20/20pt;22/22pt;24/24pt;26/26pt;28/28pt;36/36pt;48/48pt;72/72pt';
 
 	// Make dialogs simpler.
 	config.removeDialogTabs = 'image:advanced;link:advanced';
