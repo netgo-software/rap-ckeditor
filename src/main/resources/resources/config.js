@@ -11,13 +11,13 @@ CKEDITOR.editorConfig = function( config ) {
 	// The toolbar groups arrangement, optimized for two toolbar rows.
 	config.toolbarGroups = [
 //		{ name: 'tools' },
-//		{ name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
+		{ name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
 //		{ name: 'editing',     groups: [ 'find', 'selection' ] },
 //		{ name: 'forms' },
 //		{ name: 'insert' },
 //		{ name: 'others' },
 //		{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
-		{ name: 'basicstyles', groups: [ 'basicstyles', 'list', 'colors', 'styles' ]  },
+		{ name: 'basicstyles', groups: [ 'basicstyles', 'list', 'colors', 'styles' ]  }
 //		{ name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align' ] },
 //		{ name: 'list' },
 //		{ name: 'styles',  groups: [ 'styles' ] },
@@ -30,7 +30,7 @@ CKEDITOR.editorConfig = function( config ) {
 	// need to have in the Standard(s) toolbar.
 	// config.removeButtons = 'Underline,Subscript,Superscript';
 	config.disableNativeSpellChecker = false;
-	config.removeButtons = 'Image,Maximize,Subscript,Superscript,Format,Font,FontSize';
+	config.removeButtons = 'Image,Maximize,Subscript,Superscript,Format';
 
 	// Se the most common block elements.
     config.format_tags = 'p;h1;h2;h3;pre';
@@ -49,4 +49,8 @@ CKEDITOR.editorConfig = function( config ) {
 	
 	config.pasteFromWordRemoveFontStyles = false;
 	config.pasteFromWordRemoveStyles = false;
+		
+	config.forcePasteAsPlainText = true;
+	config.ignoreEmptyParagraph = true;
+	config.enterMode = CKEDITOR.ENTER_BR;
 };
