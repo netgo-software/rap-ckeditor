@@ -1,4 +1,4 @@
-﻿/**
+﻿﻿/**
  * Copyright (c) 2003-2013, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md or http://ckeditor.com/license
  */
@@ -41,7 +41,8 @@ CKEDITOR.stylesSet.add( 'default', [
 		element: 'table',
 		attributes: {
 			cellpadding: '0',
-			cellspacing: '0'
+			cellspacing: '0',
+			border: '0'
 		},
 		styles: {
 			'margin-top': '0pt',
