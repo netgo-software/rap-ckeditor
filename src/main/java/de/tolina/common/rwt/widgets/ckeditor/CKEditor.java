@@ -36,7 +36,7 @@ public class CKEditor extends Composite {
 	private static final String[] RESOURCE_FILES = { //
 			"ckeditor.html", //
 			"ckeditor.js", //
-			"config.js", //
+			"ckeditor_config.js", //
 			"contents.css", //
 			"styles.js", //
 			"adapters/jquery.js", //
