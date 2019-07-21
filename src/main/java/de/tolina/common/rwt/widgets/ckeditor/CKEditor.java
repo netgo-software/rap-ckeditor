@@ -36,7 +36,7 @@ public class CKEditor extends Composite {
 	private static final String[] RESOURCE_FILES = { //
 			"ckeditor.html", //
 			"ckeditor.js", //
-			"ckeditor_config.js", //
+			"config.js", //
 			"contents.css", //
 			"styles.js", //
 			"adapters/jquery.js", //
@@ -815,6 +815,7 @@ public class CKEditor extends Composite {
 			"skins/moono/images/hidpi/lock-open.png", //
 			"skins/moono/images/hidpi/lock.png", //
 			"skins/moono/images/hidpi/refresh.png", //
+			"skins/moono-lisa/skin.js", //
 			"skins/moono-lisa/dialog.css", //
 			"skins/moono-lisa/dialog_ie.css", //
 			"skins/moono-lisa/dialog_ie8.css", //
