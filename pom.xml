@@ -14,7 +14,7 @@
 
 	<groupId>de.tolina.common</groupId>
 	<artifactId>rap-ckeditor</artifactId>
-	<version>3.1.0-CoBaStyle-2</version>
+	<version>3.1.0-NachlassWebVariante-1-SNAPSHOT</version>
 
 	<url>https://github.com/arxes-tolina/rap-ckeditor</url>
 
@@ -36,7 +36,7 @@
 	<scm>
 		<connection>scm:git:https://github.com/arxes-tolina/rap-ckeditor.git</connection>
 		<url>https://github.com/arxes-tolina/rap-ckeditor</url>
-		<tag>feature/CoBaStyle</tag>
+		<tag>streams/3.1_NachlassWebVariante</tag>
 	</scm>
 
 	<build>
