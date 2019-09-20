@@ -14,7 +14,7 @@
 
 	<groupId>de.tolina.common</groupId>
 	<artifactId>rap-ckeditor</artifactId>
-	<version>3.1.0-NachlassWebVariante-3-SNAPSHOT</version>
+	<version>3.1.0-NachlassWebVariante-2</version>
 
 	<url>https://github.com/arxes-tolina/rap-ckeditor</url>
 
@@ -36,7 +36,7 @@
 	<scm>
 		<connection>scm:git:https://github.com/arxes-tolina/rap-ckeditor.git</connection>
 		<url>https://github.com/arxes-tolina/rap-ckeditor</url>
-		<tag>streams/3.1_NachlassWebVariante</tag>
+		<tag>mvn_03_01_00_NachlassWebVariante_02</tag>
 	</scm>
 
 	<build>
