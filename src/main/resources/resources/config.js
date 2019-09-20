@@ -52,5 +52,5 @@ CKEDITOR.editorConfig = function( config ) {
 		
 	config.forcePasteAsPlainText = true;
 	config.ignoreEmptyParagraph = true;
-	config.enterMode = CKEDITOR.ENTER_BR;
+	config.enterMode = CKEDITOR.ENTER_P;
 };
