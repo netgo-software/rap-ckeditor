@@ -1,4 +1,4 @@
-﻿﻿/**
+﻿﻿﻿/**
  * Copyright (c) 2003-2013, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md or http://ckeditor.com/license
  */
@@ -20,10 +20,7 @@ CKEDITOR.stylesSet.add( 'default', [
 		element: 'span', 
 		styles: { 
 			'font-family': 'Arial', 
-			'font-size': '9.5pt', 
-			'margin-top': '0pt', 
-			'margin-bottom': '0pt', 
-			'line-height': '14pt' 
+			'font-size': '9.5pt'
 		} 
 	}, 
 
