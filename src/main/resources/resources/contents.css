@@ -5,8 +5,12 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 
 body.cke_editable
 {
-	/* Font */
-	font-family: Arial, Verdana, "Trebuchet MS", sans-serif;
+	/* CoBa Standard */
+	font-family: Arial;
+	font-size: 9.5pt;
+	margin-top: 0pt; 
+	margin-bottom: 0pt; 
+	line-height: 14pt; 
 
 	/* Text color */
 	color: #333;
@@ -18,8 +22,30 @@ body.cke_editable
 
 .cke_editable
 {
-	font-size: 10pt;
-	line-height: 1.6em;
+	font-size: 9.5pt;
+	line-height: 14pt;
+}
+
+p
+{
+	line-height: 14pt;
+	margin-top: 0pt; 
+	margin-bottom: 0pt; 
+}
+
+span
+{
+	font-family: Arial;
+	font-size: 9.5pt;
+}
+
+table
+{
+	margin-top: 0pt;
+	margin-bottom: 0pt;
+	line-height: 14pt;
+	font-family: Arial;
+	font-size: 9.5pt;
 }
 
 blockquote
@@ -96,11 +122,6 @@ pre
 .marker
 {
 	background-color: Yellow;
-}
-
-span[lang]
-{
-   font-style: italic;
 }
 
 .ckeditor-locked {
