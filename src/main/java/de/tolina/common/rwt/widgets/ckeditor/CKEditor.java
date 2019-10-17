@@ -875,7 +875,8 @@ public class CKEditor extends Composite {
 	}
 
 	private void writeFont() {
-		evalOnReady("rap.editor.document.getBody().setStyle( \"font\", \"" + getCssFont() + "\" );");
+		// NOP Wollen wir nicht. Das setzt am Body vom CKEditor einen individuellen Style mit den Anzeigestandards von SWT. Dieser ist dann dominanter als das eigentlich,
+		// in Dateien ausgelagerte Standard CSS des Editors.
 	}
 
 	private void readText() {
