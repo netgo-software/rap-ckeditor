@@ -50,7 +50,7 @@ CKEDITOR.editorConfig = function( config ) {
 	config.pasteFromWordRemoveFontStyles = false;
 	config.pasteFromWordRemoveStyles = false;
 		
-	config.forcePasteAsPlainText = true;
+	config.forcePasteAsPlainText = false;
 	config.ignoreEmptyParagraph = true;
 	config.enterMode = CKEDITOR.ENTER_P;
 };
