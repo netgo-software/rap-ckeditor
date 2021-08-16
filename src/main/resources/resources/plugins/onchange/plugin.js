@@ -69,7 +69,7 @@ CKEDITOR.plugins.add( 'onchange',
 
 			editor.on( 'afterCommandExec', function( event )
 			{
-				if ( event.data.name == 'source' )
+			    if ( event.data.name == 'source' || event.data.name == 'dinaVier' )
 					return;
 
 				if ( event.data.command.canUndo !== false )

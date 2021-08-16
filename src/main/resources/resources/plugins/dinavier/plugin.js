@@ -5,7 +5,7 @@
             exec: function (editor) {
                 editor.getCommand('dinaVier').toggleState();
                 editor.document.getBody().hasClass('din-a4') ? editor.document.getBody().removeClass('din-a4') : editor.document.getBody().addClass('din-a4');
-                if (editor.getCommand('dinaVier').state == CKEDITOR.TRISTATE_OFF) {
+                if (editor.getCommand('dinaVier').state === CKEDITOR.TRISTATE_OFF) {
                     editor.document.getBody().removeStyle('min-height');
                     editor.document.$.documentElement.style.backgroundColor = "#fff";
                 } else {
@@ -13,7 +13,7 @@
                     hoehe = parseInt(hoehe.substring(0, hoehe.length - 2)) - 28 + "px";
                     hoehe = hoehe + ' !important';
                     editor.document.getBody().$.style.cssText = 'min-height: '+ hoehe;
-                    editor.document.$.documentElement.style.backgroundColor = "#d3d3d3";
+                    editor.document.$.documentElement.style.backgroundColor = "#dfdfdf";
                 }
                 
             }
