@@ -21,6 +21,7 @@ CKEDITOR.editorConfig = function (config) {
         { name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align'] },
         { name: 'styles' },
         { name: 'colors' },
+        { name: 'verticalresizer' },
         { name: 'dinavier' }
     ];
 
@@ -38,7 +39,7 @@ CKEDITOR.editorConfig = function (config) {
     // Make dialogs simpler. 
     config.removeDialogTabs = 'image:advanced;link:advanced;tableProperties:advanced';
 
-    config.extraPlugins = 'onchange,font,liststyle,dialog,dialogui,clipboard,pastefromword,colorbutton,justify,list,indent,indentlist,indentblock,showborders,dinavier,copyformatting';
+    config.extraPlugins = 'onchange,font,liststyle,dialog,dialogui,clipboard,pastefromword,colorbutton,justify,list,indent,indentlist,indentblock,showborders,dinavier,copyformatting,verticalresizer';
 
     config.allowedContent = true;
 

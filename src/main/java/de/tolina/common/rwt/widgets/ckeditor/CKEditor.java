@@ -50,16 +50,16 @@ public class CKEditor extends Composite {
 			"lang/cs.js", //
 			"lang/cy.js", //
 			"lang/da.js", //
-			"lang/de.js", //
 			"lang/de-ch.js", //
+			"lang/de.js", //
 			"lang/el.js", //
 			"lang/en-au.js", //
 			"lang/en-ca.js", //
 			"lang/en-gb.js", //
 			"lang/en.js", //
 			"lang/eo.js", //
-			"lang/es.js", //
 			"lang/es-mx.js", //
+			"lang/es.js", //
 			"lang/et.js", //
 			"lang/eu.js", //
 			"lang/fa.js", //
@@ -110,6 +110,7 @@ public class CKEditor extends Composite {
 			"lang/vi.js", //
 			"lang/zh-cn.js", //
 			"lang/zh.js", //
+			"lang/_translationstatus.txt", //
 			"plugins/icons.png", //
 			"plugins/icons_hidpi.png", //
 			"plugins/a11yhelp/dialogs/a11yhelp.js", //
@@ -121,15 +122,15 @@ public class CKEditor extends Composite {
 			"plugins/a11yhelp/dialogs/lang/cs.js", //
 			"plugins/a11yhelp/dialogs/lang/cy.js", //
 			"plugins/a11yhelp/dialogs/lang/da.js", //
-			"plugins/a11yhelp/dialogs/lang/de.js", //
 			"plugins/a11yhelp/dialogs/lang/de-ch.js", //
+			"plugins/a11yhelp/dialogs/lang/de.js", //
 			"plugins/a11yhelp/dialogs/lang/el.js", //
-			"plugins/a11yhelp/dialogs/lang/en.js", //
 			"plugins/a11yhelp/dialogs/lang/en-au.js", //
 			"plugins/a11yhelp/dialogs/lang/en-gb.js", //
+			"plugins/a11yhelp/dialogs/lang/en.js", //
 			"plugins/a11yhelp/dialogs/lang/eo.js", //
-			"plugins/a11yhelp/dialogs/lang/es.js", //
 			"plugins/a11yhelp/dialogs/lang/es-mx.js", //
+			"plugins/a11yhelp/dialogs/lang/es.js", //
 			"plugins/a11yhelp/dialogs/lang/et.js", //
 			"plugins/a11yhelp/dialogs/lang/eu.js", //
 			"plugins/a11yhelp/dialogs/lang/fa.js", //
@@ -175,8 +176,8 @@ public class CKEditor extends Composite {
 			"plugins/a11yhelp/dialogs/lang/ug.js", //
 			"plugins/a11yhelp/dialogs/lang/uk.js", //
 			"plugins/a11yhelp/dialogs/lang/vi.js", //
-			"plugins/a11yhelp/dialogs/lang/zh.js", //
 			"plugins/a11yhelp/dialogs/lang/zh-cn.js", //
+			"plugins/a11yhelp/dialogs/lang/zh.js", //
 			"plugins/a11yhelp/dialogs/lang/_translationstatus.txt", //
 			"plugins/about/dialogs/about.js", //
 			"plugins/about/dialogs/logo_ckeditor.png", //
@@ -333,14 +334,63 @@ public class CKEditor extends Composite {
 			"plugins/colorbutton/lang/vi.js", //
 			"plugins/colorbutton/lang/zh-cn.js", //
 			"plugins/colorbutton/lang/zh.js", //
+			"plugins/colordialog/dialogs/colordialog.css", //
+			"plugins/colordialog/dialogs/colordialog.js", //
+			"plugins/copyformatting/cursors/cursor-disabled.svg", //
+			"plugins/copyformatting/cursors/cursor.svg", //
+			"plugins/copyformatting/styles/copyformatting.css", //
 			"plugins/dialog/dialogDefinition.js", //
 			"plugins/dialog/plugin.js", //
 			"plugins/dialog/samples/dialog.html", //
 			"plugins/dialog/samples/assets/my_dialog.js", //
+			"plugins/dialog/styles/dialog.css", //
 			"plugins/dialogui/plugin.js", //
-			"plugins/dinavier/icons/dinavier.png",
-			"plugins/dinavier/plugin.js",
+			"plugins/dinavier/plugin.js", //
+			"plugins/dinavier/icons/dinavier.png", //
+			"plugins/div/dialogs/div.js", //
+			"plugins/exportpdf/CHANGELOG.md", //
+			"plugins/exportpdf/LICENSE.md", //
+			"plugins/exportpdf/plugindefinition.js", //
+			"plugins/exportpdf/README.md", //
+			"plugins/exportpdf/tests/authentication.js", //
+			"plugins/exportpdf/tests/exportpdf.js", //
+			"plugins/exportpdf/tests/notification.js", //
+			"plugins/exportpdf/tests/resourcespaths.js", //
+			"plugins/exportpdf/tests/statistics.js", //
+			"plugins/exportpdf/tests/stylesheets.js", //
+			"plugins/exportpdf/tests/manual/configfilename.html", //
+			"plugins/exportpdf/tests/manual/configfilename.md", //
+			"plugins/exportpdf/tests/manual/emptyeditor.html", //
+			"plugins/exportpdf/tests/manual/emptyeditor.md", //
+			"plugins/exportpdf/tests/manual/integration.html", //
+			"plugins/exportpdf/tests/manual/integration.md", //
+			"plugins/exportpdf/tests/manual/notifications.html", //
+			"plugins/exportpdf/tests/manual/notifications.md", //
+			"plugins/exportpdf/tests/manual/notificationsasync.html", //
+			"plugins/exportpdf/tests/manual/notificationsasync.md", //
+			"plugins/exportpdf/tests/manual/paperformat.html", //
+			"plugins/exportpdf/tests/manual/paperformat.md", //
+			"plugins/exportpdf/tests/manual/readonly.html", //
+			"plugins/exportpdf/tests/manual/readonly.md", //
+			"plugins/exportpdf/tests/manual/stylesheets.html", //
+			"plugins/exportpdf/tests/manual/stylesheets.md", //
+			"plugins/exportpdf/tests/manual/tokenfetching.html", //
+			"plugins/exportpdf/tests/manual/tokenfetching.md", //
+			"plugins/exportpdf/tests/manual/tokentwoeditorscorrect.html", //
+			"plugins/exportpdf/tests/manual/tokentwoeditorscorrect.md", //
+			"plugins/exportpdf/tests/manual/tokentwoeditorswrong.html", //
+			"plugins/exportpdf/tests/manual/tokentwoeditorswrong.md", //
+			"plugins/exportpdf/tests/manual/tokenwithouturl.html", //
+			"plugins/exportpdf/tests/manual/tokenwithouturl.md", //
+			"plugins/exportpdf/tests/manual/wrongendpoint.html", //
+			"plugins/exportpdf/tests/manual/wrongendpoint.md", //
+			"plugins/exportpdf/tests/manual/integrations/easyimage.html", //
+			"plugins/exportpdf/tests/manual/integrations/easyimage.md", //
+			"plugins/exportpdf/tests/_helpers/tools.js", //
 			"plugins/fakeobjects/images/spacer.gif", //
+			"plugins/find/dialogs/find.js", //
+			"plugins/flash/dialogs/flash.js", //
+			"plugins/flash/images/placeholder.png", //
 			"plugins/font/plugin.js", //
 			"plugins/font/lang/af.js", //
 			"plugins/font/lang/ar.js", //
@@ -407,17 +457,29 @@ public class CKEditor extends Composite {
 			"plugins/font/lang/vi.js", //
 			"plugins/font/lang/zh-cn.js", //
 			"plugins/font/lang/zh.js", //
+			"plugins/forms/dialogs/button.js", //
+			"plugins/forms/dialogs/checkbox.js", //
+			"plugins/forms/dialogs/form.js", //
+			"plugins/forms/dialogs/hiddenfield.js", //
+			"plugins/forms/dialogs/radio.js", //
+			"plugins/forms/dialogs/select.js", //
+			"plugins/forms/dialogs/textarea.js", //
+			"plugins/forms/dialogs/textfield.js", //
+			"plugins/forms/images/hiddenfield.gif", //
+			"plugins/iframe/dialogs/iframe.js", //
+			"plugins/iframe/images/placeholder.png", //
 			"plugins/image/dialogs/image.js", //
 			"plugins/image/images/noimage.png", //
-			"plugins/indent/icons/hidpi/indent-rtl.png", //
-			"plugins/indent/icons/hidpi/indent.png", //
-			"plugins/indent/icons/hidpi/outdent-rtl.png", //
-			"plugins/indent/icons/hidpi/outdent.png", //
+			"plugins/indent/plugin.js", //
+			"plugins/indent/dev/indent.html", //
 			"plugins/indent/icons/indent-rtl.png", //
 			"plugins/indent/icons/indent.png", //
 			"plugins/indent/icons/outdent-rtl.png", //
 			"plugins/indent/icons/outdent.png", //
-			"plugins/indent/plugin.js", //
+			"plugins/indent/icons/hidpi/indent-rtl.png", //
+			"plugins/indent/icons/hidpi/indent.png", //
+			"plugins/indent/icons/hidpi/outdent-rtl.png", //
+			"plugins/indent/icons/hidpi/outdent.png", //
 			"plugins/indent/lang/af.js", //
 			"plugins/indent/lang/ar.js", //
 			"plugins/indent/lang/bg.js", //
@@ -486,15 +548,15 @@ public class CKEditor extends Composite {
 			"plugins/indent/lang/zh.js", //
 			"plugins/indentblock/plugin.js", //
 			"plugins/indentlist/plugin.js", //
-			"plugins/justify/icons/hidpi/justifyblock.png", //
-			"plugins/justify/icons/hidpi/justifycenter.png", //
-			"plugins/justify/icons/hidpi/justifyleft.png", //
-			"plugins/justify/icons/hidpi/justifyright.png", //
+			"plugins/justify/plugin.js", //
 			"plugins/justify/icons/justifyblock.png", //
 			"plugins/justify/icons/justifycenter.png", //
 			"plugins/justify/icons/justifyleft.png", //
 			"plugins/justify/icons/justifyright.png", //
-			"plugins/justify/plugin.js", //
+			"plugins/justify/icons/hidpi/justifyblock.png", //
+			"plugins/justify/icons/hidpi/justifycenter.png", //
+			"plugins/justify/icons/hidpi/justifyleft.png", //
+			"plugins/justify/icons/hidpi/justifyright.png", //
 			"plugins/justify/lang/af.js", //
 			"plugins/justify/lang/ar.js", //
 			"plugins/justify/lang/bg.js", //
@@ -565,6 +627,81 @@ public class CKEditor extends Composite {
 			"plugins/link/dialogs/link.js", //
 			"plugins/link/images/anchor.png", //
 			"plugins/link/images/hidpi/anchor.png", //
+			"plugins/list/plugin.js", //
+			"plugins/list/icons/bulletedlist-rtl.png", //
+			"plugins/list/icons/bulletedlist.png", //
+			"plugins/list/icons/numberedlist-rtl.png", //
+			"plugins/list/icons/numberedlist.png", //
+			"plugins/list/icons/hidpi/bulletedlist-rtl.png", //
+			"plugins/list/icons/hidpi/bulletedlist.png", //
+			"plugins/list/icons/hidpi/numberedlist-rtl.png", //
+			"plugins/list/icons/hidpi/numberedlist.png", //
+			"plugins/list/lang/af.js", //
+			"plugins/list/lang/ar.js", //
+			"plugins/list/lang/bg.js", //
+			"plugins/list/lang/bn.js", //
+			"plugins/list/lang/bs.js", //
+			"plugins/list/lang/ca.js", //
+			"plugins/list/lang/cs.js", //
+			"plugins/list/lang/cy.js", //
+			"plugins/list/lang/da.js", //
+			"plugins/list/lang/de.js", //
+			"plugins/list/lang/el.js", //
+			"plugins/list/lang/en-au.js", //
+			"plugins/list/lang/en-ca.js", //
+			"plugins/list/lang/en-gb.js", //
+			"plugins/list/lang/en.js", //
+			"plugins/list/lang/eo.js", //
+			"plugins/list/lang/es.js", //
+			"plugins/list/lang/et.js", //
+			"plugins/list/lang/eu.js", //
+			"plugins/list/lang/fa.js", //
+			"plugins/list/lang/fi.js", //
+			"plugins/list/lang/fo.js", //
+			"plugins/list/lang/fr-ca.js", //
+			"plugins/list/lang/fr.js", //
+			"plugins/list/lang/gl.js", //
+			"plugins/list/lang/gu.js", //
+			"plugins/list/lang/he.js", //
+			"plugins/list/lang/hi.js", //
+			"plugins/list/lang/hr.js", //
+			"plugins/list/lang/hu.js", //
+			"plugins/list/lang/id.js", //
+			"plugins/list/lang/is.js", //
+			"plugins/list/lang/it.js", //
+			"plugins/list/lang/ja.js", //
+			"plugins/list/lang/ka.js", //
+			"plugins/list/lang/km.js", //
+			"plugins/list/lang/ko.js", //
+			"plugins/list/lang/ku.js", //
+			"plugins/list/lang/lt.js", //
+			"plugins/list/lang/lv.js", //
+			"plugins/list/lang/mk.js", //
+			"plugins/list/lang/mn.js", //
+			"plugins/list/lang/ms.js", //
+			"plugins/list/lang/nb.js", //
+			"plugins/list/lang/nl.js", //
+			"plugins/list/lang/no.js", //
+			"plugins/list/lang/pl.js", //
+			"plugins/list/lang/pt-br.js", //
+			"plugins/list/lang/pt.js", //
+			"plugins/list/lang/ro.js", //
+			"plugins/list/lang/ru.js", //
+			"plugins/list/lang/si.js", //
+			"plugins/list/lang/sk.js", //
+			"plugins/list/lang/sl.js", //
+			"plugins/list/lang/sq.js", //
+			"plugins/list/lang/sr-latn.js", //
+			"plugins/list/lang/sr.js", //
+			"plugins/list/lang/sv.js", //
+			"plugins/list/lang/th.js", //
+			"plugins/list/lang/tr.js", //
+			"plugins/list/lang/tt.js", //
+			"plugins/list/lang/ug.js", //
+			"plugins/list/lang/uk.js", //
+			"plugins/list/lang/vi.js", //
+			"plugins/list/lang/zh-cn.js", //
+			"plugins/list/lang/zh.js", //
 			"plugins/liststyle/plugin.js", //
 			"plugins/liststyle/dialogs/liststyle.js", //
 			"plugins/liststyle/lang/af.js", //
@@ -632,14 +769,18 @@ public class CKEditor extends Composite {
 			"plugins/liststyle/lang/vi.js", //
 			"plugins/liststyle/lang/zh-cn.js", //
 			"plugins/liststyle/lang/zh.js", //
-			"plugins/magicline/images/icon.png", //
 			"plugins/magicline/images/icon-rtl.png", //
-			"plugins/magicline/images/hidpi/icon.png", //
+			"plugins/magicline/images/icon.png", //
 			"plugins/magicline/images/hidpi/icon-rtl.png", //
+			"plugins/magicline/images/hidpi/icon.png", //
 			"plugins/onchange/plugin.js", //
 			"plugins/onchange/docs/install.html", //
 			"plugins/onchange/docs/styles.css", //
+			"plugins/pagebreak/images/pagebreak.gif", //
 			"plugins/panelbutton/plugin.js", //
+			"plugins/pastefromgdocs/plugin.js", //
+			"plugins/pastefromgdocs/filter/default.js", //
+			"plugins/pastefromlibreoffice/filter/default.js", //
 			"plugins/pastefromword/plugin.js", //
 			"plugins/pastefromword/filter/default.js", //
 			"plugins/pastefromword/icons/pastefromword-rtl.png", //
@@ -712,15 +853,77 @@ public class CKEditor extends Composite {
 			"plugins/pastefromword/lang/vi.js", //
 			"plugins/pastefromword/lang/zh-cn.js", //
 			"plugins/pastefromword/lang/zh.js", //
+			"plugins/pastetools/filter/common.js", //
+			"plugins/pastetools/filter/image.js", //
+			"plugins/preview/preview.html", //
+			"plugins/preview/images/pagebreak.gif", //
+			"plugins/preview/styles/screen.css", //
+			"plugins/scayt/CHANGELOG.md", //
 			"plugins/scayt/LICENSE.md", //
 			"plugins/scayt/README.md", //
-			"plugins/scayt/CHANGELOG.md", //
+			"plugins/scayt/dialogs/dialog.css", //
 			"plugins/scayt/dialogs/options.js", //
 			"plugins/scayt/dialogs/toolbar.css", //
-			"plugins/scayt/dialogs/dialog.css", //
 			"plugins/scayt/skins/moono-lisa/scayt.css", //
+			"plugins/showblocks/images/block_address.png", //
+			"plugins/showblocks/images/block_blockquote.png", //
+			"plugins/showblocks/images/block_div.png", //
+			"plugins/showblocks/images/block_h1.png", //
+			"plugins/showblocks/images/block_h2.png", //
+			"plugins/showblocks/images/block_h3.png", //
+			"plugins/showblocks/images/block_h4.png", //
+			"plugins/showblocks/images/block_h5.png", //
+			"plugins/showblocks/images/block_h6.png", //
+			"plugins/showblocks/images/block_p.png", //
+			"plugins/showblocks/images/block_pre.png", //
 			"plugins/showborders/plugin.js", //
+			"plugins/smiley/dialogs/smiley.js", //
+			"plugins/smiley/images/angel_smile.gif", //
+			"plugins/smiley/images/angel_smile.png", //
+			"plugins/smiley/images/angry_smile.gif", //
+			"plugins/smiley/images/angry_smile.png", //
+			"plugins/smiley/images/broken_heart.gif", //
+			"plugins/smiley/images/broken_heart.png", //
+			"plugins/smiley/images/confused_smile.gif", //
+			"plugins/smiley/images/confused_smile.png", //
+			"plugins/smiley/images/cry_smile.gif", //
+			"plugins/smiley/images/cry_smile.png", //
+			"plugins/smiley/images/devil_smile.gif", //
+			"plugins/smiley/images/devil_smile.png", //
+			"plugins/smiley/images/embaressed_smile.gif", //
+			"plugins/smiley/images/embarrassed_smile.gif", //
+			"plugins/smiley/images/embarrassed_smile.png", //
+			"plugins/smiley/images/envelope.gif", //
+			"plugins/smiley/images/envelope.png", //
+			"plugins/smiley/images/heart.gif", //
+			"plugins/smiley/images/heart.png", //
+			"plugins/smiley/images/kiss.gif", //
+			"plugins/smiley/images/kiss.png", //
+			"plugins/smiley/images/lightbulb.gif", //
+			"plugins/smiley/images/lightbulb.png", //
+			"plugins/smiley/images/omg_smile.gif", //
+			"plugins/smiley/images/omg_smile.png", //
+			"plugins/smiley/images/regular_smile.gif", //
+			"plugins/smiley/images/regular_smile.png", //
+			"plugins/smiley/images/sad_smile.gif", //
+			"plugins/smiley/images/sad_smile.png", //
+			"plugins/smiley/images/shades_smile.gif", //
+			"plugins/smiley/images/shades_smile.png", //
+			"plugins/smiley/images/teeth_smile.gif", //
+			"plugins/smiley/images/teeth_smile.png", //
+			"plugins/smiley/images/thumbs_down.gif", //
+			"plugins/smiley/images/thumbs_down.png", //
+			"plugins/smiley/images/thumbs_up.gif", //
+			"plugins/smiley/images/thumbs_up.png", //
+			"plugins/smiley/images/tongue_smile.gif", //
+			"plugins/smiley/images/tongue_smile.png", //
+			"plugins/smiley/images/tounge_smile.gif", //
+			"plugins/smiley/images/whatchutalkingabout_smile.gif", //
+			"plugins/smiley/images/whatchutalkingabout_smile.png", //
+			"plugins/smiley/images/wink_smile.gif", //
+			"plugins/smiley/images/wink_smile.png", //
 			"plugins/specialchar/dialogs/specialchar.js", //
+			"plugins/specialchar/dialogs/lang/af.js", //
 			"plugins/specialchar/dialogs/lang/ar.js", //
 			"plugins/specialchar/dialogs/lang/az.js", //
 			"plugins/specialchar/dialogs/lang/bg.js", //
@@ -728,14 +931,18 @@ public class CKEditor extends Composite {
 			"plugins/specialchar/dialogs/lang/cs.js", //
 			"plugins/specialchar/dialogs/lang/cy.js", //
 			"plugins/specialchar/dialogs/lang/da.js", //
-			"plugins/specialchar/dialogs/lang/de.js", //
 			"plugins/specialchar/dialogs/lang/de-ch.js", //
+			"plugins/specialchar/dialogs/lang/de.js", //
 			"plugins/specialchar/dialogs/lang/el.js", //
+			"plugins/specialchar/dialogs/lang/en-au.js", //
+			"plugins/specialchar/dialogs/lang/en-ca.js", //
+			"plugins/specialchar/dialogs/lang/en-gb.js", //
 			"plugins/specialchar/dialogs/lang/en.js", //
 			"plugins/specialchar/dialogs/lang/eo.js", //
+			"plugins/specialchar/dialogs/lang/es-mx.js", //
 			"plugins/specialchar/dialogs/lang/es.js", //
 			"plugins/specialchar/dialogs/lang/et.js", //
-			"plugins/specialchar/dialogs/lang/es-mx.js", //
+			"plugins/specialchar/dialogs/lang/eu.js", //
 			"plugins/specialchar/dialogs/lang/fa.js", //
 			"plugins/specialchar/dialogs/lang/fi.js", //
 			"plugins/specialchar/dialogs/lang/fr-ca.js", //
@@ -750,6 +957,7 @@ public class CKEditor extends Composite {
 			"plugins/specialchar/dialogs/lang/km.js", //
 			"plugins/specialchar/dialogs/lang/ko.js", //
 			"plugins/specialchar/dialogs/lang/ku.js", //
+			"plugins/specialchar/dialogs/lang/lt.js", //
 			"plugins/specialchar/dialogs/lang/lv.js", //
 			"plugins/specialchar/dialogs/lang/nb.js", //
 			"plugins/specialchar/dialogs/lang/nl.js", //
@@ -764,6 +972,8 @@ public class CKEditor extends Composite {
 			"plugins/specialchar/dialogs/lang/sk.js", //
 			"plugins/specialchar/dialogs/lang/sl.js", //
 			"plugins/specialchar/dialogs/lang/sq.js", //
+			"plugins/specialchar/dialogs/lang/sr-latn.js", //
+			"plugins/specialchar/dialogs/lang/sr.js", //
 			"plugins/specialchar/dialogs/lang/sv.js", //
 			"plugins/specialchar/dialogs/lang/th.js", //
 			"plugins/specialchar/dialogs/lang/tr.js", //
@@ -771,14 +981,22 @@ public class CKEditor extends Composite {
 			"plugins/specialchar/dialogs/lang/ug.js", //
 			"plugins/specialchar/dialogs/lang/uk.js", //
 			"plugins/specialchar/dialogs/lang/vi.js", //
-			"plugins/specialchar/dialogs/lang/zh.js", //
 			"plugins/specialchar/dialogs/lang/zh-cn.js", //
+			"plugins/specialchar/dialogs/lang/zh.js", //
 			"plugins/specialchar/dialogs/lang/_translationstatus.txt", //
-			"plugins/tableselection/styles/tableselection.css", //
 			"plugins/table/dialogs/table.js", //
+			"plugins/tableselection/styles/tableselection.css", //
 			"plugins/tabletools/dialogs/tableCell.js", //
+			"plugins/templates/dialogs/templates.css", //
+			"plugins/templates/dialogs/templates.js", //
+			"plugins/templates/templates/default.js", //
+			"plugins/templates/templates/images/template1.gif", //
+			"plugins/templates/templates/images/template2.gif", //
+			"plugins/templates/templates/images/template3.gif", //
+			"plugins/verticalresizer/plugin.js", //
 			"plugins/widget/images/handle.png", //
 			"plugins/wsc/LICENSE.md", //
+			"plugins/wsc/plugin.js", //
 			"plugins/wsc/README.md", //
 			"plugins/wsc/dialogs/ciframe.html", //
 			"plugins/wsc/dialogs/tmp.html", //
@@ -786,11 +1004,93 @@ public class CKEditor extends Composite {
 			"plugins/wsc/dialogs/wsc.css", //
 			"plugins/wsc/dialogs/wsc.js", //
 			"plugins/wsc/dialogs/wsc_ie.js", //
+			"plugins/wsc/icons/spellchecker.png", //
+			"plugins/wsc/icons/hidpi/spellchecker.png", //
+			"plugins/wsc/lang/af.js", //
+			"plugins/wsc/lang/ar.js", //
+			"plugins/wsc/lang/bg.js", //
+			"plugins/wsc/lang/bn.js", //
+			"plugins/wsc/lang/bs.js", //
+			"plugins/wsc/lang/ca.js", //
+			"plugins/wsc/lang/cs.js", //
+			"plugins/wsc/lang/cy.js", //
+			"plugins/wsc/lang/da.js", //
+			"plugins/wsc/lang/de.js", //
+			"plugins/wsc/lang/el.js", //
+			"plugins/wsc/lang/en-au.js", //
+			"plugins/wsc/lang/en-ca.js", //
+			"plugins/wsc/lang/en-gb.js", //
+			"plugins/wsc/lang/en.js", //
+			"plugins/wsc/lang/eo.js", //
+			"plugins/wsc/lang/es.js", //
+			"plugins/wsc/lang/et.js", //
+			"plugins/wsc/lang/eu.js", //
+			"plugins/wsc/lang/fa.js", //
+			"plugins/wsc/lang/fi.js", //
+			"plugins/wsc/lang/fo.js", //
+			"plugins/wsc/lang/fr-ca.js", //
+			"plugins/wsc/lang/fr.js", //
+			"plugins/wsc/lang/gl.js", //
+			"plugins/wsc/lang/gu.js", //
+			"plugins/wsc/lang/he.js", //
+			"plugins/wsc/lang/hi.js", //
+			"plugins/wsc/lang/hr.js", //
+			"plugins/wsc/lang/hu.js", //
+			"plugins/wsc/lang/is.js", //
+			"plugins/wsc/lang/it.js", //
+			"plugins/wsc/lang/ja.js", //
+			"plugins/wsc/lang/ka.js", //
+			"plugins/wsc/lang/km.js", //
+			"plugins/wsc/lang/ko.js", //
+			"plugins/wsc/lang/ku.js", //
+			"plugins/wsc/lang/lt.js", //
+			"plugins/wsc/lang/lv.js", //
+			"plugins/wsc/lang/mk.js", //
+			"plugins/wsc/lang/mn.js", //
+			"plugins/wsc/lang/ms.js", //
+			"plugins/wsc/lang/nb.js", //
+			"plugins/wsc/lang/nl.js", //
+			"plugins/wsc/lang/no.js", //
+			"plugins/wsc/lang/pl.js", //
+			"plugins/wsc/lang/pt-br.js", //
+			"plugins/wsc/lang/pt.js", //
+			"plugins/wsc/lang/ro.js", //
+			"plugins/wsc/lang/ru.js", //
+			"plugins/wsc/lang/sk.js", //
+			"plugins/wsc/lang/sl.js", //
+			"plugins/wsc/lang/sr-latn.js", //
+			"plugins/wsc/lang/sr.js", //
+			"plugins/wsc/lang/sv.js", //
+			"plugins/wsc/lang/th.js", //
+			"plugins/wsc/lang/tr.js", //
+			"plugins/wsc/lang/ug.js", //
+			"plugins/wsc/lang/uk.js", //
+			"plugins/wsc/lang/vi.js", //
+			"plugins/wsc/lang/zh-cn.js", //
+			"plugins/wsc/lang/zh.js", //
 			"plugins/wsc/skins/moono-lisa/wsc.css", //
+			"skins/kama/dialog.css", //
+			"skins/kama/dialog_ie.css", //
+			"skins/kama/dialog_ie7.css", //
+			"skins/kama/dialog_ie8.css", //
+			"skins/kama/dialog_iequirks.css", //
 			"skins/kama/editor.css", //
+			"skins/kama/editor_ie.css", //
+			"skins/kama/editor_ie7.css", //
+			"skins/kama/editor_ie8.css", //
+			"skins/kama/editor_iequirks.css", //
 			"skins/kama/icons.png", //
+			"skins/kama/icons_hidpi.png", //
+			"skins/kama/readme.md", //
+			"skins/kama/skin.js", //
+			"skins/kama/images/dialog_sides.gif", //
+			"skins/kama/images/dialog_sides.png", //
+			"skins/kama/images/dialog_sides_rtl.png", //
+			"skins/kama/images/mini.gif", //
+			"skins/kama/images/spinner.gif", //
 			"skins/kama/images/sprites.png", //
 			"skins/kama/images/sprites_ie6.png", //
+			"skins/kama/images/toolbar_start.gif", //
 			"skins/moono/dialog.css", //
 			"skins/moono/dialog_ie.css", //
 			"skins/moono/dialog_ie7.css", //
@@ -806,16 +1106,19 @@ public class CKEditor extends Composite {
 			"skins/moono/icons.png", //
 			"skins/moono/icons_hidpi.png", //
 			"skins/moono/readme.md", //
+			"skins/moono/skin.js", //
+			"skins/moono/images/anchor.png", //
 			"skins/moono/images/arrow.png", //
 			"skins/moono/images/close.png", //
 			"skins/moono/images/lock-open.png", //
 			"skins/moono/images/lock.png", //
 			"skins/moono/images/refresh.png", //
+			"skins/moono/images/spinner.gif", //
+			"skins/moono/images/hidpi/anchor.png", //
 			"skins/moono/images/hidpi/close.png", //
 			"skins/moono/images/hidpi/lock-open.png", //
 			"skins/moono/images/hidpi/lock.png", //
 			"skins/moono/images/hidpi/refresh.png", //
-			"skins/moono-lisa/skin.js", //
 			"skins/moono-lisa/dialog.css", //
 			"skins/moono-lisa/dialog_ie.css", //
 			"skins/moono-lisa/dialog_ie8.css", //
@@ -827,17 +1130,18 @@ public class CKEditor extends Composite {
 			"skins/moono-lisa/editor_iequirks.css", //
 			"skins/moono-lisa/icons.png", //
 			"skins/moono-lisa/icons_hidpi.png", //
+			"skins/moono-lisa/readme.md", //
+			"skins/moono-lisa/skin.js", //
 			"skins/moono-lisa/images/arrow.png", //
 			"skins/moono-lisa/images/close.png", //
-			"skins/moono-lisa/images/hidpi/close.png", //
-			"skins/moono-lisa/images/hidpi/lock.png", //
-			"skins/moono-lisa/images/hidpi/lock-open.png", //
-			"skins/moono-lisa/images/hidpi/refresh.png", //
-			"skins/moono-lisa/images/lock.png", //
 			"skins/moono-lisa/images/lock-open.png", //
+			"skins/moono-lisa/images/lock.png", //
 			"skins/moono-lisa/images/refresh.png", //
 			"skins/moono-lisa/images/spinner.gif", //
-			"skins/moono-lisa/readme.md", //
+			"skins/moono-lisa/images/hidpi/close.png", //
+			"skins/moono-lisa/images/hidpi/lock-open.png", //
+			"skins/moono-lisa/images/hidpi/lock.png", //
+			"skins/moono-lisa/images/hidpi/refresh.png", //
 	};
 
 	private String text = "";
